@@ -11,6 +11,6 @@ namespace SkillUp.Service.Services.Abstractions
         Task<Course> GetCourseById(int id);
         Task CreateCourseAsync(CreateCourseVM courseVM);
         Task DeleteCourseAsync(int id);
-        Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM);
+        Task<bool> UpdateCourseAsync(int id, UpdateCourseVM updateCourseVM);
     }
 }

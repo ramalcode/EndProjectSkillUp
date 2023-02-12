@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "R6PTh38lNpiMCOS2t+yY6jCE9b4JN+O+8nAtvEFVY4xGm+8r15xTnpSb29IZFlGgK5eMN6kTTq3tFpQ7+raU5w==",
+  "dgSpecHash": "dB+dVW6A9k7pKtYVwhhRjgWnTHjwFHN8PN8dRVXxWZwjuDkhZnlUmYf5nRUBi+jo8NaKF+bTUXAIVADSafDEnA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ramal\\Desktop\\skilluphtml-10\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
+  "projectFilePath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ramal\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.12\\microsoft.aspnetcore.cryptography.internal.6.0.12.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.12\\microsoft.aspnetcore.cryptography.keyderivation.6.0.12.nupkg.sha512",

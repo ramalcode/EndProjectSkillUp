@@ -20,7 +20,7 @@ namespace SkillUp.Entity.Entities
 
 
 
-        public int? InstructorId { get; set; }
+        public int InstructorId { get; set; }
         public Instructor? Instructor { get; set; }
 
 

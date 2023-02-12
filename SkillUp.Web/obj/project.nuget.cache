@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "no8rIK+QAARsaw6I0kactVjrLoGSuwHOy8KqcPRSpjaU8DdS5bw0w9WgjdacKNY8pg88n2l0mUQkccLMI7nBLA==",
+  "dgSpecHash": "ZuuB1XTJlmHm+mMPPbePTRGRaOlSANcnHNGbxenHLdW9FvkjhEzYlDo8Bjo+TVyReNPRycX/PTTQzbBu0yEK1Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Ramal\\Desktop\\skilluphtml-10\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
+  "projectFilePath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ramal\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

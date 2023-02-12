@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "SkillUp-InstructorDetail";
 }
-
+@model Instructor
 <!-- ============================ Page Title Start ================================== -->
 <div class="ed_detail_head">
     <div class="container">
@@ -9,22 +9,36 @@
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div class="authi_125">
                     <div class="authi_125_thumb">
-                        <img src="https://via.placeholder.com/700x550" class="img-fluid rounded" alt="" />
+                        <video src="~/user/assets/instructorpreview/@Model.PreviewVideoUrl" alt="" controls loop   ></video>
                     </div>
-                    <a href="#" class="klio_45"><div class="lklo_45"><i class="fas fa-play"></i></div><h6>Preview</h6></a>
                 </div>
             </div>
 
             <div class="col-lg-9 col-md-12 col-sm-12">
                 <div class="dlkio_452">
                     <div class="ed_detail_wrap">
-                        <div class="crs_cates cl_1"><span>Web Design</span></div><div class="crs_cates cl_3"><span>PHP</span></div>
+                        <div class="crs_cates cl_1">
+                            @foreach (var professions in Model.InstructorProfessions)
+                            {
+                                <span>@professions.Profession.Name</span>
+                                
+                            }
+                        </div>
                         <div class="ed_header_caption">
-                            <h2 class="ed_title">Namrta K. Mehta</h2>
+                            <h2 class="ed_title">@(Model.Name + " " + Model.Surname)</h2>
                             <ul>
-                                <li><i class="ti-calendar"></i>10 - 20 weeks</li>
-                                <li><i class="ti-control-forward"></i>102 Lectures</li>
-                                <li><i class="ti-user"></i>502 Student Enrolled</li>
+                                <li><i class="ti-control-forward"></i>
+                                    @foreach (var course in Model.Courses)
+                                    {
+
+                                        <span>@course.Paragraphs.Sum(x => x.Lectures.Count) Lectures</span>
+                                         
+                                       
+                                    }
+                                </li>
+                                <li><i class="ti-user"></i>
+                                    <span>@Model.AppUserInstructors.Count</span>
+                                </li>
                             </ul>
                         </div>
                         <div class="ed_header_short">

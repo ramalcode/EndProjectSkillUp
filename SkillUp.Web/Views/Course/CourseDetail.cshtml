@@ -1,4 +1,4 @@
-﻿@{
+﻿    @{
     ViewData["Title"] = "SkillUp-CourseDetail";
 }
 @model Course
@@ -20,11 +20,20 @@
                         <h2 class="ed_title">@Model.Name</h2>
                         <ul>
                             <li><i class="ti-control-forward"></i>
-                                @foreach (var paragraph in Model.Paragraphs)
+                                @if (Model.Paragraphs.Sum(x => x.Lectures.Count)==0)
                                 {
-                                    <span>@paragraph.Lectures.Count Lectures</span>
+                                    <span>Video is not available</span>
                                 }
-                                </li>
+                                @if (Model.Paragraphs.Sum(x => x.Lectures.Count)==1)
+                                {
+                                    <span>@Model.Paragraphs.Sum(x=>x.Lectures.Count) Lecture</span>
+                                }
+                                @if (Model.Paragraphs.Sum(x => x.Lectures.Count) > 1)
+                                {
+                                    <span>@Model.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span>
+                                }
+
+                                
                             <li><i class="ti-user"></i><span>@Model.AppUserCourses.Count Student Enrolled</span> </li>
                         </ul>
                     </div>
@@ -146,16 +155,20 @@
                                     <a href="#"><img src="~/user/assets/instructorimg/@Model.Instructor.ImageUrl" class="img-fluid" alt=""></a>
                                 </div>
                                 <div class="single_instructor_caption">
-                                    <h4><a href="#">@(Model.Instructor.Name + " " + Model.Instructor.Surname)</a></h4>
+                                    <h4><a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@Model.Instructor.Id">@(Model.Instructor.Name + " " + Model.Instructor.Surname)</a></h4>
                                     <ul class="instructor_info">
                                         <li><i class="ti-video-camera"></i>
-                                            @if (Model.Instructor.Courses.Count>1)
+                                            @if (Model.Instructor.Courses.Count == 0)
                                             {
-                                                <span>Model.Instructor.Courses.Count Videos</span>
+                                                <span>Course is not available</span>
                                             }
-                                            else
+                                            @if (Model.Instructor.Courses.Count==1)
                                             {
-                                                <span>@Model.Instructor.Courses.Count Video</span>
+                                                <span>@Model.Instructor.Courses.Count Course</span>
+                                            }
+                                            @if (Model.Instructor.Courses.Count > 1)
+                                            {
+                                                <span>@Model.Instructor.Courses.Count Courses</span>
                                             }
                                             </li>
                                         <li><i class="ti-control-forward"></i>
@@ -163,6 +176,7 @@
                                             {
                                                 @foreach (var lectures in item.Paragraphs)
                                                 {
+                                                    
                                                     if (lectures.Lectures.Count>1)
                                                     {
                                                        <span>@lectures.Lectures.Count Lectures </span>
@@ -404,7 +418,7 @@
                                     <span>@Model.AppUserCourses.Count Student Enroll</span>
                                     
                                 }
-                                else
+                                @if (Model.AppUserCourses.Count >1)
                                 {
                                     <span>@Model.AppUserCourses.Count Students Enroll</span>
                                 }

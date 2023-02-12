@@ -26,6 +26,7 @@ namespace SkillUp.Service.Services.Concretes
         }
         public async Task CreateCourseAsync(CreateCourseVM courseVM)
         {
+            var categories = _context.Categories.Where(ctg => courseVM.CategoryIds.Contains(ctg.Id));
             Course course = new Course
             {
                 Name = courseVM.Name,
@@ -41,18 +42,20 @@ namespace SkillUp.Service.Services.Concretes
                 PreviewUrl = courseVM.Preview.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursepreview")),
                 
             };
-            var categories = await _unitOfWork.GetRepository<Category>().GetAllAsync(ctg => courseVM.CategoryIds.Any());
+
             foreach (var item in categories)
             {
-                await _unitOfWork.GetRepository<CourseCategory>().AddAsync(new CourseCategory { Course = course, CategoryId = item.Id });
+                _context.CourseCategories.Add(new CourseCategory { Course = course, CategoryId = item.Id });
             }
+
             await _unitOfWork.GetRepository<Course>().AddAsync(course);
             await _unitOfWork.SaveAsync();
         }
 
-        public Task DeleteCourseAsync(int id)
+        public async Task DeleteCourseAsync(int id)
         {
-            throw new NotImplementedException();
+            await _unitOfWork.GetRepository<Course>().DeleteAsync(id);
+            await _unitOfWork.SaveAsync();
         }
 
         public async Task<ICollection<Course>> GetAllCourseAsync()
@@ -61,6 +64,7 @@ namespace SkillUp.Service.Services.Concretes
                 .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).Include(u=>u.AppUserCourses)
                 .ThenInclude(a=>a.AppUser).ToListAsync();
             //var course = await _unitOfWork.GetRepository<Course>().GetAllAsync(null, i=>i.Instructor, l=>l.Paragraphs, ctg=>ctg.CourseCategories);
+
             return course;
         }
 
@@ -71,14 +75,59 @@ namespace SkillUp.Service.Services.Concretes
             return course;
         }
 
-        public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)
+        public async Task<bool> UpdateCourseAsync(int id, UpdateCourseVM courseVM)
         {
-            throw new NotImplementedException();
+            var course = await _context.Courses.Include(cc => cc.CourseCategories).ThenInclude(c => c.Category).FirstOrDefaultAsync(x => x.Id == id);
+            course.Name = courseVM.Name;
+            course.Description = courseVM.Description;
+            course.Price = courseVM.Price;
+            course.DiscountPrice = courseVM.DiscountPrice;
+            course.CourseOverview = courseVM.CourseOverview;
+            course.Requirement = courseVM.Requirement;
+            course.Certification = courseVM.Certification;
+            course.InstructorId = courseVM.InstructorId;
+
+            foreach (var category in course.CourseCategories)
+            {
+                if (courseVM.CategoryIds.Contains(category.CategoryId))
+                {
+                    courseVM.CategoryIds.Remove(category.CategoryId);
+                }
+                else
+                {
+                     _context.CourseCategories.Remove(category);
+                }
+            }
+
+            await _unitOfWork.GetRepository<Course>().UpdateAsync(course);
+            await _unitOfWork.SaveAsync();
+
+            return true;
         }
 
-        public Task<UpdateCourseVM> UpdateCourseById(int id)
+        public async Task<UpdateCourseVM> UpdateCourseById(int id)
         {
-            throw new NotImplementedException();
+            var course =_context.Courses.Include(cc=>cc.CourseCategories).FirstOrDefault(c=>c.Id==id);
+            UpdateCourseVM courseVM = new UpdateCourseVM
+            {
+                Name = course.Name,
+                Description = course.Description,
+                CourseOverview = course.CourseOverview,
+                Certification = course.Certification,
+                Requirement = course.Requirement,
+                CategoryIds = new List<int>(),
+                Price = course.Price,
+                DiscountPrice = course.DiscountPrice,
+                InstructorId = course.InstructorId,
+                ImageUrl = course.ImageUrl,
+                PreviewUrl = course.PreviewUrl,
+            };
+            foreach (var category in course.CourseCategories)
+            {
+                courseVM.CategoryIds.Add(category.CategoryId);
+            }
+
+            return courseVM;
         }
     }
 }

@@ -144,13 +144,14 @@
                                 {
                                    <tr>
                                     <td><h6>@course.Name</h6><p>Instructor:<span>@course.Instructor.Name @course.Instructor.Surname</span></p></td>
-                                    <td><div class="dhs_tags">
-                                        @foreach (var category in course?.CourseCategories.Where(ctg=>ctg.CategoryId == course.Id))
-                                        {
+                                    <td>
+                                        @foreach (var category in course?.CourseCategories.Where(ctg=>ctg.CourseId == course.Id))
+                                        {<div class="dhs_tags">
 
-                                           <span>@category.Category.Name</span>
+                                                    <span>@category.Category.Name</span>
+                                                </div>
                                         }
-                                    </div></td>
+                                   </td>
                                      <td><span class="smalls">
                                         
                                            <span>@course.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span>
@@ -184,8 +185,8 @@
                                             </a>
                                             <div class="drp-select dropdown-menu">
                                                 <a class="dropdown-item" href="JavaScript:Void(0);">View</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Edit</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Delete</a>
+                                                <a class="dropdown-item" asp-controller="Course" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
+                                                <a class="dropdown-item" asp-controller="Course" asp-action="DeleteCourse" asp-route-id ="@course.Id">Delete</a>
                                             </div>
                                         </div>
                                     </td>

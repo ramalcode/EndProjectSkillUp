@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "SkillUp-Index";
 }
-@model ICollection<Course>
+@model IndexVM
 <!-- ============================ Hero Banner  Start ================================== -->
 <div class="hero_banner image-cover image_bottom h7_bg">
     <div class="container">
@@ -161,7 +161,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="slide_items">
 
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.Courses)
                     {
                         <!-- Single Item -->
                         <div class="lios_item">
@@ -250,109 +250,21 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="cates_crs_wrip">
                     <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-code"></i></div>
+                        <div class="crs_cate_icon"><i class="@category.IconUrl"></i></div>
                         <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
                     </div>
                     <div class="crs_capt_cat">
-                        <h4>Development</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
+                        <h4>@category.Name</h4>
+                        <p>@category.Description.</p>
                     </div>
                 </div>
             </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-window-restore"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Web Designing</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-leaf"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Lifestyle</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-heartbeat"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Health & Fitness</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-landmark"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Gov. Exams</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-photo-video"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Photography</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-stamp"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Finance & Accounting</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
-                <div class="cates_crs_wrip">
-                    <div class="crs_trios">
-                        <div class="crs_cate_icon"><i class="fa fa-school"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
-                    </div>
-                    <div class="crs_capt_cat">
-                        <h4>Office Productivity</h4>
-                        <p>At vero eos et accusamus et iusto odio dignissimos.</p>
-                    </div>
-                </div>
-            </div>
-
+            }
         </div>
 
     </div>
@@ -378,132 +290,28 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="tutor-slide">
 
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>Sanskrit Teacher</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">Luella J. Robles</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
+                    @foreach (var instructor in Model.Instructors)
+                    {
+                        <div class="lios_item">
+                            <div class="crs_trt_grid theme-light shadow_none">
+                                <div class="crs_trt_thumb">
+                                    <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" alt=""></a>
+                                </div>
+                                <div class="crs_trt_caption large">
+                                    <div class="instructor_tag dark"><span>Sanskrit Teacher</span></div>
+                                    <div class="instructor_title"><h4><a href="instructor-detail.html">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
+                                    <div class="trt_rate_inf">
+                                        <i class="fa fa-star filled"></i>
+                                        <i class="fa fa-star filled"></i>
+                                        <i class="fa fa-star filled"></i>
+                                        <i class="fa fa-star filled"></i>
+                                        <i class="fa fa-star-half filled"></i>
+                                        <span class="alt_rates">(244 Reviews)</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>Math Teacher</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">David E. Lampkin</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>History Teacher</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">Michael B. Maxwell</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>Physics Teacher</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">Daniel D. Couse</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>PHP Developer</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">Linda R. Gibson</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="lios_item">
-                        <div class="crs_trt_grid theme-light shadow_none">
-                            <div class="crs_trt_thumb">
-                                <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="https://via.placeholder.com/700x550" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="crs_trt_caption large">
-                                <div class="instructor_tag dark"><span>Chemistry Expert</span></div>
-                                <div class="instructor_title"><h4><a href="instructor-detail.html">Douglas M. Mikel</a></h4></div>
-                                <div class="trt_rate_inf">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star-half filled"></i>
-                                    <span class="alt_rates">(244 Reviews)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    }
                 </div>
             </div>
         </div>
