@@ -86,11 +86,9 @@ namespace SkillUp.Web.Areas.Manage.Controllers
 
         public async Task<IActionResult> UpdateCourse(int id)
         {
-            
 
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
             ViewBag.Instructor = new SelectList(await _instructorService.GetAllInstructorAsync(), nameof(Instructor.Id), nameof(Instructor.Name));
-            
             var course = await _courseService.UpdateCourseById(id);
             return View(course);
         }

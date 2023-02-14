@@ -22,11 +22,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ViewComponents\" />
     <Folder Include="wwwroot\user\assets\courseimg\" />
     <Folder Include="wwwroot\user\assets\coursepreview\" />
     <Folder Include="wwwroot\user\assets\coursevideo\" />
     <Folder Include="wwwroot\user\assets\instructorimg\" />
     <Folder Include="wwwroot\user\assets\instructorpreview\" />
+    <Folder Include="wwwroot\user\assets\productimg\" />
   </ItemGroup>
 
 </Project>

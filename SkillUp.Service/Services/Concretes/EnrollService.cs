@@ -57,5 +57,19 @@ namespace SkillUp.Service.Services.Concretes
         {
             throw new NotImplementedException();
         }
+
+        public async Task EnrollProductAsync(EnrollProductVM productVM)
+        {
+            AppUserProduct userProduct = new AppUserProduct
+            {
+                AppUserId = productVM.AppUserId,
+                ProductId = productVM.ProductId,
+            };
+            //var courses = await _unitOfWork.GetRepository<Course>().GetAllAsync(c => studentVM.CourseIds.Any());
+            //var users = _context.AppUsers.Where(u => studentVM.AppUserIds.Contains(u.Id));
+
+            await _unitOfWork.GetRepository<AppUserProduct>().AddAsync(userProduct);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

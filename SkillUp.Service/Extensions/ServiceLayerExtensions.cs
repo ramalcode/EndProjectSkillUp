@@ -15,6 +15,7 @@ namespace SkillUp.Service.Extensions
             services.AddScoped<IInstructorService, InstructorService>();
             services.AddScoped<ILectureService, LectureService>();
             services.AddScoped<IEnrollService, EnrollService>();
+            services.AddScoped<IProductService, ProductService>();
 
             return services;
         }

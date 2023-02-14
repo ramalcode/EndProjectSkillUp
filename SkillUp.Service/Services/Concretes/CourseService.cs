@@ -98,6 +98,10 @@ namespace SkillUp.Service.Services.Concretes
                      _context.CourseCategories.Remove(category);
                 }
             }
+            foreach (var categoryId in courseVM.CategoryIds)
+            {
+                _context.CourseCategories.Add(new CourseCategory { Course = course, CategoryId = categoryId });
+            }
 
             await _unitOfWork.GetRepository<Course>().UpdateAsync(course);
             await _unitOfWork.SaveAsync();

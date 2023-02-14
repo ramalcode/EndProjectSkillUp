@@ -12,14 +12,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
     {
         readonly IEnrollService _enrollService;
         readonly ICourseService _courseService;
+        readonly IProductService _productService;
         readonly AppDbContext _context;  //
 
 
-        public EnrollmentController(IEnrollService enrollService, AppDbContext context, ICourseService courseService)
+        public EnrollmentController(IEnrollService enrollService, AppDbContext context, ICourseService courseService, IProductService productService)
         {
             _enrollService = enrollService;
             _context = context;
             _courseService = courseService;
+            _productService = productService;
         }
 
         public async  Task<IActionResult> EnrollStudent()
@@ -41,6 +43,26 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (studentVM is null) return NotFound();
             await _enrollService.EnrollStudentAsync(studentVM); 
             return RedirectToAction(nameof(EnrollStudent));
+        }
+
+        public async Task<IActionResult> EnrollProduct()
+        {
+            ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
+            ViewBag.Products = new SelectList(await _productService.GetAllProductAsync(), nameof(Product.Id), nameof(Product.Name));
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EnrollProduct(EnrollProductVM productVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
+                ViewBag.Products = new SelectList(await _productService.GetAllProductAsync(), nameof(Product.Id), nameof(Product.Name)); return View();
+            }
+            if (productVM is null) return NotFound();
+            await _enrollService.EnrollProductAsync(productVM);
+            return RedirectToAction(nameof(EnrollProduct));
         }
     }
 }
