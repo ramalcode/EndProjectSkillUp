@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "ManageStudents";
 }
-
+@model ICollection<AppUser>
 <!-- ============================ Dashboard: Dashboard Start ================================== -->
 <!-- Row -->
 <div class="row justify-content-between">
@@ -14,9 +14,6 @@
                         <li class="breadcrumb-item active" aria-current="page">Manage Students</li>
                     </ol>
                 </nav>
-            </div>
-            <div class="elkios">
-                <a href="add-students.html" class="add_new_btn"><i class="fas fa-plus-circle mr-1"></i>Add Students</a>
             </div>
         </div>
     </div>
@@ -66,21 +63,40 @@
                         <table class="table dash_list">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Photo</th>
+                                  @*  <th scope="col">#</th>
+                                    <th scope="col">Photo</th>*@
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Enrolled Course</th>
+                                    <th scope="col">Enrolled Product</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>
-                                    <td><div class="smalls lg">Myrtle M. Korn</div></td>
-                                    <td><span class="smalls lg">Beltran@teleworm.us</span></td>
-                                    <td><span class="smalls lg">Web Designing</span></td>
+                                @foreach (var student in Model)
+                                {
+                                    <tr>
+                                    @*<th scope="row">1</th>
+                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>*@
+                                    <td><div class="smalls lg">@(student.Name + " " + student.Surname)</div></td>
+                                    <td><span class="smalls lg">@student.Email</span></td>
+                                    <td><span class="smalls lg">
+                                        @foreach (var course in student.AppUserCourses)
+                                        {
+                                                    <div><span>@(course.Course.Name + " - " + course.Course.Instructor.Name + " " + course.Course.Instructor.Surname)</span></div>
+                                        }
+                                    </span></td>
+                                        <td>
+                                         <span class="smalls lg">
+                                                @foreach (var product in student.AppUserProducts)
+                                                {
+                                                        foreach (var author in product.Product.ProductAuthors)
+                                                            {
+                                                                <div><span>@(product.Product.Name + " - " + author.Author.Name + " " + author.Author.Surname) </span></div>
+                                                            }
+                                                }
+                                            </span>
+                                        </td>
                                     <td>
                                         <div class="dropdown show">
                                             <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -93,78 +109,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>
-                                    <td><div class="smalls lg">Laurie T. Eller</div></td>
-                                    <td><span class="smalls lg">Paxson@armyspy.com</span></td>
-                                    <td><span class="smalls lg">JavaScript</span></td>
-                                    <td>
-                                        <div class="dropdown show">
-                                            <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </a>
-                                            <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Edit</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>
-                                    <td><span class="smalls lg">Lucinda J. Smither</span></td>
-                                    <td><span class="smalls lg">FrankTFleck@rhyta.com</span></td>
-                                    <td><span class="smalls lg">3D Animation</span></td>
-                                    <td>
-                                        <div class="dropdown show">
-                                            <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </a>
-                                            <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Edit</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>
-                                    <td><span class="smalls lg">Shirley L. Townsend</span></td>
-                                    <td><span class="smalls lg">CarloJone@armyspy.com</span></td>
-                                    <td><span class="smalls lg">Laravel</span></td>
-                                    <td>
-                                        <div class="dropdown show">
-                                            <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </a>
-                                            <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Edit</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td><img src="https://via.placeholder.com/500x500" class="img-fluid circle" width="40" alt="" /></td>
-                                    <td><span class="smalls lg">Leonard A. Barker</span></td>
-                                    <td><span class="smalls lg">LeonAarker@rhyta.com</span></td>
-                                    <td><span class="smalls lg">Hraphic Design</span></td>
-                                    <td>
-                                        <div class="dropdown show">
-                                            <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="fas fa-ellipsis-h"></i>
-                                            </a>
-                                            <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Edit</a>
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">Delete</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                }
                             </tbody>
                         </table>
                     </div>

@@ -1,18 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SkillUp.DAL.Context;
 
 namespace SkillUp.Web.Controllers
 {
     public class ShopController : Controller
     {
+        readonly AppDbContext appDbContext;
+
+        public ShopController(AppDbContext appDbContext)
+        {
+            this.appDbContext = appDbContext;
+        }
+
         public IActionResult Products()
         {
             return View();
         }
 
 
-        public IActionResult ProductDetail()
+        public async Task<IActionResult> ProductDetail(int id)
         {
-            return View();
+            var product = await appDbContext.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
+                .Include(au=>au.ProductAuthors).ThenInclude(a=>a.Author).FirstOrDefaultAsync(p=>p.Id == id); 
+            return View(product);
         }
 
 

@@ -2,6 +2,7 @@
     ViewData["Title"] = "SkillUp-ProductDetail";
 }
 
+@model Product
 <!-- ============================ Page Title Start ================================== -->
 <section class="page-title gray">
     <div class="container">
@@ -35,19 +36,22 @@
 
                     <div class="woo-single-images">
                         <div class="feature-style-single">
-                            <img src="assets/img/detail-13.png" alt="product-book-06" width="570">
+                            <img src="~/user/assets/productimg/@Model.ImageUrl" alt="product-book-06" width="570">
                         </div>
                     </div>
 
                     <div class="summary entry-summary">
                         <div class="woo_inner">
-                            <div class="shop_status sell">New</div>
                             <h2 class="woo_product_title">
-                                <a href="#">Early Field Experience: Teach Well</a>
+                                <a href="#">@Model.Name</a>
                             </h2>
                             <ul class="woo_info">
-                                <li><strong>Category:</strong>Design</li>
-                                <li><strong>SKU:</strong>#CDP0147</li>
+                                <li><strong>Category:</strong>
+                                    @foreach (var category in Model?.ProductCategories.Where(ctg => ctg.ProductId == Model.Id))
+                                    {
+                                      <span>@category.Category.Name</span>
+                                    }
+                                </li>
                             </ul>
                             <div class="woo_price_rate">
                                 <div class="woo_rating">
@@ -58,20 +62,46 @@
                                     <i class="fas fa-star"></i>
                                 </div>
                                 <div class="woo_price_fix">
-                                    <h3 class="mb-0 theme-cl">$149.00</h3>
+                                    <h3 class="mb-0 theme-cl">
+                                        @if (Model.DiscountPrice==0)
+                                        {
+                                            if (Model.Price > 0)
+                                            {
+                                                <h3 class ="mb-0 theme-cl">$@Model.Price</h3>
+                                            }
+                                            if (Model.Price == 0)
+                                            {
+                                                <h3 class="mb-0 theme-cl">Free</h3>
+                                            }
+                                        }
+                                        @if (Model.DiscountPrice>0)
+                                        {
+                                            <h3 class ="mb-0 theme-cl">@Model.DiscountPrice</h3>
+                                        }
+                                    </h3>
                                 </div>
                             </div>
                             <div class="woo_short_desc">
-                                <p>For many student teachers the prospect of facing their first classroom experience is overwhelming. This book presents a realistic view of what they will face in the classroom, but also provides them the skills they need to become reflective, professional teachers in their own right.</p>
+                                <p>
+                                    @if (Model.Description.Length>25)
+                                    {
+                                        <span>@Model.Description.Substring(0,25).</span>
+                                    }
+                                    @if (Model.Description.Length <= 25)
+                                    {
+                                        <span>@Model.Description.</span>
+                                    }
+                                </p>
+                                 
                             </div>
                             <div class="quantity-button-wrapper">
-                                <label>Quantity</label>
+                                <label>Stock:</label>
                                 <div class="quantity">
-                                    <input type="number" class="form-control qty" min="1" value="1" title="Qty" placeholder="">
+                                    <input type="number" class="form-control" min="1" max="@Model.Quantity" value="1" title="Stock:" placeholder="">
                                 </div>
                             </div>
                             <div class="woo_buttons">
-                                <button type="submit" class="btn btn-theme2">Add to cart</button>
+                                <button type="submit" class="btn btn-theme2">Buy Now</button>
                                 <a href="javascript:void(0)" class="btn woo_btn_light" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="ti-heart"></i></a>
                                 <a href="javascript:void(0)" class="btn woo_btn_light" data-toggle="tooltip" data-placement="top" title="Compare"><i class="ti-reload"></i></a>
                             </div>
@@ -102,7 +132,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Custom Detail</a>
+                            <a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab" aria-controls="payment" aria-selected="false">Extra Detail</a>
                         </li>
 
                         <li class="nav-item">
@@ -116,8 +146,16 @@
 
                     <!-- general Query -->
                     <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. </p>
-                        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.</p>
+                        <p>
+                            @if (Model.Description.Length > 50)
+                            {
+                                <span>@Model.Description.Substring(0,50).</span>
+                            }
+                            @if (Model.Description.Length <= 50)
+                            {
+                                <span>@Model.Description.</span>
+                            }
+                        </p>
                     </div>
 
                     <!-- general Query -->
@@ -126,20 +164,17 @@
                             <table class="table">
                                 <tbody>
                                     <tr>
-                                        <th scope="row">Product ID</th>
-                                        <td>#PRT123452</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Weight</th>
-                                        <td>125kg</td>
+                                        <th scope="row">Author: </th>
+                                        <td>
+                                            @foreach (var author in Model?.ProductAuthors.Where(a => a.ProductId == Model.Id))
+                                            {
+                                                <span>@(author.Author.Name + " " + author.Author.Surname)</span>
+                                            }
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">SKU</th>
-                                        <td>SKL125002</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">Color</th>
-                                        <td>Black</td>
+                                        <td>#@Model.SKU</td>
                                     </tr>
                                 </tbody>
                             </table>

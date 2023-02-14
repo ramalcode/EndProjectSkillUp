@@ -101,5 +101,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             await _productService.UpdateProductAsync(id, productVM);
             return RedirectToAction(nameof(ManageProducts));
         }
+    
     }
 }
