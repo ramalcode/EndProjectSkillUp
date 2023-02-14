@@ -625,29 +625,6 @@ namespace SkillUp.DAL.Migrations
                     b.ToTable("InstructorProfessions");
                 });
 
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductAuthor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductAuthors");
-                });
-
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -671,7 +648,7 @@ namespace SkillUp.DAL.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ProductExtraProperities.Author", b =>
+            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductInstructor", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -679,22 +656,27 @@ namespace SkillUp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
 
-                    b.Property<string>("Surname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.HasIndex("InstructorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductInstructors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<bool>("IsInstructor")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -897,25 +879,6 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("Profession");
                 });
 
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductAuthor", b =>
-                {
-                    b.HasOne("SkillUp.Entity.Entities.Relations.ProductExtraProperities.Author", "Author")
-                        .WithMany("ProductAuthors")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SkillUp.Entity.Entities.Product", "Product")
-                        .WithMany("ProductAuthors")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Author");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductCategory", b =>
                 {
                     b.HasOne("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Category", "Category")
@@ -931,6 +894,25 @@ namespace SkillUp.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductInstructor", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
+                        .WithMany("ProductInstructors")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillUp.Entity.Entities.Product", "Product")
+                        .WithMany("ProductInstructors")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
 
                     b.Navigation("Product");
                 });
@@ -951,15 +933,17 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("Courses");
 
                     b.Navigation("InstructorProfessions");
+
+                    b.Navigation("ProductInstructors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Product", b =>
                 {
                     b.Navigation("AppUserProducts");
 
-                    b.Navigation("ProductAuthors");
-
                     b.Navigation("ProductCategories");
+
+                    b.Navigation("ProductInstructors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Category", b =>
@@ -979,11 +963,6 @@ namespace SkillUp.DAL.Migrations
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.InstructorExtraProperities.Profession", b =>
                 {
                     b.Navigation("InstructorProfessions");
-                });
-
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ProductExtraProperities.Author", b =>
-                {
-                    b.Navigation("ProductAuthors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>

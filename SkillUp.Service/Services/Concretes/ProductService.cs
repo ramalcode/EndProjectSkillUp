@@ -26,7 +26,7 @@ namespace SkillUp.Service.Services.Concretes
         public async Task CreateProductAsync(CreateProductVM productVM)
         {
             var categories = _context.Categories.Where(ctg => productVM.CategoryIds.Contains(ctg.Id));
-            var authors = _context.Authors.Where(auth => productVM.AuthorIds.Contains(auth.Id));
+            var instructors = _context.Instructors.Where(inst => productVM.InstructorIds.Contains(inst.Id));
             Product product = new Product 
             { 
                 Price = productVM.Price,
@@ -41,9 +41,9 @@ namespace SkillUp.Service.Services.Concretes
             {
                 _context.ProductCategories.Add(new ProductCategory { Product = product, CategoryId = item.Id });
             }
-            foreach (var item in authors)
+            foreach (var item in instructors)
             {
-                _context.ProductAuthors.Add(new ProductAuthor { Product = product, AuthorId = item.Id });
+                _context.ProductInstructors.Add(new ProductInstructor { Product = product, InstructorId = item.Id });
             }
 
             await _unitOfWork.GetRepository<Product>().AddAsync(product);
@@ -59,7 +59,7 @@ namespace SkillUp.Service.Services.Concretes
         public async Task<ICollection<Product>> GetAllProductAsync()
         {
             var product = await _context.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
-                .Include(pa=>pa.ProductAuthors).ThenInclude(a=>a.Author).Include(ap=>ap.AppUserProducts)
+                .Include(pa=>pa.ProductInstructors).ThenInclude(a=>a.Instructor).Include(ap=>ap.AppUserProducts)
                 .ThenInclude(a=>a.AppUser).ToListAsync();
             return product;
         }
@@ -72,7 +72,7 @@ namespace SkillUp.Service.Services.Concretes
         public async  Task<bool> UpdateProductAsync(int id ,UpdateProductVM productVM)
         {
             var product = await _context.Products.Include(cc => cc.ProductCategories).ThenInclude(c => c.Category)
-                .Include(pa=>pa.ProductAuthors).ThenInclude(a=>a.Author).FirstOrDefaultAsync(x => x.Id == id);
+                .Include(pa=>pa.ProductInstructors).ThenInclude(a=>a.Instructor).FirstOrDefaultAsync(x => x.Id == id);
             product.Name = productVM.Name;
             product.Description = productVM.Description;
             product.Price = productVM.Price;
@@ -97,20 +97,20 @@ namespace SkillUp.Service.Services.Concretes
                 _context.ProductCategories.Add(new ProductCategory { Product = product, CategoryId = categoryId });
             }
 
-            foreach (var author in product.ProductAuthors)
+            foreach (var instructor in product.ProductInstructors)
             {
-                if (productVM.AuthorIds.Contains(author.AuthorId))
+                if (productVM.InstructorIds.Contains(instructor.InstructorId))
                 {
-                    productVM.AuthorIds.Remove(author.AuthorId);
+                    productVM.InstructorIds.Remove(instructor.InstructorId);
                 }
                 else
                 {
-                    _context.ProductAuthors.Remove(author);
+                    _context.ProductInstructors.Remove(instructor);
                 }
             }
-            foreach (var authorId in productVM.AuthorIds)
+            foreach (var instructorId in productVM.InstructorIds)
             {
-                _context.ProductAuthors.Add(new ProductAuthor { Product = product, AuthorId = authorId });
+                _context.ProductInstructors.Add(new ProductInstructor { Product = product, InstructorId = instructorId });
             }
 
             await _unitOfWork.GetRepository<Product>().UpdateAsync(product);
@@ -121,14 +121,14 @@ namespace SkillUp.Service.Services.Concretes
 
         public async Task<UpdateProductVM> UpdateProductById(int id)
         {
-            var product = _context.Products.Include(cc => cc.ProductCategories).Include(pa=>pa.ProductAuthors).FirstOrDefault(c => c.Id == id);
+            var product = _context.Products.Include(cc => cc.ProductCategories).Include(pa=>pa.ProductInstructors).FirstOrDefault(c => c.Id == id);
             UpdateProductVM productVM = new UpdateProductVM
             {
                 Name = product.Name,
                 Description = product.Description,
                 SKU = product.SKU,  
                 CategoryIds = new List<int>(),
-                AuthorIds= new List<int>(),
+                InstructorIds= new List<int>(),
                 Price = product.Price,
                 DiscountPrice = product.DiscountPrice,
                 Quantity = product.Quantity,
@@ -138,9 +138,9 @@ namespace SkillUp.Service.Services.Concretes
             {
                 productVM.CategoryIds.Add(category.CategoryId);
             }
-            foreach (var author in product.ProductAuthors)
+            foreach (var author in product.ProductInstructors)
             {
-                productVM.AuthorIds.Add(author.AuthorId);
+                productVM.InstructorIds.Add(author.InstructorId);
             }
 
             return productVM;

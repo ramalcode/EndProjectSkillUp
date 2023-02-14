@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
-using SkillUp.Entity.Entities.Relations.ProductExtraProperities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
@@ -37,7 +36,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         public async Task<IActionResult> AddNewProduct()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            ViewBag.Authors = new SelectList( _context.Authors, nameof(Author.Id), nameof(Author.Name));
+            ViewBag.Instructors = new SelectList( _context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
 
             return View();
         }
@@ -56,7 +55,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                ViewBag.Authors = new SelectList(_context.Authors, nameof(Author.Id), nameof(Author.Name));
+                ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
                 return View(productVM);
             }
             await _productService.CreateProductAsync(productVM);    
@@ -73,7 +72,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            ViewBag.Authors = new SelectList(_context.Authors, nameof(Author.Id), nameof(Author.Name));
+            ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
             var product = await _productService.UpdateProductById(id);
             return View(product);
         }
@@ -96,7 +95,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                ViewBag.Authors = new SelectList(_context.Authors, nameof(Author.Id), nameof(Author.Name));
+                ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
             }
             await _productService.UpdateProductAsync(id, productVM);
             return RedirectToAction(nameof(ManageProducts));

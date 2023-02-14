@@ -149,9 +149,9 @@
                                         <td>
                                             <h6>@product.Name</h6><p>
                                                 Author:<span>
-                                                    @foreach (var author in product?.ProductAuthors.Where(a => a.ProductId == product.Id))
+                                                    @foreach (var author in product?.ProductInstructors.Where(a => a.ProductId == product.Id))
                                                     {
-                                                        <span>@(author.Author.Name + " " + author.Author.Surname)</span>
+                                                        <span>@(author.Instructor.Name + " " + author.Instructor.Surname)</span>
                                                     }
                                                 </span>
                                             </p>

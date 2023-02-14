@@ -166,9 +166,9 @@
                                     <tr>
                                         <th scope="row">Author: </th>
                                         <td>
-                                            @foreach (var author in Model?.ProductAuthors.Where(a => a.ProductId == Model.Id))
+                                            @foreach (var author in Model?.ProductInstructors.Where(a => a.ProductId == Model.Id))
                                             {
-                                                <span>@(author.Author.Name + " " + author.Author.Surname)</span>
+                                                <span>@(author.Instructor.Name + " " + author.Instructor.Surname)</span>
                                             }
                                         </td>
                                     </tr>

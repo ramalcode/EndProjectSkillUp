@@ -16,7 +16,7 @@ namespace SkillUp.Entity.Entities
 
         public ICollection<ProductCategory>? ProductCategories { get; set; }
         public ICollection<AppUserProduct>?AppUserProducts { get; set; }
-        public ICollection<ProductAuthor> ProductAuthors { get; set; }
+        public ICollection<ProductInstructor>? ProductInstructors { get; set; }
 
     }
 }

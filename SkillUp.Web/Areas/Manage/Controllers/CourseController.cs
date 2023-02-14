@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
@@ -36,6 +37,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(courses);
         }
 
+        [Authorize(Roles="Instructor")]
         public async  Task<IActionResult> AddNewCourse()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
@@ -43,6 +45,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Instructor")]
         [HttpPost]
         public async Task<IActionResult> AddNewCourse(CreateCourseVM courseVM)
         {

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 
 namespace SkillUp.Web.Controllers
 {
@@ -40,6 +41,7 @@ namespace SkillUp.Web.Controllers
                 Surname = register.Surname,
                 UserName = register.UserName,
                 Email = register.Email,
+                IsInstructor = register.IsInstructor, 
             };
 
             var result = await _userManager.CreateAsync(user,register.Password);
@@ -50,6 +52,16 @@ namespace SkillUp.Web.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
             }
+            if (register.IsInstructor)
+            {
+                var role = await _userManager.AddToRoleAsync(user, "Instructor");
+            }
+            else
+            {
+                var role = await _userManager.AddToRoleAsync(user, "Student");
+            }
+
+           
             return RedirectToAction(nameof(SignIn));
         }
 
@@ -93,9 +105,23 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        //public IActionResult ForgotPassword()
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+
+        //public async Task AddRoles()
         //{
-        //    return View();
+        //    foreach (var item in Enum.GetValues(typeof(Roles)))
+        //    {
+        //        if (!await _roleManager.RoleExistsAsync(item.ToString()))
+        //        {
+        //            await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+
+        //        }
+        //    }
+
         //}
     }
 }

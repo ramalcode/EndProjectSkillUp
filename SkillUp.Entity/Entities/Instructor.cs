@@ -27,6 +27,8 @@ namespace SkillUp.Entity.Entities
         public ICollection<InstructorProfession> InstructorProfessions { get; set; }
         public ICollection<AppUserInstructor> AppUserInstructors { get; set; }
         public ICollection<Course> Courses { get; set; }
+        public ICollection<ProductInstructor>? ProductInstructors { get; set; }
+
 
     }
 }

@@ -90,9 +90,9 @@
                                          <span class="smalls lg">
                                                 @foreach (var product in student.AppUserProducts)
                                                 {
-                                                        foreach (var author in product.Product.ProductAuthors)
+                                                        foreach (var author in product.Product.ProductInstructors)
                                                             {
-                                                                <div><span>@(product.Product.Name + " - " + author.Author.Name + " " + author.Author.Surname) </span></div>
+                                                                <div><span>@(product.Product.Name + " - " + author.Instructor.Name + " " + author.Instructor.Surname) </span></div>
                                                             }
                                                 }
                                             </span>

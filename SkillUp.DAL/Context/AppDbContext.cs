@@ -4,7 +4,6 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.InstructorExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
-using SkillUp.Entity.Entities.Relations.ProductExtraProperities;
 
 namespace SkillUp.DAL.Context
 {
@@ -22,7 +21,6 @@ namespace SkillUp.DAL.Context
         public DbSet<Profession> Professions { get; set; } 
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<Author> Authors { get; set; }
 
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
         public DbSet<AppUserInstructor> AppUserInstructors { get; set; }
@@ -30,7 +28,7 @@ namespace SkillUp.DAL.Context
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<InstructorProfession> InstructorProfessions { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductAuthor> ProductAuthors { get; set; }
+        public DbSet<ProductInstructor> ProductInstructors { get; set; }
 
 
 

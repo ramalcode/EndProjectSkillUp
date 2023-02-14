@@ -23,6 +23,6 @@ namespace SkillUp.Entity.ViewModels
         public string ConfirmPassword { get; set; }
 
 
-        //public bool IsStudent { get; set; }
+        public bool IsInstructor { get; set; }   // true => Teacher  false => Student 
     }
 }
