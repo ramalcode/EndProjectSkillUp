@@ -5,23 +5,24 @@
 namespace SkillUp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class AddNewPropForAppUser : Migration
+    public partial class AddWalletProp : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<bool>(
-                name: "IsStudent",
+            migrationBuilder.AddColumn<double>(
+                name: "Wallet",
                 table: "AspNetUsers",
-                type: "bit",
-                nullable: true);
+                type: "float",
+                nullable: false,
+                defaultValue: 0.0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IsStudent",
+                name: "Wallet",
                 table: "AspNetUsers");
         }
     }

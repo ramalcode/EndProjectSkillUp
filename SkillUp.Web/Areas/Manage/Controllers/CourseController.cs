@@ -37,15 +37,14 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(courses);
         }
 
-        [Authorize(Roles="Instructor")]
+       
         public async  Task<IActionResult> AddNewCourse()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            ViewBag.Instructor = new SelectList(await _instructorService.GetAllInstructorAsync(), nameof(Instructor.Id), nameof(Instructor.Name));
             return View();
         }
 
-        [Authorize(Roles = "Instructor")]
+        
         [HttpPost]
         public async Task<IActionResult> AddNewCourse(CreateCourseVM courseVM)
         {
@@ -68,7 +67,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                ViewBag.Instructor = new SelectList(await _instructorService.GetAllInstructorAsync(), nameof(Instructor.Id), nameof(Instructor.Name));
                 return View(courseVM);
             }
             await _courseService.CreateCourseAsync(courseVM);

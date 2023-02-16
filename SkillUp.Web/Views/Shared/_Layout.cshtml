@@ -73,24 +73,7 @@
                             <li><a href="dashboard.html">Dashboard</a></li>
 
                         </ul>
-
-                        <ul class="nav-menu nav-menu-social align-to-right">
-                            @if (User.Identity.IsAuthenticated)
-                            {
-
-                                <span>@User.Identity.Name</span>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a href="#" data-toggle="modal" data-target="#login">
-                                        <i class="fas fa-sign-in-alt mr-1"></i><span class="dn-lg">Sign In</span>
-                                    </a>
-                                </li>
-
-                            }
-                            
-                        </ul>
+                        @await Component.InvokeAsync("Wallet")
                     </div>
                 </nav>
             </div>

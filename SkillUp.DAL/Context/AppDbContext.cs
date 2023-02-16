@@ -7,7 +7,7 @@ using SkillUp.Entity.Entities.Relations.ManyToMany;
 
 namespace SkillUp.DAL.Context
 {
-    public class AppDbContext : IdentityDbContext
+    public class AppDbContext : IdentityDbContext<AppUser>
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 

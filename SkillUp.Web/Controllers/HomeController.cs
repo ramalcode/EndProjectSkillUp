@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SkillUp.DAL.Context;
+using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 

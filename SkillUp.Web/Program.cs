@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using SkillUp.DAL.Context;
 using SkillUp.DAL.Extension;
 using SkillUp.Entity.Entities;
 using SkillUp.Service.Extensions;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.LoadServiceLayerExtension();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+StripeConfiguration.ApiKey = builder.Configuration.GetValue<string>("Stripe:SecretKey");
+
+
 builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 {
     opt.Password.RequireNonAlphanumeric = false;
@@ -18,6 +23,15 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.Password.RequiredLength = 6;
     opt.Lockout.AllowedForNewUsers = true;
 }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+
+
+//builder.Services.Configure<IdentityOptions>(opt =>
+//{
+//    opt.Password.RequireNonAlphanumeric = false;
+//    opt.Password.RequireDigit = true;
+//    opt.Password.RequiredLength = 6;
+//    opt.Lockout.AllowedForNewUsers = true;
+//});
 
 var app = builder.Build();
 

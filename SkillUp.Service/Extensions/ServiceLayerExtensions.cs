@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
+using SkillUp.DAL.Context;
+using SkillUp.Entity.Entities;
 using SkillUp.Service.Services.Abstractions;
 using SkillUp.Service.Services.Concretes;
 
@@ -19,5 +22,7 @@ namespace SkillUp.Service.Extensions
 
             return services;
         }
+
+       
     }
 }

@@ -64,5 +64,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             await _enrollService.EnrollProductAsync(productVM);
             return RedirectToAction(nameof(EnrollProduct));
         }
+       
     }
 }

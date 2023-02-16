@@ -1,16 +1,21 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
+using SkillUp.Entity.Entities;
+using SkillUp.Entity.Entities.Relations.ManyToMany;
 
 namespace SkillUp.Web.Controllers
 {
     public class ShopController : Controller
     {
         readonly AppDbContext appDbContext;
+        readonly UserManager<AppUser> _userManager;
 
-        public ShopController(AppDbContext appDbContext)
+        public ShopController(AppDbContext appDbContext, UserManager<AppUser> userManager)
         {
             this.appDbContext = appDbContext;
+            _userManager = userManager;
         }
 
         public IActionResult Products()
@@ -24,6 +29,30 @@ namespace SkillUp.Web.Controllers
             var product = await appDbContext.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
                 .Include(au=>au.ProductInstructors).ThenInclude(a=>a.Instructor).FirstOrDefaultAsync(p=>p.Id == id); 
             return View(product);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BuyProduct(int productid)
+        {
+            Product product = await appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
+            string id =  _userManager.GetUserId(HttpContext.User);
+            AppUser user = appDbContext.AppUsers.FirstOrDefault(x => x.Id == id);
+            if (user.Wallet > product.Price)
+            {
+                AppUserProduct userProduct = new AppUserProduct
+                {
+                    AppUserId = user.Id,
+                    ProductId = productid,
+                };
+
+                user.Wallet = user.Wallet - product.Price;
+
+                await appDbContext.AddAsync(userProduct);
+                await appDbContext.SaveChangesAsync(); 
+            }
+
+            return View();
+            
         }
 
 

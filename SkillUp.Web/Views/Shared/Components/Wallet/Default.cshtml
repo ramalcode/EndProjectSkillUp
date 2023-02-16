@@ -1,0 +1,23 @@
+﻿@model AppUser
+<ul class="nav-menu nav-menu-social align-to-right">
+    @if (User.Identity.IsAuthenticated)
+    {
+        <li>@User.Identity.Name</li>
+        <br />
+
+
+        <li><a asp-action="Payment" asp-controller="Payment">$@(Model.Wallet / 100)<i class="fas fa-wallet"> </i> </a></li>
+
+
+    }
+    else
+    {
+        <li>
+            <a href="#" data-toggle="modal" data-target="#login">
+                <i class="fas fa-sign-in-alt mr-1"></i><span class="dn-lg">Sign In</span>
+            </a>
+        </li>
+
+    }
+
+</ul>

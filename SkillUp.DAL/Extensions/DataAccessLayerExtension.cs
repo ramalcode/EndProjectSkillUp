@@ -17,6 +17,8 @@ namespace SkillUp.DAL.Extension
                 opt.UseSqlServer(configuration.GetConnectionString("MSSQL"));
             });
 
+            
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();

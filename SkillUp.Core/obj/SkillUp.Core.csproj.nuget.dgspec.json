@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {}
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
         "projectName": "SkillUp.Core",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",

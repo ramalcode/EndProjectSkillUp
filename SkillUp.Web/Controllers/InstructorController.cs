@@ -19,7 +19,7 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        public IActionResult InstructorDetail(int id)
+        public IActionResult InstructorDetail(string id)
         {
             var instructor = appDbContext.Instructors.Include(ip=>ip.InstructorProfessions)
                 .ThenInclude(p=>p.Profession).Include(ai=>ai.AppUserInstructors).ThenInclude(a=>a.AppUser)

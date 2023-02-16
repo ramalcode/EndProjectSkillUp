@@ -128,7 +128,7 @@ namespace SkillUp.Service.Services.Concretes
                 Description = product.Description,
                 SKU = product.SKU,  
                 CategoryIds = new List<int>(),
-                InstructorIds= new List<int>(),
+                InstructorIds= new List<string>(),
                 Price = product.Price,
                 DiscountPrice = product.DiscountPrice,
                 Quantity = product.Quantity,

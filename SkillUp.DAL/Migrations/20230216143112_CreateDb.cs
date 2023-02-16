@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SkillUp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDB : Migration
+    public partial class CreateDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,9 +30,8 @@ namespace SkillUp.DAL.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -72,13 +71,32 @@ namespace SkillUp.DAL.Migrations
                 name: "Instructors",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PreviewVideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PreviewVideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StripeKey = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FaceBookUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TwitterUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstagramUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Experince = table.Column<byte>(type: "tinyint", nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    LockoutEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    AccessFailedCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -97,6 +115,7 @@ namespace SkillUp.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     SKU = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -250,7 +269,8 @@ namespace SkillUp.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    InstructorId = table.Column<int>(type: "int", nullable: false)
+                    InstructorId = table.Column<int>(type: "int", nullable: false),
+                    InstructorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -262,11 +282,10 @@ namespace SkillUp.DAL.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AppUserInstructors_Instructors_InstructorId",
-                        column: x => x.InstructorId,
+                        name: "FK_AppUserInstructors_Instructors_InstructorId1",
+                        column: x => x.InstructorId1,
                         principalTable: "Instructors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -286,40 +305,18 @@ namespace SkillUp.DAL.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreviewUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InstructorId = table.Column<int>(type: "int", nullable: true),
+                    InstructorId = table.Column<int>(type: "int", nullable: false),
+                    InstructorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Courses_Instructors_InstructorId",
-                        column: x => x.InstructorId,
+                        name: "FK_Courses_Instructors_InstructorId1",
+                        column: x => x.InstructorId1,
                         principalTable: "Instructors",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SocialMedias",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FaceBookUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TwitterUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InstagramUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    InstructorId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SocialMedias", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SocialMedias_Instructors_InstructorId",
-                        column: x => x.InstructorId,
-                        principalTable: "Instructors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -375,23 +372,49 @@ namespace SkillUp.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProductInstructors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    InstructorId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductInstructors", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductInstructors_Instructors_InstructorId",
+                        column: x => x.InstructorId,
+                        principalTable: "Instructors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductInstructors_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InstructorProfessions",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     InstructorId = table.Column<int>(type: "int", nullable: false),
+                    InstructorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     ProfessionId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InstructorProfessions", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_InstructorProfessions_Instructors_InstructorId",
-                        column: x => x.InstructorId,
+                        name: "FK_InstructorProfessions_Instructors_InstructorId1",
+                        column: x => x.InstructorId1,
                         principalTable: "Instructors",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_InstructorProfessions_Professions_ProfessionId",
                         column: x => x.ProfessionId,
@@ -479,7 +502,7 @@ namespace SkillUp.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsWatched = table.Column<bool>(type: "bit", nullable: false),
+                    IsWatched = table.Column<bool>(type: "bit", nullable: true),
                     ParagraphId = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -510,9 +533,9 @@ namespace SkillUp.DAL.Migrations
                 column: "AppUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppUserInstructors_InstructorId",
+                name: "IX_AppUserInstructors_InstructorId1",
                 table: "AppUserInstructors",
-                column: "InstructorId");
+                column: "InstructorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AppUserProducts_AppUserId",
@@ -574,14 +597,14 @@ namespace SkillUp.DAL.Migrations
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_InstructorId",
+                name: "IX_Courses_InstructorId1",
                 table: "Courses",
-                column: "InstructorId");
+                column: "InstructorId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_InstructorProfessions_InstructorId",
+                name: "IX_InstructorProfessions_InstructorId1",
                 table: "InstructorProfessions",
-                column: "InstructorId");
+                column: "InstructorId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstructorProfessions_ProfessionId",
@@ -609,9 +632,14 @@ namespace SkillUp.DAL.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SocialMedias_InstructorId",
-                table: "SocialMedias",
+                name: "IX_ProductInstructors_InstructorId",
+                table: "ProductInstructors",
                 column: "InstructorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductInstructors_ProductId",
+                table: "ProductInstructors",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SubCategories_CategoryId",
@@ -659,7 +687,7 @@ namespace SkillUp.DAL.Migrations
                 name: "ProductCategories");
 
             migrationBuilder.DropTable(
-                name: "SocialMedias");
+                name: "ProductInstructors");
 
             migrationBuilder.DropTable(
                 name: "SubCategories");

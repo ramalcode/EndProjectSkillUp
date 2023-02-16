@@ -46,7 +46,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                     ModelState.AddModelError("Preview", result);
                 }
             }
-            await _instructorService.CreateInstructorAsync(instructorVM);
+            //await _instructorService.CreateInstructorAsync(instructorVM);
             return RedirectToAction(nameof(ManageInstructor));
         }
 

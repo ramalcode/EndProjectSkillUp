@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj": {}
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\SkillUp.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
         "projectName": "SkillUp.Core",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -59,14 +59,14 @@
         }
       }
     },
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj",
         "projectName": "SkillUp.DAL",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -83,11 +83,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
               },
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
               }
             }
           }
@@ -141,14 +141,14 @@
         }
       }
     },
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
         "projectName": "SkillUp.Entity",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -165,8 +165,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
               }
             }
           }
@@ -210,14 +210,14 @@
         }
       }
     },
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\SkillUp.Service.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\SkillUp.Service.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj",
         "projectName": "SkillUp.Service",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\SkillUp.Service.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -234,11 +234,11 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj"
               },
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
               }
             }
           }
@@ -285,14 +285,14 @@
         }
       }
     },
-    "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj": {
+    "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\SkillUp.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
+        "projectUniqueName": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
         "projectName": "SkillUp.Web",
-        "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
+        "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\SkillUp.Web.csproj",
         "packagesPath": "C:\\Users\\Ramal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Web\\obj\\",
+        "outputPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ramal\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -309,17 +309,17 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Core\\SkillUp.Core.csproj"
               },
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.DAL\\SkillUp.DAL.csproj"
               },
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Entity\\SkillUp.Entity.csproj"
               },
-              "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\SkillUp.Service.csproj": {
-                "projectPath": "C:\\Users\\Ramal\\Desktop\\SkillUp\\SkillUp.Service\\SkillUp.Service.csproj"
+              "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj": {
+                "projectPath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj"
               }
             }
           }
@@ -342,7 +342,11 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[6.0.11, )"
+              "version": "[6.0.12, )"
+            },
+            "Stripe.net": {
+              "target": "Package",
+              "version": "[41.0.0, )"
             }
           },
           "imports": [

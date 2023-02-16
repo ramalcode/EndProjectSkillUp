@@ -8,9 +8,7 @@ namespace SkillUp.Entity.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        //public double Wallet { get; set; }
-
-        public bool IsInstructor { get; set; } = true; // true => Teacher  false => Student  
+        public double Wallet { get; set; }
 
 
         public ICollection<AppUserCourse> AppUserCourses { get; set; }

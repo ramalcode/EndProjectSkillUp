@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
@@ -16,6 +17,7 @@ namespace SkillUp.Service.Services.Concretes
     {
         readonly IUnitOfWork _unitOfWork;
         readonly IWebHostEnvironment _env;
+        readonly UserManager<AppUser> _userManager; 
         readonly AppDbContext _context; //
 
         public CourseService(IUnitOfWork unitOfWork, IWebHostEnvironment env, UserManager<AppUser> userManager, AppDbContext context)
@@ -85,7 +87,6 @@ namespace SkillUp.Service.Services.Concretes
             course.CourseOverview = courseVM.CourseOverview;
             course.Requirement = courseVM.Requirement;
             course.Certification = courseVM.Certification;
-            course.InstructorId = courseVM.InstructorId;
 
             foreach (var category in course.CourseCategories)
             {
