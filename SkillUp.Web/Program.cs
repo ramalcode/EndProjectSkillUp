@@ -15,9 +15,6 @@ builder.Services.AddControllersWithViews();
 
 StripeConfiguration.ApiKey = builder.Configuration.GetValue<string>("Stripe:SecretKey");
 
-
-
-
 builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
 {
     opt.Password.RequireNonAlphanumeric = false;
@@ -26,18 +23,14 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.Lockout.AllowedForNewUsers = true;
 }).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.AddIdentityCore<Instructor>(opt =>
+{
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequireDigit = true;
+    opt.Password.RequiredLength = 6;
+    opt.Lockout.AllowedForNewUsers = true;
+}).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
 
-
-
-
-
-//builder.Services.Configure<IdentityOptions>(opt =>
-//{
-//    opt.Password.RequireNonAlphanumeric = false;
-//    opt.Password.RequireDigit = true;
-//    opt.Password.RequiredLength = 6;
-//    opt.Lockout.AllowedForNewUsers = true;
-//});
 
 var app = builder.Build();
 

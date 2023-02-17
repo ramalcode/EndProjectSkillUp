@@ -260,8 +260,10 @@ namespace SkillUp.DAL.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("InstructorId")
-                        .IsRequired()
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InstructorId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<bool>("IsActive")
@@ -286,7 +288,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId");
+                    b.HasIndex("InstructorId1");
 
                     b.ToTable("Courses");
                 });
@@ -303,6 +305,7 @@ namespace SkillUp.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -311,13 +314,14 @@ namespace SkillUp.DAL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<byte?>("Experince")
+                    b.Property<byte>("Experince")
                         .HasColumnType("tinyint");
 
                     b.Property<string>("FaceBookUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InstagramUrl")
@@ -352,12 +356,10 @@ namespace SkillUp.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("PreviewVideoUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("StripeKey")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Surname")
@@ -760,9 +762,7 @@ namespace SkillUp.DAL.Migrations
                 {
                     b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("InstructorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("InstructorId1");
 
                     b.Navigation("Instructor");
                 });

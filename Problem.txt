@@ -1,7 +1,7 @@
-4) Add SubCategory button yeri deyis -
+
 5) Category silinende course silinmesin -
 6) her shey async -
 7) Course create si zamani instructor id problem
-8) Lecture paraqraph add view
+8) Instructor Payment sistem -
 
 yenii dcuydsbvuyvfyv

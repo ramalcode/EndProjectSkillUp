@@ -296,8 +296,8 @@
                         <div class="lios_item">
                             <div class="crs_trt_grid theme-light shadow_none">
                                 <div class="crs_trt_thumb">
-                                    <a href="instructor-detail.html" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" alt=""></a>
-                                </div>
+                                   <a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@instructor.Id" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" alt=""></a>
+                               </div>
                                 <div class="crs_trt_caption large">
                                     <div class="instructor_tag dark"><span>Sanskrit Teacher</span></div>
                                     <div class="instructor_title"><h4><a href="instructor-detail.html">@(instructor.Name + " " + instructor.Surname)</a></h4></div>

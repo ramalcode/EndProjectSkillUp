@@ -23,6 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Instructor\Controllers\" />
+    <Folder Include="Areas\Instructor\Views\Shared\" />
     <Folder Include="wwwroot\user\assets\courseimg\" />
     <Folder Include="wwwroot\user\assets\coursepreview\" />
     <Folder Include="wwwroot\user\assets\coursevideo\" />

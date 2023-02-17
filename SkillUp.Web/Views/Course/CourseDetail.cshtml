@@ -152,20 +152,20 @@
                         <div class="tab-pane fade" id="instructors" role="tabpanel" aria-labelledby="instructors-tab">
                             <div class="single_instructor">
                                 <div class="single_instructor_thumb">
-                                    <a href="#"><img src="~/user/assets/instructorimg/@Model.Instructor.ImageUrl" class="img-fluid" alt=""></a>
-                                </div>
+                                   <a href="#"><img src="~/user/assets/instructorimg/@Model.Instructor.ImageUrl" class="img-fluid" alt=""></a>
+                               </div>
                                 <div class="single_instructor_caption">
-                                    <h4><a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@Model.Instructor.Id">@(Model.Instructor.Name + " " + Model.Instructor.Surname)</a></h4>
+                                   <h4><a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@Model.Instructor.Id">@(Model.Instructor.Name + " " + Model.Instructor.Surname)</a></h4>
                                    <ul class="instructor_info">
                                         <li><i class="ti-video-camera"></i>
-                                            @if (Model.Instructor.Courses.Count == 0)
+                                           @if (Model.Instructor.Courses.Count == 0)
                                             {
                                                 <span>Course is not available</span>
                                             }
                                             @if (Model.Instructor.Courses.Count==1)
                                             {
                                                 <span>@Model.Instructor.Courses.Count Course</span>
-                                            }
+                                           }
                                             @if (Model.Instructor.Courses.Count > 1)
                                             {
                                                 <span>@Model.Instructor.Courses.Count Courses</span>
@@ -429,8 +429,7 @@
                         </ul>
                     </div>
                     <div class="ed_view_link">
-                        <a href="#" class="btn theme-light enroll-btn">Get Membership<i class="ti-angle-right"></i></a>
-                        <a href="#" class="btn theme-bg enroll-btn">Enroll Now<i class="ti-angle-right"></i></a>
+                        <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@Model.Id" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
                     </div>
 
                 </div>
