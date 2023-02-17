@@ -23,6 +23,7 @@ namespace SkillUp.Service.Extensions
             return services;
         }
 
+
        
     }
 }

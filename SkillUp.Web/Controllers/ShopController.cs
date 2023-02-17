@@ -31,13 +31,13 @@ namespace SkillUp.Web.Controllers
             return View(product);
         }
 
-        [HttpPost]
+
         public async Task<IActionResult> BuyProduct(int productid)
         {
             Product product = await appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
             string id =  _userManager.GetUserId(HttpContext.User);
             AppUser user = appDbContext.AppUsers.FirstOrDefault(x => x.Id == id);
-            if (user.Wallet > product.Price)
+            if (user.Wallet > product.Price*100)
             {
                 AppUserProduct userProduct = new AppUserProduct
                 {
@@ -45,13 +45,13 @@ namespace SkillUp.Web.Controllers
                     ProductId = productid,
                 };
 
-                user.Wallet = user.Wallet - product.Price;
+                user.Wallet = user.Wallet - product.Price*100;
 
                 await appDbContext.AddAsync(userProduct);
                 await appDbContext.SaveChangesAsync(); 
             }
 
-            return View();
+            return RedirectToAction("Index", "Home");
             
         }
 
