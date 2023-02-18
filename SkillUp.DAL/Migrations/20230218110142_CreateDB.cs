@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SkillUp.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateDb : Migration
+    public partial class CreateDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -78,10 +78,10 @@ namespace SkillUp.DAL.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PreviewVideoUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FaceBookUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    TwitterUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    InstagramUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FaceBookUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TwitterUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InstagramUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LinkedInUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Experince = table.Column<byte>(type: "tinyint", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -305,18 +305,18 @@ namespace SkillUp.DAL.Migrations
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PreviewUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    InstructorId = table.Column<int>(type: "int", nullable: false),
-                    InstructorId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    InstructorId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Courses_Instructors_InstructorId1",
-                        column: x => x.InstructorId1,
+                        name: "FK_Courses_Instructors_InstructorId",
+                        column: x => x.InstructorId,
                         principalTable: "Instructors",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -597,9 +597,9 @@ namespace SkillUp.DAL.Migrations
                 column: "CourseId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_InstructorId1",
+                name: "IX_Courses_InstructorId",
                 table: "Courses",
-                column: "InstructorId1");
+                column: "InstructorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_InstructorProfessions_InstructorId1",

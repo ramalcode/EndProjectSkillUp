@@ -37,42 +37,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(courses);
         }
 
-       
-        public async  Task<IActionResult> AddNewCourse()
-        {
-            ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            return View();
-        }
-
-        
-        [HttpPost]
-        public async Task<IActionResult> AddNewCourse(CreateCourseVM courseVM)
-        {
-            if (courseVM.Image != null)
-            {
-                string result = courseVM.Image.CheckValidate("image/", 500);
-                if (result.Length > 0)
-                {
-                    ModelState.AddModelError("Image", result);
-                }
-            }
-            if (courseVM.Preview != null)
-            {
-                string result = courseVM.Preview.CheckValidate("video/", 50000);
-                if (result.Length > 0)
-                {
-                    ModelState.AddModelError("Preview", result);
-                }
-            }
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                return View(courseVM);
-            }
-            await _courseService.CreateCourseAsync(courseVM);
-            return View();
-        }
-
 
         public IActionResult Coupons()
         {

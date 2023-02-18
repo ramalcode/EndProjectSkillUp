@@ -44,7 +44,7 @@ namespace SkillUp.Web.Controllers
             };
 
             var result = await _userManager.CreateAsync(user,register.Password);
-            var role = await _userManager.AddToRoleAsync(user, "Student");
+          
             if (!result.Succeeded)
             {
                 foreach (var item in result.Errors)
@@ -52,7 +52,9 @@ namespace SkillUp.Web.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
             }
-           
+
+            var role = await _userManager.AddToRoleAsync(user, "Student");
+
             return RedirectToAction(nameof(SignIn));
         }
 
@@ -102,17 +104,17 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        public async Task AddRoles()
-        {
-            foreach (var item in Enum.GetValues(typeof(Roles)))
-            {
-                if (!await _roleManager.RoleExistsAsync(item.ToString()))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+        //public async Task AddRoles()
+        //{
+        //    foreach (var item in Enum.GetValues(typeof(Roles)))
+        //    {
+        //        if (!await _roleManager.RoleExistsAsync(item.ToString()))
+        //        {
+        //            await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
 
-                }
-            }
+        //        }
+        //    }
 
-        }
+        //}
     }
 }

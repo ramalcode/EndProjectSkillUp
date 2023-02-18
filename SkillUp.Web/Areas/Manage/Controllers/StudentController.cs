@@ -18,7 +18,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         public async Task<IActionResult> ManageStudents()
         {
             var student = await dbContext.AppUsers.Include(ac=>ac.AppUserCourses).ThenInclude(c=>c.Course).ThenInclude(i=>i.Instructor)
-                .Include(ap=>ap.AppUserProducts).ThenInclude(p=>p.Product).ThenInclude(a=>a.ProductInstructors).ThenInclude(a=>a.Instructor).ToListAsync();   
+                .Include(ap=>ap.AppUserProducts).ThenInclude(p=>p.Product).ToListAsync();   
             return View(student);
         }
     }

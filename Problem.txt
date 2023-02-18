@@ -1,7 +1,6 @@
 
 5) Category silinende course silinmesin -
 6) her shey async -
-7) Course create si zamani instructor id problem
 8) Instructor Payment sistem -
+9) Enroll olunmus istifadeci yeniden enroll olunmasi - 
 
-yenii dcuydsbvuyvfyv

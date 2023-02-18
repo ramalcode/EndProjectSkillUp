@@ -88,13 +88,13 @@
                                     </span></td>
                                         <td>
                                          <span class="smalls lg">
-                                                @foreach (var product in student.AppUserProducts)
+                                               @* @foreach (var product in student.AppUserProducts)
                                                 {
                                                         foreach (var author in product.Product.ProductInstructors)
                                                             {
                                                                 <div><span>@(product.Product.Name + " - " + author.Instructor.Name + " " + author.Instructor.Surname) </span></div>
                                                             }
-                                                }
+                                                }*@
                                             </span>
                                         </td>
                                     <td>

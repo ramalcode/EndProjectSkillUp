@@ -57,9 +57,14 @@ namespace SkillUp.Service.Services.Concretes
             return instructor;
         }
 
-        public Task<Course> GetCourseById(int id)
+        public async Task<Instructor> GetInstructorById(string id)
         {
-            throw new NotImplementedException();
+            
+            var instructor = await appDbContext.Instructors.Include(c=>c.Courses).ThenInclude(ap=>ap.AppUserCourses).Include(c => c.Courses)
+                .ThenInclude(c=>c.CourseCategories).ThenInclude(c=>c.Category).
+                Include(c=>c.Courses).ThenInclude(p=>p.Paragraphs).
+                Include(p=>p.Products).Include(ia=>ia.AppUserInstructors).ThenInclude(a=>a.AppUser).FirstOrDefaultAsync(i=>i.Id == id);
+            return instructor;
         }
 
         public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)

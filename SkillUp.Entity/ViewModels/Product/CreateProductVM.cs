@@ -11,7 +11,6 @@ namespace SkillUp.Entity.ViewModels
         public string Description { get; set; }
         public string SKU { get; set; }
         public List<int> CategoryIds { get; set; }
-        public List<string> InstructorIds { get; set; }
 
         public IFormFile  Image { get; set; }
     }

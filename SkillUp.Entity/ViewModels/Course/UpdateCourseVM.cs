@@ -11,7 +11,6 @@ namespace SkillUp.Entity.ViewModels
         public string Requirement { get; set; }
         public string Certification { get; set; }
         public List<int>? CategoryIds { get; set; }
-        public int InstructorId { get; set; }
         public double Price { get; set; }
         public double DiscountPrice { get; set; }
         public string? ImageUrl { get; set; }

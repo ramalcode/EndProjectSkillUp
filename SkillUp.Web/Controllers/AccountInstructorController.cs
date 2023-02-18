@@ -80,6 +80,8 @@ namespace SkillUp.Web.Controllers
                 }
             }
 
+            var role = await _userManager.AddToRoleAsync(user, "Instructor");
+
             return RedirectToAction(nameof(SignIn));
         }
 

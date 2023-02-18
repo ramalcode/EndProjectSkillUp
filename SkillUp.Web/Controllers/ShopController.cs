@@ -27,7 +27,7 @@ namespace SkillUp.Web.Controllers
         public async Task<IActionResult> ProductDetail(int id)
         {
             var product = await appDbContext.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
-                .Include(au=>au.ProductInstructors).ThenInclude(a=>a.Instructor).FirstOrDefaultAsync(p=>p.Id == id); 
+                .FirstOrDefaultAsync(p=>p.Id == id); 
             return View(product);
         }
 

@@ -29,7 +29,6 @@ namespace SkillUp.DAL.Context
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<InstructorProfession> InstructorProfessions { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductInstructor> ProductInstructors { get; set; }
 
 
 

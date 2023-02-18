@@ -13,10 +13,12 @@ namespace SkillUp.Entity.Entities
         public string ImageUrl { get; set; }
         public bool IsActive { get; set; } = true;
 
+        public string InstructorId { get; set; }
+        public Instructor Instructor { get; set; }
+
 
         public ICollection<ProductCategory>? ProductCategories { get; set; }
         public ICollection<AppUserProduct>?AppUserProducts { get; set; }
-        public ICollection<ProductInstructor>? ProductInstructors { get; set; }
 
     }
 }

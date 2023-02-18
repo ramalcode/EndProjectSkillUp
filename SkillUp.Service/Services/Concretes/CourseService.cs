@@ -17,16 +17,16 @@ namespace SkillUp.Service.Services.Concretes
     {
         readonly IUnitOfWork _unitOfWork;
         readonly IWebHostEnvironment _env;
-        readonly UserManager<AppUser> _userManager; 
         readonly AppDbContext _context; //
 
-        public CourseService(IUnitOfWork unitOfWork, IWebHostEnvironment env, UserManager<AppUser> userManager, AppDbContext context)
+        public CourseService(IUnitOfWork unitOfWork, IWebHostEnvironment env, AppDbContext context)
         {
             _unitOfWork = unitOfWork;
             _env = env;
             _context = context;
+            
         }
-        public async Task CreateCourseAsync(CreateCourseVM courseVM)
+        public async Task CreateCourseAsync(CreateCourseVM courseVM, string id)
         {
             var categories = _context.Categories.Where(ctg => courseVM.CategoryIds.Contains(ctg.Id));
             Course course = new Course
@@ -38,7 +38,7 @@ namespace SkillUp.Service.Services.Concretes
                 CourseOverview = courseVM.CourseOverview,
                 Requirement = courseVM.Requirement,
                 Certification = courseVM.Certification,
-                InstructorId = courseVM.InstructorId,
+                InstructorId = id,
                 IsActive = true,
                 ImageUrl = courseVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "courseimg")),
                 PreviewUrl = courseVM.Preview.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursepreview")),
@@ -88,6 +88,7 @@ namespace SkillUp.Service.Services.Concretes
             course.Requirement = courseVM.Requirement;
             course.Certification = courseVM.Certification;
 
+
             foreach (var category in course.CourseCategories)
             {
                 if (courseVM.CategoryIds.Contains(category.CategoryId))
@@ -123,7 +124,6 @@ namespace SkillUp.Service.Services.Concretes
                 CategoryIds = new List<int>(),
                 Price = course.Price,
                 DiscountPrice = course.DiscountPrice,
-                InstructorId = course.InstructorId,
                 ImageUrl = course.ImageUrl,
                 PreviewUrl = course.PreviewUrl,
             };
