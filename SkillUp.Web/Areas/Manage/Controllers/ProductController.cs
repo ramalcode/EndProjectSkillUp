@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
@@ -33,35 +34,37 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(product);   
         }
 
-        public async Task<IActionResult> AddNewProduct()
-        {
-            ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            ViewBag.Instructors = new SelectList( _context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
+        //public async Task<IActionResult> AddNewProduct()
+        //{
+        //    ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
+        //    ViewBag.Instructors = new SelectList( _context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
 
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> AddNewProduct(CreateProductVM productVM)
-        {
-            if (productVM.Image != null)
-            {
-                string result = productVM.Image.CheckValidate("image/", 500);
-                if (result.Length > 0)
-                {
-                    ModelState.AddModelError("Image", result);
-                }
-            }
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
-                return View(productVM);
-            }
-            await _productService.CreateProductAsync(productVM);    
-            return View();
+        //[HttpPost]
+        //public async Task<IActionResult> AddNewProduct(CreateProductVM productVM)
+        //{
+           
+
+        //    if (productVM.Image != null)
+        //    {
+        //        string result = productVM.Image.CheckValidate("image/", 500);
+        //        if (result.Length > 0)
+        //        {
+        //            ModelState.AddModelError("Image", result);
+        //        }
+        //    }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
+        //        ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
+        //        return View(productVM);
+        //    }
+        //    await _productService.CreateProductAsync(productVM);    
+        //    return View();
             
-        }
+        //}
 
         public async Task<IActionResult> DeleteProduct(int id)
         {
@@ -69,37 +72,37 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(ManageProducts));
         }
 
-        public async Task<IActionResult> UpdateProduct(int id)
-        {
-            ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-            ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
-            var product = await _productService.UpdateProductById(id);
-            return View(product);
-        }
+        //public async Task<IActionResult> UpdateProduct(int id)
+        //{
+        //    ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
+        //    ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
+        //    var product = await _productService.UpdateProductById(id);
+        //    return View(product);
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateProduct(int id, UpdateProductVM productVM)
-        {
-            Product product = new Product();
-            if (productVM.Image != null)
-            {
-                string result = productVM.Image.CheckValidate("image/", 500);
-                if (result.Length > 0)
-                {
-                    ModelState.AddModelError("Image", result);
-                }
-                //product.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/productimg");
-                product.ImageUrl = productVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "productimg"));
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateProduct(int id, UpdateProductVM productVM)
+        //{
+        //    Product product = new Product();
+        //    if (productVM.Image != null)
+        //    {
+        //        string result = productVM.Image.CheckValidate("image/", 500);
+        //        if (result.Length > 0)
+        //        {
+        //            ModelState.AddModelError("Image", result);
+        //        }
+        //        //product.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/productimg");
+        //        product.ImageUrl = productVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "productimg"));
 
-            }
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
-                ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
-            }
-            await _productService.UpdateProductAsync(id, productVM);
-            return RedirectToAction(nameof(ManageProducts));
-        }
+        //    }
+        //    if (!ModelState.IsValid)
+        //    {
+        //        ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
+        //        ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
+        //    }
+        //    await _productService.UpdateProductAsync(id, productVM);
+        //    return RedirectToAction(nameof(ManageProducts));
+        //}
     
     }
 }

@@ -12,13 +12,13 @@
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Manage Courses</li>
+                        <li class="breadcrumb-item"><a asp-area="InstructorProduct" asp-controller="Dashboard" asp-action="Index">Go To Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">@(Model.Name + " " + Model.Surname) 's Courses</li>
                     </ol>
                 </nav>
             </div>
             <div class="elkios">
-                <a asp-area="Manage" asp-controller="Course" asp-action="AddNewCourse" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Course</a>
+                <a  asp-controller="Course" asp-action="AddNewCourse" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Course</a>
             </div>
         </div>
     </div>
@@ -132,6 +132,7 @@
                         <table class="table dash_list">
                             <thead>
                                 <tr>
+                                    <th scope="col">Photo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Lectures</th>
@@ -145,6 +146,7 @@
                                 @foreach (var course in Model.Courses)
                                 {
                                    <tr>
+                                        <td><img src="~/user/assets/courseimg/@course.ImageUrl" width="80" /></td>
                                     <td><h6>@course.Name</h6></td>
                                     <td>
                                         @foreach (var category in course?.CourseCategories?.Where(ctg=>ctg.CourseId == course.Id))

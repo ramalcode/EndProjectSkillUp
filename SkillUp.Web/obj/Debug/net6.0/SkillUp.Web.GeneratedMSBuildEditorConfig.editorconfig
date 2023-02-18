@@ -31,12 +31,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXERhc2hib2FyZFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Enrollment/EnrollCourse.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXEVucm9sbG1lbnRcRW5yb2xsQ291cnNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Enrollment/EnrollProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXEVucm9sbG1lbnRcRW5yb2xsUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/AddNewCourseLectures.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcQWRkTmV3Q291cnNlTGVjdHVyZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/AddNewCourseParagraph.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcQWRkTmV3Q291cnNlUGFyYWdyYXBoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Product/AddNewProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFByb2R1Y3RcQWRkTmV3UHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Product/MyProducts.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFByb2R1Y3RcTXlQcm9kdWN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Product/UpdateProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFByb2R1Y3RcVXBkYXRlUHJvZHVjdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Shared/Components/InstructorInfo/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFNoYXJlZFxDb21wb25lbnRzXEluc3RydWN0b3JJbmZvXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Shared/_Layout.cshtml]
@@ -139,12 +163,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFByb2R1Y3RcVXBkYXRlUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/AdminRevenue.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxBZG1pblJldmVudWUuY3NodG1s
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/AdminCourseRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxBZG1pbkNvdXJzZVJldmVudWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/InstructorRevenue.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxJbnN0cnVjdG9yUmV2ZW51ZS5jc2h0bWw=
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/AdminProductRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxBZG1pblByb2R1Y3RSZXZlbnVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/InstructorCourseRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxJbnN0cnVjdG9yQ291cnNlUmV2ZW51ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Report/InstructorProductRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxJbnN0cnVjdG9yUHJvZHVjdFJldmVudWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Setting/PaymentSettings.cshtml]
@@ -179,12 +211,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Views/AccountInstructor/InstructorSignIn.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEluc3RydWN0b3JcSW5zdHJ1Y3RvclNpZ25Jbi5jc2h0bWw=
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Views/AccountInstructor/SignIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEluc3RydWN0b3JcU2lnbkluLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Views/AccountInstructor/InstructorSignUp.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEluc3RydWN0b3JcSW5zdHJ1Y3RvclNpZ25VcC5jc2h0bWw=
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Views/AccountInstructor/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudEluc3RydWN0b3JcU2lnblVwLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Views/Account/ForgotPassword.cshtml]

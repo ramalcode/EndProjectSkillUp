@@ -6,6 +6,8 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 using SkillUp.Service.Helpers;
+using Microsoft.AspNetCore.Identity;
+using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
@@ -16,20 +18,27 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         readonly IProductService _productService;
         readonly AppDbContext _context;
         readonly IWebHostEnvironment _env;
+        readonly UserManager<Instructor> _userManager;
+        readonly IInstructorService _instructorService;
 
 
-        public ProductController(ICategoryService categoryService, IProductService productService, AppDbContext context, IWebHostEnvironment env)
+
+
+        public ProductController(ICategoryService categoryService, IProductService productService, AppDbContext context, IWebHostEnvironment env, UserManager<Instructor> userManager, IInstructorService instructorService)
         {
             _categoryService = categoryService;
             _productService = productService;
             _context = context;
             _env = env;
+            _userManager = userManager;
+            _instructorService = instructorService;
         }
 
         public async Task<IActionResult> MyProducts()
         {
-            var product = await _productService.GetAllProductAsync();
-            return View(product);
+            string id = _userManager.GetUserId(HttpContext.User);
+            var instructor = await _instructorService.GetInstructorById(id);
+            return View(instructor);
         }
 
         public async Task<IActionResult> AddNewProduct()
@@ -43,6 +52,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewProduct(CreateProductVM productVM)
         {
+            string id = _userManager.GetUserId(HttpContext.User);
+
             if (productVM.Image != null)
             {
                 string result = productVM.Image.CheckValidate("image/", 500);
@@ -57,7 +68,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 ViewBag.Instructors = new SelectList(_context.Instructors, nameof(Instructor.Id), nameof(Instructor.Name));
                 return View(productVM);
             }
-            await _productService.CreateProductAsync(productVM);
+            await _productService.CreateProductAsync(productVM,id);
             return View();
 
         }

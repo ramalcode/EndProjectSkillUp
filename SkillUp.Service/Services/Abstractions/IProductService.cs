@@ -9,7 +9,7 @@ namespace SkillUp.Service.Services.Abstractions
         Task<ICollection<Product>> GetAllProductAsync();
         Task<UpdateProductVM> UpdateProductById(int id);
         Task<Product> GetProductById(int id);
-        Task CreateProductAsync(CreateProductVM productVM);
+        Task CreateProductAsync(CreateProductVM productVM, string instructorid);
         Task DeleteProductAsync(int id);
         Task<bool> UpdateProductAsync(int id, UpdateProductVM productVM);
     }

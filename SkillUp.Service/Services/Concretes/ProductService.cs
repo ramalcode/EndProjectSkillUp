@@ -23,7 +23,7 @@ namespace SkillUp.Service.Services.Concretes
             _context = context;
         }
 
-        public async Task CreateProductAsync(CreateProductVM productVM)
+        public async Task CreateProductAsync(CreateProductVM productVM, string instructorid)
         {
             var categories = _context.Categories.Where(ctg => productVM.CategoryIds.Contains(ctg.Id));
             Product product = new Product 
@@ -33,6 +33,7 @@ namespace SkillUp.Service.Services.Concretes
                 SKU = productVM.SKU,
                 Quantity = productVM.Quantity,
                 Name = productVM.Name,
+                InstructorId = instructorid,
                 Description = productVM.Description,
                 ImageUrl = productVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "productimg")),
             };
@@ -107,7 +108,6 @@ namespace SkillUp.Service.Services.Concretes
                 Description = product.Description,
                 SKU = product.SKU,  
                 CategoryIds = new List<int>(),
-                InstructorIds= new List<string>(),
                 Price = product.Price,
                 DiscountPrice = product.DiscountPrice,
                 Quantity = product.Quantity,

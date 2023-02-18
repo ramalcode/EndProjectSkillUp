@@ -214,74 +214,7 @@
             </div>
         </div>
         <!-- End Navigation -->
-        <section class="gray pt-4">
-            <div class="container-fluid">
-
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-3">
-                        <div class="dashboard-navbar">
-
-                            <div class="d-user-avater">
-                                <img src="https://via.placeholder.com/500x500" class="img-fluid avater" alt="">
-                                <h4>Adam Harshvardhan</h4>
-                                <span>Senior Designer</span>
-                                <div class="elso_syu89">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                        <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                        <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                        <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="elso_syu77">
-                                    <div class="one_third"><div class="one_45ic text-warning bg-light-warning"><i class="fas fa-star"></i></div><span>Ratings</span></div>
-                                    <div class="one_third"><div class="one_45ic text-success bg-light-success"><i class="fas fa-file-invoice"></i></div><span>Courses</span></div>
-                                    <div class="one_third"><div class="one_45ic text-purple bg-light-purple"><i class="fas fa-user"></i></div><span>Enrolled User</span></div>
-                                </div>
-                            </div>
-
-                            <div class="d-navigation">
-                                <ul id="side-menu">
-                                    <li class="active"><a asp-area="InstructorPanel" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-th"></i>Dashboard</a></li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Courses<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="InstructorPanel" asp-controller="Course" asp-action="MyCourses">My Courses</a></li>
-                                            <li><a asp-area="InstructorPanel" asp-controller="Course" asp-action="Coupons">Coupons</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Products<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="InstructorPanel" asp-controller="Product" asp-action="MyProducts">My Products</a></li>
-                                            <li><a asp-area="InstructorPanel" asp-controller="Course" asp-action="Coupons">Coupons</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-gem"></i>Enrollment<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollStudent">Enroll a Couse</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollProduct">Enroll a Product</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-archive"></i>Report<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Report" asp-action="InstructorRevenue">My Revenue</a></li>
-                                        </ul>
-                                    </li>
-                                   
-                                    <li><a asp-area="Manage" asp-controller="Message" asp-action="Index"><i class="fas fa-comments"></i>Message</a></li>
-                                    <li><a asp-area="Manage" asp-controller="MyProfile" asp-action="Index"><i class="fas fa-address-card"></i>My Profile</a></li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <div class="clearfix"></div>
+        @await Component.InvokeAsync("InstructorInfo")
                         <!-- ============================================================== -->
                         <!-- Top header  -->
                         <!-- ============================================================== -->

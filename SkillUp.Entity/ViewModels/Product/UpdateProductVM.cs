@@ -13,7 +13,6 @@ namespace SkillUp.Entity.ViewModels
         public string? ImageUrl { get; set; }
 
         public List<int> CategoryIds { get; set; }
-        public List<string> InstructorIds { get; set; }
 
         public IFormFile Image { get; set; }
     }

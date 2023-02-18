@@ -22,13 +22,13 @@ namespace SkillUp.Web.Controllers
             _env = env;
         }
 
-        public IActionResult InstructorSignUp()
+        public IActionResult SignUp()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> InstructorSignUp(InstructorRegisterVM registerVM)
+        public async Task<IActionResult> SignUp(InstructorRegisterVM registerVM)
         {
 
             if (registerVM.Image != null)
@@ -86,13 +86,13 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        public IActionResult InstructorSignIn()
+        public IActionResult SignIn()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> InstructorSignIn(LoginVM login, string? returnUrl)
+        public async Task<IActionResult> SignIn(LoginVM login, string? returnUrl)
         {
             if (!ModelState.IsValid) return View(login);
             Instructor user = await _userManager.FindByNameAsync(login.UserName);

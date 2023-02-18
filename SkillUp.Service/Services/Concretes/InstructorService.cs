@@ -59,11 +59,12 @@ namespace SkillUp.Service.Services.Concretes
 
         public async Task<Instructor> GetInstructorById(string id)
         {
-            
-            var instructor = await appDbContext.Instructors.Include(c=>c.Courses).ThenInclude(ap=>ap.AppUserCourses).Include(c => c.Courses)
-                .ThenInclude(c=>c.CourseCategories).ThenInclude(c=>c.Category).
-                Include(c=>c.Courses).ThenInclude(p=>p.Paragraphs).
-                Include(p=>p.Products).Include(ia=>ia.AppUserInstructors).ThenInclude(a=>a.AppUser).FirstOrDefaultAsync(i=>i.Id == id);
+
+            var instructor = await appDbContext.Instructors.Include(c => c.Courses).ThenInclude(ap => ap.AppUserCourses).Include(c => c.Courses)
+                .ThenInclude(c => c.CourseCategories).ThenInclude(c => c.Category).
+                Include(c => c.Courses).ThenInclude(p => p.Paragraphs).ThenInclude(l=>l.Lectures).
+                Include(p => p.Products).Include(ia => ia.AppUserInstructors).ThenInclude(a => a.AppUser).Include(p => p.Products).ThenInclude(pc => pc.ProductCategories)
+                .ThenInclude(c=>c.Category).Include(p=>p.Products).ThenInclude(ap=>ap.AppUserProducts).FirstOrDefaultAsync(i=>i.Id == id);
             return instructor;
         }
 
