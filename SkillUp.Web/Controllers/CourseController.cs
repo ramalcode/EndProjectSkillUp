@@ -14,11 +14,13 @@ namespace SkillUp.Web.Controllers
     {
         readonly AppDbContext _appDbContext;
         readonly UserManager<AppUser> _userManager;
+        readonly IReviewCourseService _reviewcourseService;
 
-        public CourseController(ICourseService courseService, IParagraphService paragraphService, AppDbContext appDbContext, UserManager<AppUser> userManager)
+        public CourseController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewCourseService reviewcourseService)
         {
             _appDbContext = appDbContext;
             _userManager = userManager;
+            _reviewcourseService = reviewcourseService;
         }
 
         public IActionResult FindCourses()
@@ -36,6 +38,16 @@ namespace SkillUp.Web.Controllers
             return View(course);
         }
 
-      
+        [HttpPost]
+        public async Task<IActionResult> SubmitReview(CreateCourseReviewVM reviewVM)
+        {
+            string id = _userManager.GetUserId(HttpContext.User);
+            if(!ModelState.IsValid) return View(reviewVM);
+            AppUserCourse userCourse = new AppUserCourse();
+            if (userCourse.IsBuyed == false) _reviewcourseService.CreateReviewAsync(reviewVM, id);
+            return RedirectToAction(nameof(CourseDetail));
+        }
+
+
     }
 }

@@ -10,5 +10,7 @@ namespace SkillUp.Entity.Entities.Relations.ManyToMany
 
         public int CourseId { get; set; }
         public Course Course { get; set; }
+
+        public bool IsBuyed { get; set; }
     }
 }

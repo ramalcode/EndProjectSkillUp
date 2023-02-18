@@ -5,6 +5,8 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.InstructorExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
+using SkillUp.Entity.Entities.Reviews;
+using SkillUp.Entity.Entities.Settings;
 
 namespace SkillUp.DAL.Context
 {
@@ -22,6 +24,9 @@ namespace SkillUp.DAL.Context
         public DbSet<Profession> Professions { get; set; } 
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
+
+        public DbSet<CourseReview> CourseReviews { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
 
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
         public DbSet<AppUserInstructor> AppUserInstructors { get; set; }

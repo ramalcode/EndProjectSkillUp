@@ -1,6 +1,7 @@
 ﻿using SkillUp.Core.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
+using SkillUp.Entity.Entities.Reviews;
 
 namespace SkillUp.Entity.Entities
 {
@@ -27,6 +28,7 @@ namespace SkillUp.Entity.Entities
         public ICollection<Paragraph>? Paragraphs { get; set; }
         public ICollection<CourseCategory>? CourseCategories { get; set; }
         public ICollection<AppUserCourse>? AppUserCourses { get; set; }
+        public ICollection<CourseReview> CourseReviews { get; set; }
 
 
 

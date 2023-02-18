@@ -555,6 +555,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsBuyed")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -685,6 +688,84 @@ namespace SkillUp.DAL.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InstructorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ReviewContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("InstructorId");
+
+                    b.ToTable("CourseReviews");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("InstructorId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReviewContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("InstructorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -903,6 +984,48 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "AppUser")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillUp.Entity.Entities.Course", "Course")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("InstructorId");
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", null)
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("InstructorId");
+
+                    b.HasOne("SkillUp.Entity.Entities.Product", null)
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>
                 {
                     b.Navigation("AppUserCourses");
@@ -910,6 +1033,10 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("AppUserInstructors");
 
                     b.Navigation("AppUserProducts");
+
+                    b.Navigation("CourseReviews");
+
+                    b.Navigation("ProductReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Course", b =>
@@ -918,6 +1045,8 @@ namespace SkillUp.DAL.Migrations
 
                     b.Navigation("CourseCategories");
 
+                    b.Navigation("CourseReviews");
+
                     b.Navigation("Paragraphs");
                 });
 
@@ -925,9 +1054,13 @@ namespace SkillUp.DAL.Migrations
                 {
                     b.Navigation("AppUserInstructors");
 
+                    b.Navigation("CourseReviews");
+
                     b.Navigation("Courses");
 
                     b.Navigation("InstructorProfessions");
+
+                    b.Navigation("ProductReviews");
 
                     b.Navigation("Products");
                 });
@@ -937,6 +1070,8 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("AppUserProducts");
 
                     b.Navigation("ProductCategories");
+
+                    b.Navigation("ProductReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Category", b =>
