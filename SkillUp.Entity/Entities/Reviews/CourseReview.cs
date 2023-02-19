@@ -9,7 +9,7 @@ namespace SkillUp.Entity.Entities.Reviews
         public int CourseId { get; set; }
         public Course Course { get; set; }
         public string ReviewContent { get; set; }
-        public DateTime ReviewDate { get; set; } =DateTime.Now;
+        public DateTime ReviewDate { get; set; }
         public bool Status { get; set; }
     }
 }

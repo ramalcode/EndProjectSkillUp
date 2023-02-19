@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eMSJitAbWEkFyQGuUQ/g8emZV8lUF8WaolnQTM0ElmQ=",
+  "Hash": "NmlnGIbEt3OEI/7jeNrmOPIxYvsZUhSsGfTfUUuUluo=",
   "Source": "SkillUp.Web",
   "BasePath": "_content/SkillUp.Web",
   "Mode": "Default",
@@ -7376,6 +7376,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\productimg\\f01d4a5e-7738-4a2f-9cf5-82021f53edadflower.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\a870b677-dda7-404e-8252-61036189e0a22.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/userimg/a870b677-dda7-404e-8252-61036189e0a22.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\a870b677-dda7-404e-8252-61036189e0a22.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\userimage.png",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/userimg/userimage.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\userimage.png"
     }
   ]
 }

@@ -28,6 +28,7 @@
     <Folder Include="wwwroot\user\assets\coursevideo\" />
     <Folder Include="wwwroot\user\assets\instructorimg\" />
     <Folder Include="wwwroot\user\assets\instructorpreview\" />
+    <Folder Include="wwwroot\user\assets\userimg\" />
     <Folder Include="wwwroot\user\assets\productimg\" />
   </ItemGroup>
 

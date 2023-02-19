@@ -10,6 +10,7 @@ namespace SkillUp.Entity.Entities
         public string Name { get; set; }
         public string Surname { get; set; }
         public double Wallet { get; set; }
+        public string? ImageUrl { get; set; }
 
 
         public ICollection<AppUserCourse> AppUserCourses { get; set; }

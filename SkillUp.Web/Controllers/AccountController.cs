@@ -11,13 +11,15 @@ namespace SkillUp.Web.Controllers
         readonly UserManager<AppUser> _userManager;
         readonly SignInManager<AppUser> _signInManager;
         readonly RoleManager<IdentityRole> _roleManager;
+        readonly IWebHostEnvironment _env;
 
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            _env = env;
         }
 
         public IActionResult SignUp()
@@ -28,7 +30,15 @@ namespace SkillUp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(RegisterVM register)
         {
-            if(!ModelState.IsValid) return View(register);  
+            if (register.Image != null)
+            {
+                string imgresult = register.Image.CheckValidate("image/", 500);
+                if (imgresult.Length > 0)
+                {
+                    ModelState.AddModelError("Image", imgresult);
+                }
+            }
+            if (!ModelState.IsValid) return View(register);  
             AppUser user = await _userManager.FindByNameAsync(register.UserName);
             if(user is not null)
             {
@@ -41,6 +51,8 @@ namespace SkillUp.Web.Controllers
                 Surname = register.Surname,
                 UserName = register.UserName,
                 Email = register.Email,
+                ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg")),
+
             };
 
             var result = await _userManager.CreateAsync(user,register.Password);

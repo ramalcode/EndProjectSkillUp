@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace SkillUp.Entity.ViewModels
 {
@@ -15,6 +16,8 @@ namespace SkillUp.Entity.ViewModels
 
         [Required, DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+
+        public IFormFile? Image { get; set; }
 
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }

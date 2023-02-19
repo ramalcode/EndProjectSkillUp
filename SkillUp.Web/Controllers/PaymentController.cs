@@ -108,6 +108,7 @@ namespace SkillUp.Web.Controllers
                 {
                     AppUserId = user.Id,
                     ProductId = productid,
+                    IsBuyed = true,   
                 };
 
                 user.Wallet = user.Wallet - product.Price * 100;

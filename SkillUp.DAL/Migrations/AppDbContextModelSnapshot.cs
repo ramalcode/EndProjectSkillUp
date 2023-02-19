@@ -174,6 +174,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -605,6 +608,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsBuyed")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");

@@ -180,18 +180,58 @@
                             </table>
                         </div>
                     </div>
-
-                    <!-- general Query -->
+                    <!-- Reviews Detail -->
                     <div class="tab-pane fade" id="upgrade" role="tabpanel" aria-labelledby="upgrade-tab">
-
+                        @if (Model.ProductReviews.Count == 0)
+                        {
                         <div class="alert alert-success" role="alert">
                             No any reviews yet
                         </div>
-
+                            
+                        }
+                        else
+                        {
+                             <div class="list-single-main-item fl-wrap">
+                            <div class="list-single-main-item-title fl-wrap">
+                                <h3>Course Reviews -  <span> @Model.ProductReviews.Count </span></h3>
+                            </div>
+                            <div class="reviews-comments-wrap">
+                                @foreach (var review in Model.ProductReviews)
+                                {
+                                    <!-- reviews-comments-item -->
+                                    <div class="reviews-comments-item">
+                                        <div class="review-comments-avatar">
+                                            @if (review.Appuser.ImageUrl != null)
+                                            {
+                                                <img src="~/user/assets/userimg/@review.Appuser.ImageUrl" class="img-fluid" alt="">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/user/assets/userimg/userimage.png" class="img-fluid" alt="">
+                                            }
+                                        </div>
+                                        <div class="reviews-comments-item-text">
+                                            <h4><a href="#">@(review.Appuser.Name + " " + review.Appuser.Surname)</a><span class="reviews-comments-item-date"><i class="ti-calendar theme-cl"></i>@review.ReviewDate.ToString("MM/dd/yyyy h:mm tt")</span></h4>
+                                            <div class="listing-rating"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
+                                            <div class="clearfix"></div>
+                                            <p>"@review.ReviewContent"</p>
+                                            <div class="pull-left reviews-reaction">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--reviews-comments-item end-->
+                                } </div>
+                           
+                        </div>
+                   
+                        }
+                        <!-- Reviews -->
                     </div>
-
-                </div>
-
+                    </div>
+                      
+@*                    @await Html.PartialAsync("_ProductReviewPartial",Model.ProductReviews, new ViewDataDictionary(ViewData){{"productid" , Model.Id}})
+*@                </div>
+             
             </div>
 
         </div>

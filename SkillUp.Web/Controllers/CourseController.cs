@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
+using SkillUp.Entity.Entities.Reviews;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 using System;
@@ -34,20 +35,20 @@ namespace SkillUp.Web.Controllers
             var course =  _appDbContext.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
                 .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category)
                 .Include(a=>a.AppUserCourses).ThenInclude(u=>u.AppUser)
-                .Include(i=>i.Instructor).FirstOrDefault(x=>x.Id == id);
+                .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
+            
             return View(course);
         }
 
         [HttpPost]
-        public async Task<IActionResult> SubmitReview(CreateCourseReviewVM reviewVM)
+        public async Task<IActionResult> SubmitReview(CreateCourseReviewVM review)
         {
-            string id = _userManager.GetUserId(HttpContext.User);
-            if(!ModelState.IsValid) return View(reviewVM);
+            string userid =  _userManager.GetUserId(HttpContext.User);
+            if (!ModelState.IsValid) return View(review);
             AppUserCourse userCourse = new AppUserCourse();
-            if (userCourse.IsBuyed == false) _reviewcourseService.CreateReviewAsync(reviewVM, id);
-            return RedirectToAction(nameof(CourseDetail));
+            if (userCourse.IsBuyed == false) await  _reviewcourseService.CreateReviewAsync(review, userid);
+            return RedirectToAction("Index", "Home");
         }
-
 
     }
 }

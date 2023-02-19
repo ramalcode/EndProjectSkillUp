@@ -19,7 +19,9 @@ namespace SkillUp.Service.Services.Concretes
            CourseReview courseReview = new CourseReview
            {
                AppUserId = id,
+               CourseId = reviewVM.CourseId,
                ReviewContent = reviewVM.ReviewContent,  
+               ReviewDate = DateTime.Now,
                Status = true,
            };  
             await _unitOfWork.GetRepository<CourseReview>().AddAsync(courseReview);
