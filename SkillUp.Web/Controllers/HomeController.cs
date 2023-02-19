@@ -14,13 +14,17 @@ namespace SkillUp.Web.Controllers
         readonly ICategoryService _categoryService;
         readonly IInstructorService _instructorService;
         readonly IProductService _productService;
+        readonly IContactService _contactService;
+        readonly IReviewCourseService _reviewCourseService;
 
-        public HomeController(ICourseService courseService, ICategoryService categoryService, IInstructorService instructorService, IProductService productService)
+        public HomeController(ICourseService courseService, ICategoryService categoryService, IInstructorService instructorService, IProductService productService, IContactService contactService, IReviewCourseService reviewCourseService)
         {
             _courseService = courseService;
             _categoryService = categoryService;
             _instructorService = instructorService;
             _productService = productService;
+            _contactService = contactService;
+            _reviewCourseService = reviewCourseService;
         }
 
         public async Task<IActionResult> Index()
@@ -31,6 +35,7 @@ namespace SkillUp.Web.Controllers
                 Categories = await _categoryService.GetAllCategoryAsync(),
                 Instructors = await _instructorService.GetAllInstructorAsync(),
                 Products = await _productService.GetAllProductAsync(),  
+                CourseReviews = await _reviewCourseService.GetAllCourseReviewAsync(),
             };
             return View(indexVM);
         }
@@ -45,6 +50,13 @@ namespace SkillUp.Web.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(CreateContactVM contactVM)
+        {
+            await _contactService.CreateContactAsync(contactVM);    
+            return RedirectToAction(nameof(Index));
         }
 
 

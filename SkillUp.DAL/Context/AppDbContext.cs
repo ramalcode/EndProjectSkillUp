@@ -27,6 +27,8 @@ namespace SkillUp.DAL.Context
 
         public DbSet<CourseReview> CourseReviews { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
+        public DbSet<ContactUs> ContactsUs { get; set; }
+
 
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
         public DbSet<AppUserInstructor> AppUserInstructors { get; set; }

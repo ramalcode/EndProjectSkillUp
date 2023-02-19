@@ -1,77 +1,58 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
-using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Service.Services.Concretes
 {
     public class InstructorService : IInstructorService
     {
-        readonly IUnitOfWork _unitOfWork;
-        readonly IWebHostEnvironment _env;
-        readonly AppDbContext appDbContext;
+        readonly AppDbContext _context;
 
 
-        public InstructorService(IUnitOfWork unitOfWork, IWebHostEnvironment env, AppDbContext appDbContext)
+        public InstructorService(AppDbContext context)
         {
-            _unitOfWork = unitOfWork;
-            _env = env;
-            this.appDbContext = appDbContext;
+            _context = context;
         }
 
-        //public async Task CreateInstructorAsync(CreateInstructorVM instructorVM)
-        //{
-        //    Instructor instructor = new Instructor
-        //    {
-        //        Name = instructorVM.Name,
-        //        Surname = instructorVM.Surname,
-        //        UserName = instructorVM.UserName,
-        //        Description = instructorVM.Description,
-        //        Email = instructorVM.Email,
-        //        StripeKey = instructorVM.StripeKey,
-        //        ImageUrl = instructorVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorimg")),
-        //        PreviewVideoUrl = instructorVM.Preview.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorpreview")),
-        //        InstagramUrl = instructorVM.InstagramUrl,
-        //        FaceBookUrl = instructorVM.FacebookURL,
-        //        TwitterUrl = instructorVM.TwitterURL,
-        //        LinkedInUrl = instructorVM.LinkedInUrl,
-        //    }; 
 
-        //    await _unitOfWork.GetRepository<Instructor>().AddAsync(instructor);
-        //    await _unitOfWork.SaveAsync();
-
-        //}
-
-        public Task DeleteCourseAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        //GetAll Instructor
         public async Task<ICollection<Instructor>> GetAllInstructorAsync()
         {
-            var instructor = await appDbContext.Instructors.Include(c=>c.Courses).ToListAsync();
-            return instructor;
+            return await _context.Instructors.Include(c=>c.Courses).ToListAsync();
         }
 
+
+        //Get Instructor By Id
         public async Task<Instructor> GetInstructorById(string id)
         {
 
-            var instructor = await appDbContext.Instructors.Include(c => c.Courses).ThenInclude(ap => ap.AppUserCourses).Include(c => c.Courses)
+            return await _context.Instructors.Include(c => c.Courses).ThenInclude(ap => ap.AppUserCourses).Include(c => c.Courses)
                 .ThenInclude(c => c.CourseCategories).ThenInclude(c => c.Category).
                 Include(c => c.Courses).ThenInclude(p => p.Paragraphs).ThenInclude(l=>l.Lectures).
                 Include(p => p.Products).Include(ia => ia.AppUserInstructors).ThenInclude(a => a.AppUser).Include(p => p.Products).ThenInclude(pc => pc.ProductCategories)
                 .ThenInclude(c=>c.Category).Include(p=>p.Products).ThenInclude(ap=>ap.AppUserProducts).FirstOrDefaultAsync(i=>i.Id == id);
-            return instructor;
         }
+
+
+        //Delete Instructor
+        public async Task DeleteCourseAsync(string id)
+        {
+            var instructor = await _context.Instructors.FindAsync(id);
+            _context.Instructors.Remove(instructor);
+            await _context.SaveChangesAsync();  
+        }
+
+
 
         public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)
         {
             throw new NotImplementedException();
         }
+
+
 
         public Task<UpdateCourseVM> UpdateCourseById(int id)
         {

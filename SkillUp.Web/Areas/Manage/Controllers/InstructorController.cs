@@ -11,10 +11,12 @@ namespace SkillUp.Web.Areas.Manage.Controllers
     {
         readonly IInstructorService _instructorService;
 
+
         public InstructorController(IInstructorService instructorService)
         {
             _instructorService = instructorService;
         }
+
 
         public async Task<IActionResult> ManageInstructor()
         {
@@ -23,9 +25,13 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        public IActionResult InstructorsPayouts()
+        public async Task<IActionResult> DeleteInstructor(string id)
         {
-            return View();
+            await _instructorService.DeleteCourseAsync(id);
+            return RedirectToAction(nameof(ManageInstructor));
         }
+
+
+      
     }
 }

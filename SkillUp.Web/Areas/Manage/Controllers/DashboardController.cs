@@ -13,6 +13,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         readonly IInstructorService _instructorService;
         readonly AppDbContext _appDbContext; //
 
+
         public DashboardController(ICourseService courseService, IProductService productService, AppDbContext appDbContext, IInstructorService instructorService)
         {
             _courseService = courseService;
@@ -21,6 +22,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _instructorService = instructorService;
         }
 
+
+        //Admin Dashboard
         public async Task<IActionResult> Index()
         {
             DashboardVM dashboardVM = new DashboardVM

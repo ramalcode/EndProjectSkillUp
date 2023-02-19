@@ -99,14 +99,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENhdGVnb3J5XFVwZGF0ZUNhdGVnb3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Course/AddNewCourse.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENvdXJzZVxBZGROZXdDb3Vyc2UuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Course/Coupons.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENvdXJzZVxDb3Vwb25zLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Course/ManageCourses.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXENvdXJzZVxNYW5hZ2VDb3Vyc2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -125,10 +117,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Enrollment/EnrollStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEVucm9sbG1lbnRcRW5yb2xsU3R1ZGVudC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Instructor/InstructorsPayouts.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXEluc3RydWN0b3JcSW5zdHJ1Y3RvcnNQYXlvdXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Instructor/ManageInstructor.cshtml]

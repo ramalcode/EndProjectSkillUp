@@ -71,7 +71,9 @@ namespace SkillUp.Web.Controllers
 
             };
 
+
             var result = await _userManager.CreateAsync(user, registerVM.Password);
+
             if (!result.Succeeded)
             {
                 foreach (var item in result.Errors)
@@ -79,8 +81,6 @@ namespace SkillUp.Web.Controllers
                     ModelState.AddModelError("", item.Description);
                 }
             }
-
-            var role = await _userManager.AddToRoleAsync(user, "Instructor");
 
             return RedirectToAction(nameof(SignIn));
         }

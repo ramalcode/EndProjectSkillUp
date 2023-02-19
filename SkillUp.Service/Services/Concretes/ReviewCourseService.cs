@@ -27,5 +27,11 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.GetRepository<CourseReview>().AddAsync(courseReview);
             await _unitOfWork.SaveAsync();
         }
+
+        public Task<ICollection<CourseReview>> GetAllCourseReviewAsync()
+        {
+           var reviews = _unitOfWork.GetRepository<CourseReview>().GetAllAsync(null,u=>u.AppUser);   
+           return reviews;
+        }
     }
 }

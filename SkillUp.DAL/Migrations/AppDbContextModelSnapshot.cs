@@ -774,6 +774,41 @@ namespace SkillUp.DAL.Migrations
                     b.ToTable("ProductReviews");
                 });
 
+            modelBuilder.Entity("SkillUp.Entity.Entities.Settings.ContactUs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactsUs");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1015,7 +1050,7 @@ namespace SkillUp.DAL.Migrations
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
                 {
-                    b.HasOne("SkillUp.Entity.Entities.AppUser", null)
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "Appuser")
                         .WithMany("ProductReviews")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -1030,6 +1065,8 @@ namespace SkillUp.DAL.Migrations
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appuser");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>

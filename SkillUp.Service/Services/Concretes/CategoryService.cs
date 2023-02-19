@@ -35,7 +35,7 @@ namespace SkillUp.Service.Services.Concretes
 
         public async Task<ICollection<Category>> GetAllCategoryAsync()
         {
-            var categories = await _unitOfWork.GetRepository<Category>().GetAllAsync(null,x=>x.SubCategories);
+            var categories = await _unitOfWork.GetRepository<Category>().GetAllAsync(null,x=>x.SubCategories, cc=>cc.CourseCategories, pc=>pc.ProductCategories);
             return categories;
 
         }

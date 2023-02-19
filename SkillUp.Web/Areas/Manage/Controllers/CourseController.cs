@@ -38,11 +38,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        public IActionResult Coupons()
-        {
-            return View();
-        }
-
         public async  Task<IActionResult> DeleteCourse(int id)
         {
             await _courseService.DeleteCourseAsync(id);

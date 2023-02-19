@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Index";
 }
-
+@model ICollection<ContactUs>
 <!-- ============================ Dashboard: Dashboard Start ================================== -->
 <!-- Row -->
 <div class="row justify-content-between">
@@ -21,17 +21,53 @@
 <!-- /Row -->
 
 <div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12">
-        <div class="dashboard_wrap">
+    <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
+        <div class="table-responsive">
+            <table class="table dash_list">
+                <thead>
+                    <tr class="breadcrumb">
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Message</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var contact in Model)
+                    {
+                        <tr class="breadcrumb">
+                            <td><h6>@contact.Name</h6></td>
+                            <td><h6>@contact.Surname</h6></td>
+                            <td><h6>@contact.Email</h6></td>
+                            <td><h6>@contact.PhoneNumber</h6></td>
+                            <td><h6>@contact.Message</h6></td>
+                            <td>
+                                <div class="dropdown show">
+                                    <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </a>
+                                    <div class="drp-select dropdown-menu">
+@*                                        <a class="dropdown-item" asp-area="Manage" asp-controller="Message" asp-action="DeleteMessage" asp-route-id="@contact.Id">View</a>
+*@                                        <a class="dropdown-item" asp-area="Manage" asp-controller="Message" asp-action="DeleteMessage" asp-route-id="@contact.Id">Delete</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
 
-            <div class="form_blocs_wrap">
-                <form>
-                    <div class="row justify-content-between">
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@* <div class="row justify-content-between">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                             <h5>No Any Messages Found</h5>
                         </div>
-                    </div>
-                </form>
+                    </div>*@
             </div>
         </div>
     </div>

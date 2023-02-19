@@ -29,7 +29,7 @@ builder.Services.AddIdentityCore<Instructor>(opt =>
     opt.Password.RequireDigit = true;
     opt.Password.RequiredLength = 6;
     opt.Lockout.AllowedForNewUsers = true;
-}).AddDefaultTokenProviders().AddEntityFrameworkStores<AppDbContext>();
+}).AddDefaultTokenProviders().AddRoles<IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
 
 
 var app = builder.Build();

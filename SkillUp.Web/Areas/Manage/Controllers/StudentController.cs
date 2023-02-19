@@ -1,25 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
-using SkillUp.Entity.Entities;
+using SkillUp.Service.Services.Abstractions;
+using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
     public class StudentController : Controller
     {
-        readonly AppDbContext dbContext;
+        readonly IUserService _userService; 
 
-        public StudentController(AppDbContext dbContext)
+
+        public StudentController(IUserService userService)
         {
-            this.dbContext = dbContext;
+            _userService = userService;
         }
 
         public async Task<IActionResult> ManageStudents()
         {
-            var student = await dbContext.AppUsers.Include(ac=>ac.AppUserCourses).ThenInclude(c=>c.Course).ThenInclude(i=>i.Instructor)
-                .Include(ap=>ap.AppUserProducts).ThenInclude(p=>p.Product).ToListAsync();   
-            return View(student);
+            var students = await _userService.GetAllUserAsync();
+            return View(students);
+        }
+
+        public async Task<IActionResult> DeleteStudent(string id)
+        {
+            await _userService.DeleteUserAsync(id);
+            return RedirectToAction(nameof(ManageStudents));
         }
     }
 }
