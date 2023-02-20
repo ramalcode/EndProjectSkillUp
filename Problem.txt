@@ -7,7 +7,5 @@
 11) Filtering
 12) Subcategory Update Delete
 13) Paragraph Lectures Update Delete
-14) Partial View Redirect problem
-15) Shekil Update zamani delete problemi
 16) Review Update and Delete
 

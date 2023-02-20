@@ -299,70 +299,19 @@
                                 </div>
                             </div>
                         </div>
+                        @{
+                            CreateCourseReviewVM reviewVM = new CreateCourseReviewVM();
+                            reviewVM.ReviewContent = "";
+                            reviewVM.CourseId = Model.Id;
+                            reviewVM.Course = Model;
+                        }
+                        @await Html.PartialAsync("_SubmitReviewPartial", reviewVM, new ViewDataDictionary(ViewData){{"courseid" , Model.Id}})
 
-@*                       @await Html.PartialAsync("_SubmitReviewPartial",Model.CourseReviews, new ViewDataDictionary(ViewData){{"courseid" , Model.Id}})
-*@
                     </div>
                 </div>
 
             </div>
-
-            <!-- Sidebar -->
-            <div class="col-lg-4 col-md-12  order-lg-last">
-
-                <!-- Course info -->
-                <div class="ed_view_box style_3 ovrlio stick_top">
-
-                    <div class="property_video sm">
-                        <div class="thumb">
-                            <video class="pro_img img-fluid w100"  src="~/user/assets/coursepreview/@Model.PreviewUrl" controls loop></video>
-                        </div>
-                    </div>
-
-                    <div class="ed_view_price pl-3">
-                        <span>Acctual Price</span>
-                        <h2 class="theme-cl">
-                            @if (Model.Price>0)
-                            {
-                                <h2 class="theme-cl">$@Model.Price</h2>
-                            }
-                            else
-                            {
-                                <h2 class ="theme-cl">Free</h2>
-                            }
-                        </h2>
-                    </div>
-
-                    <div class="ed_view_features half_list pl-3 pr-1">
-                        <span>Course Features</span>
-                        <ul>
-                            <li><i class="ti-user"></i>
-                                @if (Model.AppUserCourses.Count == 0)
-                                {
-                                    <span>Be the First to Enroll</span>
-                                }
-                                @if (Model.AppUserCourses.Count == 1)
-                                {
-                                    <span>@Model.AppUserCourses.Count Student Enroll</span>
-                                    
-                                }
-                                @if (Model.AppUserCourses.Count >1)
-                                {
-                                    <span>@Model.AppUserCourses.Count Students Enroll</span>
-                                }
-                               </li>
-                            <li><i class="ti-time"></i>2 hour 30 min</li>
-                            <li><i class="ti-bar-chart-alt"></i>Principiante</li>
-                            <li><i class="ti-cup"></i>04 Certified</li>
-                        </ul>
-                    </div>
-                    <div class="ed_view_link">
-                        <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@Model.Id" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
+            @await Html.PartialAsync("_BuyCoursePartial",Model, new ViewDataDictionary(ViewData){{"buycourseid" , Model.Id}})
         </div>
     </div>
 </section>

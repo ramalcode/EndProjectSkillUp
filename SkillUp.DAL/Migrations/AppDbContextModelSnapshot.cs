@@ -414,9 +414,6 @@ namespace SkillUp.DAL.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<byte>("Quantity")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("SKU")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

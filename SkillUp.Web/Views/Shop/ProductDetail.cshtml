@@ -94,12 +94,6 @@
                                 </p>
                                  
                             </div>
-                            <div class="quantity-button-wrapper">
-                                <label>Stock:</label>
-                                <div class="quantity">
-                                    <input type="number" class="form-control" min="1" max="@Model.Quantity" value="1" title="Stock:" placeholder="">
-                                </div>
-                            </div>
                             <div class="woo_buttons">
                                 <a asp-action="BuyProduct" asp-controller="Payment" asp-route-id="@Model.Id"   class="btn btn-success">Buy Now</a>
                                 <a href="javascript:void(0)" class="btn woo_btn_light" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="ti-heart"></i></a>

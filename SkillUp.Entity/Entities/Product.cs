@@ -6,7 +6,6 @@ namespace SkillUp.Entity.Entities
 {
     public class Product:BaseNameableEntity
     {
-        public byte Quantity { get; set; }
         public double Price { get; set; }
         public double DiscountPrice { get; set; }
         public string Description { get; set; }

@@ -189,6 +189,8 @@
                                             </a>
                                             <div class="drp-select dropdown-menu">
                                                 <a class="dropdown-item" href="JavaScript:Void(0);">View</a>
+                                                    <a class="dropdown-item" asp-area="InstructorPanel" asp-controller="Lecture" asp-action="AddNewCourseParagraph">Add Paragraph</a>
+                                                    <a class="dropdown-item" asp-area="InstructorPanel" asp-controller="Lecture" asp-action="AddNewCourseLectures">Add Video</a>
                                                 <a class="dropdown-item" asp-area="InstructorPanel" asp-controller="Course" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
                                                     <a class="dropdown-item" asp-area="InstructorPanel" asp-controller="Course" asp-action="DeleteCourse" asp-route-id="@course.Id">Delete</a>
                                             </div>

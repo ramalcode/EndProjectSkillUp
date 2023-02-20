@@ -42,6 +42,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         public async Task<IActionResult> AddNewCourse()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
+
             return View();
         }
 
@@ -93,7 +94,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(int id, UpdateCourseVM courseVM)
         {
-            Course course = new Course();
+            Course course = await _courseService.GetCourseById(id);
 
             if (courseVM.Image != null)
             {

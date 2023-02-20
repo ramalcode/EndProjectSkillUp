@@ -10,10 +10,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
-
-        public IActionResult AddNewAdmin()
-        {
-            return View();
-        }
+        
     }
 }

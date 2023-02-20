@@ -31,7 +31,6 @@ namespace SkillUp.Service.Services.Concretes
                 Price = productVM.Price,
                 DiscountPrice = productVM.DiscountPrice,
                 SKU = productVM.SKU,
-                Quantity = productVM.Quantity,
                 Name = productVM.Name,
                 InstructorId = instructorid,
                 Description = productVM.Description,
@@ -74,7 +73,6 @@ namespace SkillUp.Service.Services.Concretes
             product.Price = productVM.Price;
             product.DiscountPrice = productVM.DiscountPrice;
             product.SKU = productVM.SKU;    
-            product.Quantity = productVM.Quantity;  
 
             foreach (var category in product.ProductCategories)
             {
@@ -110,7 +108,6 @@ namespace SkillUp.Service.Services.Concretes
                 CategoryIds = new List<int>(),
                 Price = product.Price,
                 DiscountPrice = product.DiscountPrice,
-                Quantity = product.Quantity,
                 ImageUrl = product.ImageUrl,
             };
             foreach (var category in product.ProductCategories)

@@ -41,7 +41,7 @@ namespace SkillUp.Web.Controllers
             var charge = chargers.Create(new ChargeCreateOptions
             {
                 
-                Amount = (long) wallet,
+                Amount = (long) wallet*100,
                 Description = "Add Balance",
                 Currency = "usd",
                 Customer = customer.Id,
@@ -73,18 +73,21 @@ namespace SkillUp.Web.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public async Task<IActionResult> BuyCourse(int courseid)
+
+        
+        public async Task<IActionResult> BuyCourse(int id)
         {
-            var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == courseid);
-            string id = _userManager.GetUserId(HttpContext.User);
-            AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == id);
+            var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
+            string userid = _userManager.GetUserId(HttpContext.User);
+            AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == userid);
             if (user.Wallet > course.Price * 100)
             {
                 AppUserCourse userCourse = new AppUserCourse
                 {
+                    
                     AppUserId = user.Id,
-                    CourseId = courseid,
-                    IsBuyed = true, 
+                    CourseId = id,
+                    IsBuyed = true,
                 };
 
                 user.Wallet = user.Wallet - course.Price * 100;
@@ -93,7 +96,7 @@ namespace SkillUp.Web.Controllers
                 await _appDbContext.SaveChangesAsync();
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("CourseDetail" ,"Course");
 
         }
 
@@ -102,7 +105,7 @@ namespace SkillUp.Web.Controllers
             var product = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
             string id = _userManager.GetUserId(HttpContext.User);
             AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == id);
-            if (user.Wallet > product.Price * 100)
+            if (user.Wallet > product.Price)
             {
                 AppUserProduct userProduct = new AppUserProduct
                 {

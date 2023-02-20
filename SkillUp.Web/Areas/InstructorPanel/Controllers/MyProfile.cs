@@ -2,7 +2,7 @@
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
-    public class SettingController : Controller
+    public class MyProfile : Controller
     {
         public IActionResult Index()
         {
