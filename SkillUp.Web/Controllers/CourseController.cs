@@ -35,12 +35,13 @@ namespace SkillUp.Web.Controllers
 
         public async Task<IActionResult> CourseDetail(int id)
         {
-            var course =  _appDbContext.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
-                .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category)
-                .Include(a=>a.AppUserCourses).ThenInclude(u=>u.AppUser)
-                .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
-            
-            return View(course);
+            var coursedetail =  _appDbContext.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
+            .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category)
+            .Include(a=>a.AppUserCourses).ThenInclude(u=>u.AppUser)
+            .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
+            coursedetail.ViewCount ++ ;
+            _appDbContext.SaveChanges();
+            return View(coursedetail);
         }
 
         [HttpPost]

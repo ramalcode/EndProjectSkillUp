@@ -169,7 +169,7 @@
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
                                     <a href="course-detail.html" class="crs_detail_link">
-                                        <img style="width:100%;height:100%;" src="~/user/assets/courseimg/@item.ImageUrl"  alt="" />
+                                        <img style="width:350px; height:208px" src="~/user/assets/courseimg/@item.ImageUrl"  alt="" />
                                     </a>
                                     <div class="crs_video_ico">
                                         <i class="fa fa-play"></i>
@@ -309,19 +309,11 @@
                         <div class="lios_item">
                             <div class="crs_trt_grid theme-light shadow_none">
                                 <div class="crs_trt_thumb">
-                                   <a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@instructor.Id" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" alt=""></a>
+                                   <a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@instructor.Id" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" style="width:370px; height:200px" alt=""></a>
                                </div>
                                 <div class="crs_trt_caption large">
                                     <div class="instructor_tag dark"><span>Sanskrit Teacher</span></div>
                                     <div class="instructor_title"><h4><a href="instructor-detail.html">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
-                                    <div class="trt_rate_inf">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star-half filled"></i>
-                                        <span class="alt_rates">(244 Reviews)</span>
-                                    </div>
                                 </div>
                             </div>
                         </div>
