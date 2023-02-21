@@ -169,7 +169,7 @@
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
                                     <a href="course-detail.html" class="crs_detail_link">
-                                        <img src="~/user/assets/courseimg/@item.ImageUrl" width="100"  alt="" />
+                                        <img style="width:100%;height:100%;" src="~/user/assets/courseimg/@item.ImageUrl"  alt="" />
                                     </a>
                                     <div class="crs_video_ico">
                                         <i class="fa fa-play"></i>
@@ -189,7 +189,20 @@
                                             </span></div>
                                         </div>
                                         <div class="crs_fl_last">
-                                            <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">@item.Price</span></h2></div>
+                                            <div class="crs_price"><h2><span class="currency"></span>
+                                                @if (item.DiscountPrice>0)
+                                                {
+                                                     <span class="theme-cl">$@item.DiscountPrice</span >      
+                                                }
+                                                 @if (item.DiscountPrice == 0 && item.Price>0)
+                                                 {
+                                                   <span class="theme-cl">$@item.Price</span>
+                                                 }
+                                                    @if (item.DiscountPrice == 0 && item.Price == 0)
+                                                    {
+                                                        <span class="theme-cl">FREE</span>
+                                                    }
+                                           </h2></div>
                                         </div>
                                     </div>
                                     <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id ="@item.Id" class="crs_title_link">@item.Name</a></h4></div>

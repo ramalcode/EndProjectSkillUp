@@ -2,6 +2,7 @@
     ViewData["Title"] = "SkillUp-FindCourses";
 }
 
+@model ICollection<Course>
 <!-- ============================ Page Title Start ================================== -->
 <section class="page-title">
     <div class="container">
@@ -9,7 +10,7 @@
             <div class="col-lg-12 col-md-12">
 
                 <div class="breadcrumbs-wrap">
-                    <h1 class="breadcrumb-title">Courses Grid Style 4</h1>
+                    <h1 class="breadcrumb-title">Choose Your Favorite Course</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb p-0 bg-white">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -88,28 +89,6 @@
                             </div>
 
                             <div class="form-group">
-                                <h6>Skill Level</h6>
-                                <ul class="no-ul-list mb-3">
-                                    <li>
-                                        <input id="l1" class="checkbox-custom" name="l1" type="checkbox">
-                                        <label for="l1" class="checkbox-custom-label">Beginning</label>
-                                    </li>
-                                    <li>
-                                        <input id="l2" class="checkbox-custom" name="l2" type="checkbox">
-                                        <label for="l2" class="checkbox-custom-label">Basic Level</label>
-                                    </li>
-                                    <li>
-                                        <input id="l3" class="checkbox-custom" name="l3" type="checkbox">
-                                        <label for="l3" class="checkbox-custom-label">Iner Level</label>
-                                    </li>
-                                    <li>
-                                        <input id="l4" class="checkbox-custom" name="l4" type="checkbox">
-                                        <label for="l4" class="checkbox-custom-label">Advance</label>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="form-group">
                                 <h6>Price</h6>
                                 <ul class="no-ul-list mb-3">
                                     <li>
@@ -169,12 +148,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="lmk_485">
-                                            <ul class="shorting_grid">
-                                                <li class="list-inline-item"><a href="grid-layout-with-sidebar.html" class="active"><span class="ti-layout-grid2"></span></a></li>
-                                                <li class="list-inline-item"><a href="list-layout-with-sidebar.html"><span class="ti-view-list"></span></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -183,102 +156,74 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="crs_grid shadow_none brd">
-                            <div class="crs_grid_thumb">
-                                <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
-                                </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="crs_grid_caption">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_cates"><span>Design</span></div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">149</span></h2></div>
-                                    </div>
-                                </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">UI/UX Design pattern for succesfull software Applications</a></h4></div>
-                                <div class="crs_info_detail">
-                                    <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>10 hr 07 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>67 Lectures</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                    @foreach (var course in Model)
+                    {
+                       <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                         <div class="crs_grid shadow_none brd">
                             <div class="crs_grid_thumb">
                                 <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
+                                    <img src="~/user/assets/courseimg/@course.ImageUrl" style="width:100%" height="100%" class="img-fluid rounded" alt="" />
                                 </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
+                                @foreach (var user in course.AppUserCourses)
+                                    {
+                                        if (user.IsBuyed)
+                                        {
+                                             <div class="crs_video_ico">
+                                                    <i class="fa fa-play"></i>
+                                                </div>
+                                        }
+                                    }
                             </div>
                             <div class="crs_grid_caption">
                                 <div class="crs_flex">
                                     <div class="crs_fl_first">
-                                        <div class="crs_cates cl_3"><span>Accounting</span></div>
+                                        <div class="crs_cates"><span>
+                                        @foreach (var category in course.CourseCategories.Where(ctg => ctg.CategoryId == course.Id))
+                                        {
+                                          @category.Category.Name
+                                        }
+                                        </span></div>
                                     </div>
                                     <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">129</span></h2></div>
+                                        <div class="crs_price"><h2>
+                                            <span class="theme-cl">
+                                                @if (course.DiscountPrice == 0)
+                                                {
+                                                  <span class="currency">$@course.Price</span>    
+                                                }
+                                                @if (course.Price == 0 && course.DiscountPrice == 0)
+                                                {
+                                                   <span class="currency">Free</span>          
+                                                }
+                                                @if (course.DiscountPrice>0)
+                                                {
+                                                    <span class="currency">$@course.DiscountPrice</span>    
+                                                }
+                                            </span></h2></div>
                                     </div>
                                 </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">Basic knowledge about hodiernal bharat in history</a></h4></div>
+                                <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id ="@course.Id" class="crs_title_link">@course.Name</a></h4></div>
                                 <div class="crs_info_detail">
                                     <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>04 hr 07 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>27 Lectures</span></li>
+                                        <li><i class="fa fa-clock text-danger"></i><span>Yazacam</span></li>
+                                            <li><i class="fa fa-video text-success"></i><span>@course.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="crs_grid_foot">
                                 <div class="crs_flex">
                                     <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
+                                            <div class="crs_tutor">
+                                                <span class=" crs_auth small"> By: @(course.Instructor.Name + " " + course.Instructor.Surname)</span>
+                                            </div>
                                     </div>
                                     <div class="crs_fl_last">
                                         <div class="foot_list_info">
                                             <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
+                                                    <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">@course.AppUserCourses.Count</div></li>
+                                                    <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">@course.ViewCount</div></li>
+                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">Yazacam</div></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -286,214 +231,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="crs_grid shadow_none brd">
-                            <div class="crs_grid_thumb">
-                                <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
-                                </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="crs_grid_caption">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_cates cl_4"><span>Physics</span></div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">99</span></h2></div>
-                                    </div>
-                                </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">Advance PHP knowledge with laravel to make smart web</a></h4></div>
-                                <div class="crs_info_detail">
-                                    <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>07 hr 10 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>32 Lectures</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="crs_grid shadow_none brd">
-                            <div class="crs_grid_thumb">
-                                <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
-                                </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="crs_grid_caption">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_cates cl_5"><span>Business</span></div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">139</span></h2></div>
-                                    </div>
-                                </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">The complete accounting & bank financial course 2021</a></h4></div>
-                                <div class="crs_info_detail">
-                                    <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>06 hr 20 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>28 Lectures</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="crs_grid shadow_none brd">
-                            <div class="crs_grid_thumb">
-                                <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
-                                </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="crs_grid_caption">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_cates cl_6"><span>Finance</span></div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">99</span></h2></div>
-                                    </div>
-                                </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">The complete business plan course includes 50 templates</a></h4></div>
-                                <div class="crs_info_detail">
-                                    <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>04 hr 17 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>18 Lectures</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Grid -->
-                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
-                        <div class="crs_grid shadow_none brd">
-                            <div class="crs_grid_thumb">
-                                <a href="course-detail.html" class="crs_detail_link">
-                                    <img src="https://via.placeholder.com/1200x800" class="img-fluid rounded" alt="" />
-                                </a>
-                                <div class="crs_video_ico">
-                                    <i class="fa fa-play"></i>
-                                </div>
-                                <div class="crs_locked_ico">
-                                    <i class="fa fa-lock"></i>
-                                </div>
-                            </div>
-                            <div class="crs_grid_caption">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_cates cl_7"><span>Banking</span></div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="crs_price"><h2><span class="currency">$</span><span class="theme-cl">199</span></h2></div>
-                                    </div>
-                                </div>
-                                <div class="crs_title"><h4><a href="course-detail.html" class="crs_title_link">Full web designing course with 20 web template designing</a></h4></div>
-                                <div class="crs_info_detail">
-                                    <ul>
-                                        <li><i class="fa fa-clock text-danger"></i><span>10 hr 42 min</span></li>
-                                        <li><i class="fa fa-video text-success"></i><span>74 Lectures</span></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="crs_grid_foot">
-                                <div class="crs_flex">
-                                    <div class="crs_fl_first">
-                                        <div class="crs_tutor">
-                                            <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                        </div>
-                                    </div>
-                                    <div class="crs_fl_last">
-                                        <div class="foot_list_info">
-                                            <ul class="light">
-                                                <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">4.7k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">42.4k</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">4.7</div></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
 
                 </div>
 

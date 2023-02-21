@@ -15,18 +15,21 @@ namespace SkillUp.Web.Controllers
     {
         readonly AppDbContext _appDbContext;
         readonly UserManager<AppUser> _userManager;
+        readonly ICourseService _courseService;
         readonly IReviewCourseService _reviewcourseService;
 
-        public CourseController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewCourseService reviewcourseService)
+        public CourseController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewCourseService reviewcourseService, ICourseService courseService)
         {
             _appDbContext = appDbContext;
             _userManager = userManager;
             _reviewcourseService = reviewcourseService;
+            _courseService = courseService;
         }
 
-        public IActionResult FindCourses()
+        public async Task<IActionResult> FindCourses()
         {
-            return View();
+            var courses = await _courseService.GetAllCourseAsync();
+            return View(courses);
         }
 
 

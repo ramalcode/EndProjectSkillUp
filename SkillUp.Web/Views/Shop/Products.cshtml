@@ -2,6 +2,7 @@
     ViewData["Title"] = "SkillUp-Products";
 }
 
+@model ICollection<Product>
 <!-- ============================ Page Title Start ================================== -->
 <section class="page-title">
     <div class="container">
@@ -9,11 +10,11 @@
             <div class="col-lg-12 col-md-12">
 
                 <div class="breadcrumbs-wrap">
-                    <h1 class="breadcrumb-title">Shop with Sidebar</h1>
+                    <h1 class="breadcrumb-title">Choose Your Favorite Books</h1>
                     <nav class="transparent">
                         <ol class="breadcrumb p-0 bg-white">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active theme-cl" aria-current="page">Find Courses</li>
+                            <li class="breadcrumb-item active theme-cl" aria-current="page">Find Books</li>
                         </ol>
                     </nav>
                 </div>
@@ -182,18 +183,17 @@
                 </div>
 
                 <div class="row justify-content-center">
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                    @foreach (var product in Model)
+                    {
+                         <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="prd_grid_box">
-                            <div class="prd_label new">New</div>
                             <div class="shd_142">
                                 <div class="prt_saveed_12lk">
                                     <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
                                 </div>
                             </div>
                             <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
+                                <a href="product-detail.html"><img src="~/user/assets/productimg/@product.ImageUrl" style="width:100%" class="img-fluid" alt=""></a>
                             </div>
                             <div class="prd_grid_caption">
                                 <div class="prd_center_capt">
@@ -205,304 +205,39 @@
                                         <i class="fa fa-star"></i>
                                         <span>(34)</span>
                                     </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
+                                    <div class="prd_title"><h4>@product.Name</h4></div>
                                     <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
+                                        <h5 class="org_prc"><span class="old_prc">
+                                            @if (product.DiscountPrice > 0)
+                                            {
+                                                <span>$@product.Price</span>        
+                                            }
+
+                                        </span>
+                                        @if (product.DiscountPrice>0)
+                                        {
+                                            <span>$@product.DiscountPrice</span>        
+                                        }
+                                        @if (product.DiscountPrice == 0 && product.DiscountPrice == 0)
+                                        {
+                                            <span>Free</span>
+                                        }
+                                        @if (product.DiscountPrice == 0 && product.Price > 0)
+                                        {
+                                             <span>$@product.Price</span>       
+                                        }
+                                    </h5>
                                     </div>
                                 </div>
                                 <div class="prd_bot_capt">
                                     <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
+                                        <a href="product-detail.html" class="bth bth_prd">Buy Now</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="prd_label hot">Hot</div>
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="prd_label hot">Hot</div>
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="prd_label new">New</div>
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Single Item -->
-                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
-                        <div class="prd_grid_box">
-                            <div class="prd_label hot">Hot</div>
-                            <div class="shd_142">
-                                <div class="prt_saveed_12lk">
-                                    <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                                </div>
-                            </div>
-                            <div class="prd_grid_thumb">
-                                <a href="product-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid" alt=""></a>
-                            </div>
-                            <div class="prd_grid_caption">
-                                <div class="prd_center_capt">
-                                    <div class="prd_review">
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star filled"></i>
-                                        <i class="fa fa-star"></i>
-                                        <span>(34)</span>
-                                    </div>
-                                    <div class="prd_title"><h4>Harry Porter 5th</h4></div>
-                                    <div class="prd_price_info">
-                                        <h5 class="org_prc"><span class="old_prc">$220</span>$149</h5>
-                                    </div>
-                                </div>
-                                <div class="prd_bot_capt">
-                                    <div class="prd_button">
-                                        <a href="product-detail.html" class="bth bth_prd">Add To Cart</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    }
                 </div>
 
                 <div class="row align-items-center justify-content-center">

@@ -13,9 +13,11 @@ namespace SkillUp.Web.Controllers
             this.appDbContext = appDbContext;
         }
 
-        public IActionResult FindInstructor()
+        public async Task<IActionResult> FindInstructor()
         {
-            return View();
+            var instructors = await appDbContext.Instructors.Include(iu=>iu.AppUserInstructors).ThenInclude(u=>u.AppUser)
+                .Include(ip=>ip.InstructorProfessions).ThenInclude(p=>p.Profession).ToListAsync();
+            return View(instructors);
         }
 
 
@@ -23,7 +25,9 @@ namespace SkillUp.Web.Controllers
         {
             var instructor = appDbContext.Instructors.Include(ip=>ip.InstructorProfessions)
                 .ThenInclude(p=>p.Profession).Include(ai=>ai.AppUserInstructors).ThenInclude(a=>a.AppUser)
-                .Include(c=>c.Courses).ThenInclude(p=>p.Paragraphs).ThenInclude(l=>l.Lectures).FirstOrDefault(i=>i.Id == id);
+                .Include(c=>c.Courses).ThenInclude(p=>p.Paragraphs).ThenInclude(l=>l.Lectures).
+                Include(c=>c.Courses).ThenInclude(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).
+                Include(c=>c.Courses).ThenInclude(ac=>ac.AppUserCourses).FirstOrDefault(i=>i.Id == id);
             return View(instructor);
         }
 

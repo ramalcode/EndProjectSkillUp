@@ -12,8 +12,8 @@ using SkillUp.DAL.Context;
 namespace SkillUp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230218110142_CreateDB")]
-    partial class CreateDB
+    [Migration("20230220214637_CreateNotificationTable")]
+    partial class CreateNotificationTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -176,6 +176,9 @@ namespace SkillUp.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -400,6 +403,10 @@ namespace SkillUp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InstructorId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
@@ -410,14 +417,13 @@ namespace SkillUp.DAL.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("float");
 
-                    b.Property<byte>("Quantity")
-                        .HasColumnType("tinyint");
-
                     b.Property<string>("SKU")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("Products");
                 });
@@ -552,6 +558,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsBuyed")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
@@ -599,6 +608,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsBuyed")
+                        .HasColumnType("bit");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -684,7 +696,7 @@ namespace SkillUp.DAL.Migrations
                     b.ToTable("ProductCategories");
                 });
 
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductInstructor", b =>
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -692,20 +704,131 @@ namespace SkillUp.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("InstructorId")
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ReviewContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("CourseReviews");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AppUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<string>("ReviewContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReviewDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("InstructorId");
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductInstructors");
+                    b.ToTable("ProductReviews");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Settings.ContactUs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactsUs");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Settings.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("InstructorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("InstructorId1")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("NotificationContent")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("NotificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstructorId1");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -763,6 +886,17 @@ namespace SkillUp.DAL.Migrations
                 {
                     b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
                         .WithMany("Courses")
+                        .HasForeignKey("InstructorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Product", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
+                        .WithMany("Products")
                         .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -913,23 +1047,51 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductInstructor", b =>
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
                 {
-                    b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
-                        .WithMany("ProductInstructors")
-                        .HasForeignKey("InstructorId")
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "AppUser")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SkillUp.Entity.Entities.Product", "Product")
-                        .WithMany("ProductInstructors")
+                    b.HasOne("SkillUp.Entity.Entities.Course", "Course")
+                        .WithMany("CourseReviews")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "Appuser")
+                        .WithMany("ProductReviews")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SkillUp.Entity.Entities.Product", null)
+                        .WithMany("ProductReviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Instructor");
+                    b.Navigation("Appuser");
+                });
 
-                    b.Navigation("Product");
+            modelBuilder.Entity("SkillUp.Entity.Entities.Settings.Notification", b =>
+                {
+                    b.HasOne("SkillUp.Entity.Entities.Instructor", "Instructor")
+                        .WithMany("Notifications")
+                        .HasForeignKey("InstructorId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Instructor");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>
@@ -939,6 +1101,10 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("AppUserInstructors");
 
                     b.Navigation("AppUserProducts");
+
+                    b.Navigation("CourseReviews");
+
+                    b.Navigation("ProductReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Course", b =>
@@ -946,6 +1112,8 @@ namespace SkillUp.DAL.Migrations
                     b.Navigation("AppUserCourses");
 
                     b.Navigation("CourseCategories");
+
+                    b.Navigation("CourseReviews");
 
                     b.Navigation("Paragraphs");
                 });
@@ -958,7 +1126,9 @@ namespace SkillUp.DAL.Migrations
 
                     b.Navigation("InstructorProfessions");
 
-                    b.Navigation("ProductInstructors");
+                    b.Navigation("Notifications");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Product", b =>
@@ -967,7 +1137,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.Navigation("ProductCategories");
 
-                    b.Navigation("ProductInstructors");
+                    b.Navigation("ProductReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Category", b =>

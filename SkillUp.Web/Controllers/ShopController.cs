@@ -12,20 +12,23 @@ namespace SkillUp.Web.Controllers
     public class ShopController : Controller
     {
         readonly IReviewProductService _reviewProductService;
+        readonly IProductService _productService;
         readonly AppDbContext appDbContext;
         readonly UserManager<AppUser> _userManager;
 
 
-        public ShopController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewProductService reviewProductService)
+        public ShopController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewProductService reviewProductService, IProductService productService)
         {
             this.appDbContext = appDbContext;
             _userManager = userManager;
             _reviewProductService = reviewProductService;
+            _productService = productService;
         }
 
-        public IActionResult Products()
+        public async Task<IActionResult> Products()
         {
-            return View();
+            var products = await _productService.GetAllProductAsync();
+            return View(products);
         }
 
 

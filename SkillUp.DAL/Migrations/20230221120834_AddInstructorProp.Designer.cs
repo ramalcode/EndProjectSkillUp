@@ -12,8 +12,8 @@ using SkillUp.DAL.Context;
 namespace SkillUp.DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230218215501_AddNewPropForAppUserCourses")]
-    partial class AddNewPropForAppUserCourses
+    [Migration("20230221120834_AddInstructorProp")]
+    partial class AddInstructorProp
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -176,6 +176,9 @@ namespace SkillUp.DAL.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -376,6 +379,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("Wallet")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("Instructors");
@@ -413,9 +419,6 @@ namespace SkillUp.DAL.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
-
-                    b.Property<byte>("Quantity")
-                        .HasColumnType("tinyint");
 
                     b.Property<string>("SKU")
                         .IsRequired()
@@ -609,6 +612,9 @@ namespace SkillUp.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("IsBuyed")
+                        .HasColumnType("bit");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -708,9 +714,6 @@ namespace SkillUp.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("InstructorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ReviewContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -727,8 +730,6 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("InstructorId");
-
                     b.ToTable("CourseReviews");
                 });
 
@@ -742,9 +743,6 @@ namespace SkillUp.DAL.Migrations
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("InstructorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductId")
@@ -764,11 +762,44 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("AppUserId");
 
-                    b.HasIndex("InstructorId");
-
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductReviews");
+                });
+
+            modelBuilder.Entity("SkillUp.Entity.Entities.Settings.ContactUs", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactsUs");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -989,40 +1020,38 @@ namespace SkillUp.DAL.Migrations
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
                 {
-                    b.HasOne("SkillUp.Entity.Entities.AppUser", null)
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "AppUser")
                         .WithMany("CourseReviews")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SkillUp.Entity.Entities.Course", null)
+                    b.HasOne("SkillUp.Entity.Entities.Course", "Course")
                         .WithMany("CourseReviews")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
-                        .WithMany("CourseReviews")
-                        .HasForeignKey("InstructorId");
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Course");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
                 {
-                    b.HasOne("SkillUp.Entity.Entities.AppUser", null)
+                    b.HasOne("SkillUp.Entity.Entities.AppUser", "Appuser")
                         .WithMany("ProductReviews")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
-                        .WithMany("ProductReviews")
-                        .HasForeignKey("InstructorId");
 
                     b.HasOne("SkillUp.Entity.Entities.Product", null)
                         .WithMany("ProductReviews")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Appuser");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.AppUser", b =>
@@ -1053,13 +1082,9 @@ namespace SkillUp.DAL.Migrations
                 {
                     b.Navigation("AppUserInstructors");
 
-                    b.Navigation("CourseReviews");
-
                     b.Navigation("Courses");
 
                     b.Navigation("InstructorProfessions");
-
-                    b.Navigation("ProductReviews");
 
                     b.Navigation("Products");
                 });

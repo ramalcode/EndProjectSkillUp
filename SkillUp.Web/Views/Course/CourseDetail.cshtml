@@ -116,9 +116,9 @@
                                             <!-- Part 1 -->
                                             <div class="card">
                                                 <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-                                                    <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part 01:@item.Name</a></h6>
+                                                <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#@(item.Name + "dsvewvbrbb")" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part 01:@item.Name</a></h6>
                                                 </div>
-                                                <div id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+                                            <div id="@(item.Name + "dsvewvbrbb")" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
                                                     <div class="card-body pl-3 pr-3">
                                                         <ul class="lectures_lists">
                                                           @foreach (var lectures in item.Lectures)

@@ -376,6 +376,9 @@ namespace SkillUp.DAL.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double?>("Wallet")
+                        .HasColumnType("float");
+
                     b.HasKey("Id");
 
                     b.ToTable("Instructors");
@@ -708,9 +711,6 @@ namespace SkillUp.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<string>("InstructorId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ReviewContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -727,8 +727,6 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.HasIndex("InstructorId");
-
                     b.ToTable("CourseReviews");
                 });
 
@@ -742,9 +740,6 @@ namespace SkillUp.DAL.Migrations
 
                     b.Property<string>("AppUserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("InstructorId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("ProductId")
@@ -763,8 +758,6 @@ namespace SkillUp.DAL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
-
-                    b.HasIndex("InstructorId");
 
                     b.HasIndex("ProductId");
 
@@ -1036,10 +1029,6 @@ namespace SkillUp.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
-                        .WithMany("CourseReviews")
-                        .HasForeignKey("InstructorId");
-
                     b.Navigation("AppUser");
 
                     b.Navigation("Course");
@@ -1052,10 +1041,6 @@ namespace SkillUp.DAL.Migrations
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("SkillUp.Entity.Entities.Instructor", null)
-                        .WithMany("ProductReviews")
-                        .HasForeignKey("InstructorId");
 
                     b.HasOne("SkillUp.Entity.Entities.Product", null)
                         .WithMany("ProductReviews")
@@ -1094,13 +1079,9 @@ namespace SkillUp.DAL.Migrations
                 {
                     b.Navigation("AppUserInstructors");
 
-                    b.Navigation("CourseReviews");
-
                     b.Navigation("Courses");
 
                     b.Navigation("InstructorProfessions");
-
-                    b.Navigation("ProductReviews");
 
                     b.Navigation("Products");
                 });

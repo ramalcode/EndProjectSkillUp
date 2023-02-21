@@ -2,6 +2,7 @@
 using SkillUp.Core.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.Entities.Reviews;
+using SkillUp.Entity.Entities.Settings;
 
 namespace SkillUp.Entity.Entities
 {
@@ -18,5 +19,6 @@ namespace SkillUp.Entity.Entities
         public ICollection<AppUserProduct> AppUserProducts { get; set; }
         public ICollection<CourseReview> CourseReviews { get; set; }
         public ICollection<ProductReview> ProductReviews { get; set; }
+
     }
 }

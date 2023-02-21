@@ -44,13 +44,7 @@
             </ul>
         </div>
         <div class="ed_view_link">
-            @foreach (var course in Model.AppUserCourses)
-            {
-                if (!course.IsBuyed)
-                {
                     <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
-                }
-            }
         </div>
     </div>
 </div>

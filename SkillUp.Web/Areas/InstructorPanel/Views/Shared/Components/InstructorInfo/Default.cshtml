@@ -1,5 +1,6 @@
 ﻿@model Instructor
 
+<div id="main-wrapper">
 <div class="header header-light">
     <div class="container">
         <nav id="navigation" class="navigation navigation-landscape">
@@ -9,53 +10,33 @@
                     <ul>
                         <li class="account-drop">
                             <a href="javascript:void(0);" class="crs_yuo12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="embos_45"><i class="fas fa-bell"></i><i class="embose_count red">3</i></span>
+                                <span class="embos_45"><i class="fas fa-bell"></i><i class="embose_count red"></i></span>
                             </a>
                             <div class="dropdown-menu pull-right animated flipInX">
                                 <div class="drp_menu_headr bg-warning">
-                                    <h4>22 Notifications</h4>
+                                   @foreach (var course in Model.Courses)
+                                        {
+                                        <h4>@course.CourseReviews.Count Notifications</h4>
+                                    }
                                 </div>
                                 <div class="ground-list ground-hover-list">
-                                    <div class="ground ground-list-single">
+                                    @foreach (var course in Model.Courses)
+                                    {
+                                        foreach (var review in course.CourseReviews)
+                                        {
+                                          <div class="ground ground-list-single">
                                         <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
                                             <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
                                         </div>
                                         <div class="ground-content">
-                                            <h6><a href="#">Maryam Amiri</a></h6>
-                                            <small class="text-fade">New User Enrolled in Python</small>
-                                            <span class="small">Just Now</span>
+                                            <h6><a href="#">@(review.AppUser.Name + " " + review.AppUser.Surname)</a></h6>
+                                            <small class="text-fade">@review.ReviewContent</small>
+                                            <span class="small">@review.ReviewDate</span>
                                         </div>
                                     </div>
-                                    <div class="ground ground-list-single">
-                                        <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-danger">
-                                            <div class="position-absolute text-danger h5 mb-0"><i class="fas fa-comments"></i></div>
-                                        </div>
-                                        <div class="ground-content">
-                                            <h6><a href="#">Shilpa Rana</a></h6>
-                                            <small class="text-fade">Shilpa Send a Message</small>
-                                            <span class="small">02 Min Ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="ground ground-list-single">
-                                        <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-info">
-                                            <div class="position-absolute text-info h5 mb-0"><i class="fas fa-grin-squint-tears"></i></div>
-                                        </div>
-                                        <div class="ground-content">
-                                            <h6><a href="#">Amar Muskali</a></h6>
-                                            <small class="text-fade">Need Responsive Business Tem...</small>
-                                            <span class="small">10 Min Ago</span>
-                                        </div>
-                                    </div>
-                                    <div class="ground ground-list-single">
-                                        <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-purple">
-                                            <div class="position-absolute text-purple h5 mb-0"><i class="fas fa-briefcase"></i></div>
-                                        </div>
-                                        <div class="ground-content">
-                                            <h6><a href="#">Maryam Amiri</a></h6>
-                                            <small class="text-fade">Next Meeting on Tuesday..</small>
-                                            <span class="small">15 Min Ago</span>
-                                        </div>
-                                    </div>
+                                            
+                                        }
+                                    }
 
                                 </div>
                             </div>

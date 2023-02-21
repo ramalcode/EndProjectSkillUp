@@ -3,6 +3,7 @@ using SkillUp.Core.Entities;
 using SkillUp.Entity.Entities.Relations.InstructorExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.Entities.Reviews;
+using SkillUp.Entity.Entities.Settings;
 using System.ComponentModel.DataAnnotations;
 
 namespace SkillUp.Entity.Entities
@@ -19,14 +20,14 @@ namespace SkillUp.Entity.Entities
         public string? InstagramUrl { get; set; }
         public string? LinkedInUrl { get; set; }
         public byte Experince { get; set; }
+        public double? Wallet { get; set; }
 
 
         public ICollection<InstructorProfession> InstructorProfessions { get; set; }
         public ICollection<AppUserInstructor> AppUserInstructors { get; set; }
         public ICollection<Course> Courses { get; set; }
         public ICollection<Product>? Products { get; set; }
-        public ICollection<CourseReview> CourseReviews { get; set; }
-        public ICollection<ProductReview> ProductReviews { get; set; }
+
 
 
     }

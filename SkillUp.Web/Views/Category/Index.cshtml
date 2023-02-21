@@ -27,17 +27,27 @@
         <div class="row justify-content-center">
             @foreach (var category in Model)
             {
-                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
+                 <div class="col-xl-3 col-lg-4 col-md-4">
                 <div class="cates_crs_wrip">
-                    <div class="crs_trios">
+                    <div class="row">
+                    <div class="col crs_trios">
                         <div class="crs_cate_icon"><i class="@category.IconUrl"></i></div>
                     </div>
-                    <div class="crs_capt_cat">
-                        <h4>@category.Name </h4>
-                        <p>@category.Description</p>
+                        <div class="col">
                        <h6 class="text-white">@category.CourseCategories.Count Course</h6>
                         <h6 class="text-white">@category.ProductCategories.Count Product</h6>
+                        </div>
+                        </div>
+                    <div class="row crs_capt_cat">
+                        <div class="col">
+                        <h4>@category.Name </h4>
+                        </div>
                     </div>
+                        <div class="row crs_capt_cat">
+                            <div class="col">
+                        <p>@category.Description</p>
+                        </div>
+                        </div>
                 </div>
             </div>
             }

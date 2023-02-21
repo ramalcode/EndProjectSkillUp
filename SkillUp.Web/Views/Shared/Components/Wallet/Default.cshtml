@@ -1,19 +1,22 @@
-﻿@model AppUser
+﻿@model InfoVM
 <ul class="nav-menu nav-menu-social align-to-right">
     @if (User.Identity.IsAuthenticated)
     {
-        <li>@User.Identity.Name</li>
-        <br />
-
-
-        <li><a asp-action="Payment" asp-controller="Payment">$@(Model.Wallet / 100)<i class="fas fa-wallet"> </i> </a></li>
-
-
+        <ul class="nav-menu align-to-right">
+            <li class="active">
+                <a asp-controller="Home" asp-action="Index">@User.Identity.Name<span class="submenu-indicator"></span></a>
+                <ul style="" class="nav-dropdown nav-submenu">
+                   @* <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(User.AppUser.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>
+                    <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(Model.Instructor.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>*@
+                    <li><a asp-controller="Account" asp-action="Signout">SignOut</a></li>
+                </ul>
+            </li>
+        </ul>
     }
     else
     {
         <li>
-            <a href="#" data-toggle="modal" data-target="#login">
+            <a asp-controller="Account" asp-action="SignIn" >
                 <i class="fas fa-sign-in-alt mr-1"></i><span class="dn-lg">Sign In</span>
             </a>
         </li>
