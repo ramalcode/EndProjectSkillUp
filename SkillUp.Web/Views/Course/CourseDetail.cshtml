@@ -10,10 +10,9 @@
             <div class="col-lg-7 col-md-7">
                 <div class="ed_detail_wrap light">
                     <div class="crs_cates cl_1"><span>
-                            @foreach (var category in Model.CourseCategories?.Where(pc => pc.CategoryId == Model.Id))
+                            @foreach (var category in Model.CourseCategories.Where(ctg => ctg.CourseId == Model.Id))
                             {
                                 <span>@category.Category.Name</span>
-
                             }
                         </span></div><div class="crs_cates cl_3"></div>
                     <div class="ed_header_caption">
@@ -152,7 +151,7 @@
                         <div class="tab-pane fade" id="instructors" role="tabpanel" aria-labelledby="instructors-tab">
                             <div class="single_instructor">
                                 <div class="single_instructor_thumb">
-                                   <a href="#"><img src="~/user/assets/instructorimg/@Model.Instructor.ImageUrl" class="img-fluid" alt=""></a>
+                                    <a href="#"><img style="width:350px; height:208px" src="~/user/assets/instructorimg/@Model.Instructor.ImageUrl" class="img-fluid" alt=""></a>
                                </div>
                                 <div class="single_instructor_caption">
                                    <h4><a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@Model.Instructor.Id">@(Model.Instructor.Name + " " + Model.Instructor.Surname)</a></h4>

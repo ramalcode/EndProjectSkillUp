@@ -182,7 +182,7 @@
                                     <div class="crs_flex">
                                         <div class="crs_fl_first">
                                             <div class="crs_cates cl_6"><span>
-                                                @foreach (var category in item.CourseCategories.Where(ctg=>ctg.CategoryId == item.Id))
+                                                @foreach (var category in item.CourseCategories.Where(ctg=>ctg.CourseId == item.Id))
                                                     {
                                                         <span>@category.Category.Name</span>
                                                     }

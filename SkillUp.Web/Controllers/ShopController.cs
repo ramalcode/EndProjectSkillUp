@@ -25,10 +25,17 @@ namespace SkillUp.Web.Controllers
             _productService = productService;
         }
 
-        public async Task<IActionResult> Products()
+        public async Task<IActionResult> Products(int page = 1)
         {
             var products = await _productService.GetAllProductAsync();
-            return View(products);
+            IEnumerable<Product> pagination = products.Skip((page - 1) * 1).Take(1);
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal) products.Count / 1),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
 

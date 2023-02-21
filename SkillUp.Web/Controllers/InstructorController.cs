@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
+using SkillUp.Entity.Entities;
+using SkillUp.Entity.ViewModels;
 
 namespace SkillUp.Web.Controllers
 {
@@ -13,11 +15,18 @@ namespace SkillUp.Web.Controllers
             this.appDbContext = appDbContext;
         }
 
-        public async Task<IActionResult> FindInstructor()
+        public async Task<IActionResult> FindInstructor(int page = 1)
         {
             var instructors = await appDbContext.Instructors.Include(iu=>iu.AppUserInstructors).ThenInclude(u=>u.AppUser)
                 .Include(ip=>ip.InstructorProfessions).ThenInclude(p=>p.Profession).ToListAsync();
-            return View(instructors);
+            IEnumerable<Instructor> pagination = instructors.Skip((page - 1) * 1).Take(1);
+            PaginationVM<Instructor> paginationVM = new PaginationVM<Instructor>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal) instructors.Count / 1),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
 

@@ -26,10 +26,18 @@ namespace SkillUp.Web.Controllers
             _courseService = courseService;
         }
 
-        public async Task<IActionResult> FindCourses()
+        public async Task<IActionResult> FindCourses(int page=1)
         {
+            
             var courses = await _courseService.GetAllCourseAsync();
-            return View(courses);
+            IEnumerable<Course> pagination = courses.Skip((page-1) * 4).Take(4);
+            PaginationVM<Course> paginationVM = new PaginationVM<Course>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal) courses.Count / 4),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
 

@@ -2,7 +2,7 @@
     ViewData["Title"] = "SkillUp-Products";
 }
 
-@model ICollection<Product>
+@model PaginationVM<Product>
 <!-- ============================ Page Title Start ================================== -->
 <section class="page-title">
     <div class="container">
@@ -86,29 +86,6 @@
                                     </li>
                                 </ul>
                             </div>
-
-                            <div class="form-group">
-                                <h6>Skill Level</h6>
-                                <ul class="no-ul-list mb-3">
-                                    <li>
-                                        <input id="l1" class="checkbox-custom" name="l1" type="checkbox">
-                                        <label for="l1" class="checkbox-custom-label">Beginning</label>
-                                    </li>
-                                    <li>
-                                        <input id="l2" class="checkbox-custom" name="l2" type="checkbox">
-                                        <label for="l2" class="checkbox-custom-label">Basic Level</label>
-                                    </li>
-                                    <li>
-                                        <input id="l3" class="checkbox-custom" name="l3" type="checkbox">
-                                        <label for="l3" class="checkbox-custom-label">Iner Level</label>
-                                    </li>
-                                    <li>
-                                        <input id="l4" class="checkbox-custom" name="l4" type="checkbox">
-                                        <label for="l4" class="checkbox-custom-label">Advance</label>
-                                    </li>
-                                </ul>
-                            </div>
-
                             <div class="form-group">
                                 <h6>Price</h6>
                                 <ul class="no-ul-list mb-3">
@@ -142,48 +119,8 @@
 
             <!-- Sidebar -->
             <div class="col-xl-8 col-lg-8 col-md-12 order-lg-1">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="short_wraping">
-                            <div class="row m-0 align-items-center justify-content-between">
-
-                                <div class="col-lg-4 col-md-5 col-sm-12  col-sm-6">
-                                    <div class="shorting_pagination_laft">
-                                        <h6 class="m-0">Showing 1-25 of 72</h6>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-8 col-md-7 col-sm-12 col-sm-6">
-                                    <div class="dlks_152">
-                                        <div class="shorting-right mr-2">
-                                            <label>Short By:</label>
-                                            <div class="dropdown show">
-                                                <a class="btn btn-filter dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="selection">Most Rated</span>
-                                                </a>
-                                                <div class="drp-select dropdown-menu">
-                                                    <a class="dropdown-item" href="JavaScript:Void(0);">Most Rated</a>
-                                                    <a class="dropdown-item" href="JavaScript:Void(0);">Most Viewd</a>
-                                                    <a class="dropdown-item" href="JavaScript:Void(0);">News Listings</a>
-                                                    <a class="dropdown-item" href="JavaScript:Void(0);">High Rated</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="lmk_485">
-                                            <ul class="shorting_grid">
-                                                <li class="list-inline-item"><a href="shop-with-sidebar.html" class="active"><span class="ti-layout-grid2"></span></a></li>
-                                                <li class="list-inline-item"><a href="list-shop-with-sidebar.html"><span class="ti-view-list"></span></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row justify-content-center">
-                    @foreach (var product in Model)
+                    @foreach (var product in Model.Items)
                     {
                          <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
                         <div class="prd_grid_box">
@@ -240,23 +177,35 @@
                     }
                 </div>
 
-                <div class="row align-items-center justify-content-center">
-                    <div class="col-xl-12 col-lg-12 col-md-12">
-                        <nav class="float-none">
-                            <ul class="pagination smalls">
-                                <li class="page-item disabled">
-                                    <a class="page-link" href="#" tabindex="-1"><i class="fas fa-arrow-circle-left"></i></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <ul class="pagination p-center">
+                            @if (Model.CurrentPage > 1)
+                            {
                                 <li class="page-item">
-                                    <a class="page-link" href="#"><i class="fas fa-arrow-circle-right"></i></a>
+                                    <a class="page-link" asp-action="Products" asp-route-page="@(Model.CurrentPage-1)" tabindex="-1" aria-label="Previous">
+                                        <span class="ti-arrow-left"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
                                 </li>
-                            </ul>
-                        </nav>
+                            }
+                            @for (int i = 1; i <= Model.MaxPageCount; i++)
+                            {
+                                <li class="page-item @(Model.CurrentPage ==i?" disabled":"")">
+                                    <a class="page-link" asp-action="Products" asp-route-page="@i" tabindex="-1">@i</a>
+                                </li>
+
+                            }
+                            @if (Model.CurrentPage < Model.MaxPageCount)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" asp-action="Products" asp-route-page="@(Model.CurrentPage+1)" tabindex="-1" aria-label="Next">
+                                        <span class="ti-arrow-right"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
                     </div>
                 </div>
 
