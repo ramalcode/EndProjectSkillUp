@@ -47,6 +47,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcQWRkTmV3Q291cnNlUGFyYWdyYXBoLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/Lectures.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcTGVjdHVyZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/Paragraphs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcUGFyYWdyYXBocy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/UpdateLecture.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcVXBkYXRlTGVjdHVyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Lecture/UpdateParagraph.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXExlY3R1cmVcVXBkYXRlUGFyYWdyYXBoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Product/AddNewProduct.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFByb2R1Y3RcQWRkTmV3UHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -129,6 +145,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Lecture/AddNewCourseParagraph.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXExlY3R1cmVcQWRkTmV3Q291cnNlUGFyYWdyYXBoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Lecture/Lectures.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXExlY3R1cmVcTGVjdHVyZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Lecture/Paragraphs.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXExlY3R1cmVcUGFyYWdyYXBocy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Lecture/UpdateLecture.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXExlY3R1cmVcVXBkYXRlTGVjdHVyZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Message/Index.cshtml]

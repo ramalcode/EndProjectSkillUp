@@ -5,7 +5,7 @@ namespace SkillUp.Entity.Entities.Relations.ManyToMany
 {
     public class InstructorProfession : BaseEntity
     {
-        public int InstructorId { get; set; }
+        public string InstructorId { get; set; }
         public Instructor Instructor { get; set; }
 
 

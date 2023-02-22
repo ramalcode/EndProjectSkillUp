@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SkillUp.DAL.UnitOfWorks;
-using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
@@ -36,29 +34,41 @@ namespace SkillUp.Service.Services.Concretes
         }
     
 
-        public Task DeleteCourseAsync(int id)
+        public async Task DeleteLectureAsync(int id)
+        {
+            await _unitOfWork.GetRepository<Lecture>().DeleteAsync(id);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async Task<ICollection<Lecture>> GetAllLectureAsync()
+        {
+            var lectures = await _unitOfWork.GetRepository<Lecture>().GetAllAsync(); 
+            return lectures;
+        }
+
+        public Task<Lecture> GetLectureById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<Instructor>> GetAllInstructorAsync()
+        public async Task<bool> UpdateLectureAsync(int id ,UpdateLectureVM lectureVM)
         {
-            throw new NotImplementedException();
+            var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
+            lecture.Name = lectureVM.Name;
+            await _unitOfWork.GetRepository<Lecture>().UpdateAsync(lecture);
+            await _unitOfWork.SaveAsync();
+            return true;    
         }
 
-        public Task<Course> GetCourseById(int id)
+        public async Task<UpdateLectureVM> UpdateLectureById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<UpdateCourseVM> UpdateCourseById(int id)
-        {
-            throw new NotImplementedException();
+            var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
+            UpdateLectureVM lectureVM = new UpdateLectureVM
+            {
+                Name = lecture.Name,
+                VideoUrl = lecture.VideoUrl
+            };
+            return lectureVM;
         }
     }
 }

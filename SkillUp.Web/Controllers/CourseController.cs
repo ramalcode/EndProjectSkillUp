@@ -4,10 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
-using SkillUp.Entity.Entities.Reviews;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
-using System;
 
 namespace SkillUp.Web.Controllers
 {
@@ -61,6 +59,15 @@ namespace SkillUp.Web.Controllers
             if (userCourse.IsBuyed == false) await  _reviewcourseService.CreateReviewAsync(review, userid);
             return RedirectToAction("Index", "Home");
         }
+
+
+        public ActionResult Search(string searchText)
+        {
+            var products = _appDbContext.Courses  .Where(p => p.Name.Contains(searchText)).ToList();
+            return View(products);
+        }
+
+
 
     }
 }

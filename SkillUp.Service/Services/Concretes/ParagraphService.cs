@@ -29,9 +29,10 @@ namespace SkillUp.Service.Services.Concretes
 			await _unitOfWork.SaveAsync();
 		}
 
-		public Task DeleteParagraphAsync(int id)
+		public async Task DeleteParagraphAsync(int id)
 		{
-			throw new NotImplementedException();
+			await _unitOfWork.GetRepository<Paragraph>().DeleteAsync(id);
+			await _unitOfWork.SaveAsync();
 		}
 
 		public async Task<ICollection<Paragraph>> GetAllParagraphAsync()
@@ -44,17 +45,27 @@ namespace SkillUp.Service.Services.Concretes
 
 		public Task<Paragraph> GetParagraphById(int id)
 		{
-			throw new NotImplementedException();
+			var paragraph = _unitOfWork.GetRepository<Paragraph>().GetAsync(p => p.CourseId == id);
+			return paragraph;
 		}
 
-		public Task<bool> UpdateParagraphAsync(UpdateParagraphVM paragraphVM)
+		public async Task<bool> UpdateParagraphAsync(int id ,UpdateParagraphVM paragraphVM)
 		{
-			throw new NotImplementedException();
+			var paragraph = _unitOfWork.GetRepository<Paragraph>().GetByIdAsync(id);
+			paragraph.Name = paragraphVM.Name;	
+			await _unitOfWork.GetRepository<Paragraph>().UpdateAsync(paragraph);
+			await _unitOfWork.SaveAsync();
+			return true;
 		}
 
-		public Task<UpdateCategoryVM> UpdateParagraphById(int id)
+		public async Task<UpdateParagraphVM> UpdateParagraphById(int id)
 		{
-			throw new NotImplementedException();
+			var paragraph =  _unitOfWork.GetRepository<Paragraph>().GetByIdAsync(id);
+			UpdateParagraphVM paragraphVM = new UpdateParagraphVM
+			{
+				Name = paragraph.Name,
+			};
+			return paragraphVM;
 		}
 	}
 }

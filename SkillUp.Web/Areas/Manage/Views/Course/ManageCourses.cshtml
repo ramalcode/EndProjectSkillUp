@@ -130,6 +130,7 @@
                         <table class="table dash_list">
                             <thead>
                                 <tr>
+                                    <th scope="col">Photo</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Category</th>
                                     <th scope="col">Lectures</th>
@@ -143,6 +144,7 @@
                                 @foreach (var course in Model)
                                 {
                                    <tr>
+                                        <td><img src="~/user/assets/courseimg/@course.ImageUrl" width="80" /></td>
                                     <td><h6>@course.Name</h6><p>Instructor:<span>@course.Instructor.Name @course.Instructor.Surname</span></p></td>
                                     <td>
                                         @foreach (var category in course?.CourseCategories.Where(ctg=>ctg.CourseId == course.Id))
@@ -184,9 +186,9 @@
                                                 <i class="fas fa-ellipsis-h"></i>
                                             </a>
                                             <div class="drp-select dropdown-menu">
-                                                <a class="dropdown-item" href="JavaScript:Void(0);">View</a>
-                                                <a class="dropdown-item" asp-controller="Course" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
-                                                <a class="dropdown-item" asp-controller="Course" asp-action="DeleteCourse" asp-route-id ="@course.Id">Delete</a>
+                                                    <a class="dropdown-item" asp-area="Manage" asp-controller="Lecture" asp-action="Paragraphs" asp-route-id="@course.Id">Paragraphs</a>
+                                                    <a class="dropdown-item" asp-area="Manage" asp-controller="Course" asp-action="UpdateCourse" asp-route-id="@course.Id">Edit</a>
+                                                    <a class="dropdown-item" asp-area="Manage" asp-controller="Course" asp-action="DeleteCourse" asp-route-id="@course.Id">Delete</a>
                                             </div>
                                         </div>
                                     </td>
