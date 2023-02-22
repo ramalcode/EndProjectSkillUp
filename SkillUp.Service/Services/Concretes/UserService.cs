@@ -29,19 +29,36 @@ namespace SkillUp.Service.Services.Concretes
                .Include(ap => ap.AppUserProducts).ThenInclude(p => p.Product).ToListAsync();
         }
 
-        public Task<Instructor> GetInstructorById(string id)
+        public async Task<AppUser> GetUserById(string id)
         {
-            throw new NotImplementedException();
+            var user = await _context.AppUsers.FirstOrDefaultAsync(a => a.Id == id);
+            return user;
         }
 
-        public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)
+        public async Task<bool> UpdateUserAsync(string id ,UpdateUserVM userVM)
         {
-            throw new NotImplementedException();
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
+            user.Name = userVM.Name;
+            user.Surname = userVM.Surname;
+            user.Email = userVM.Email;
+
+            _context.AppUsers.Update(user);
+            _context.SaveChanges();
+            return true;
         }
 
-        public Task<UpdateCourseVM> UpdateCourseById(int id)
+        public async Task<UpdateUserVM> UpdateUserById(string id)
         {
-            throw new NotImplementedException();
+            var user = await _context.AppUsers.FirstOrDefaultAsync(u=>u.Id == id);
+            UpdateUserVM userVm = new UpdateUserVM
+            {
+                Name = user.Name,
+                Surname = user.Surname,
+                Email = user.Email, 
+                ImageUrl = user.ImageUrl,
+                CurrentPassword = user.PasswordHash,
+            };
+            return userVm;  
         }
     }
 }

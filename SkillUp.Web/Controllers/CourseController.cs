@@ -63,7 +63,7 @@ namespace SkillUp.Web.Controllers
 
         public ActionResult Search(string searchText)
         {
-            var products = _appDbContext.Courses  .Where(p => p.Name.Contains(searchText)).ToList();
+            var products = _appDbContext.Courses.Where(p => p.Name.Contains(searchText)).ToList();
             return View(products);
         }
 
