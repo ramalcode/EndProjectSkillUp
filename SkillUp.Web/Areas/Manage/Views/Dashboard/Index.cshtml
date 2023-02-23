@@ -69,22 +69,21 @@
         <div class="dashboard_stats_wrap">
             <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center theme-bg mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-book"></i></div></div>
             <div class="dashboard_stats_wrap_content">
-            <h4>
-                @foreach (var lectures in Model.Courses)
-                {
-                        @lectures.Paragraphs.Sum(l=>l.Lectures.Count)
-                }
-            </h4> <span>Number of Lectures</span></div>
+            <h4>@Model.Lectures.Count</h4> <span>Number of Lectures</span></div>
         </div>
     </div>
     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
         <div class="dashboard_stats_wrap">
             <div class="rounded-circle p-4 p-sm-4 d-inline-flex align-items-center justify-content-center bg-purple mb-2"><div class="position-absolute text-white h5 mb-0"><i class="fas fa-gem"></i></div></div>
             <div class="dashboard_stats_wrap_content"><h4>
-                @foreach (var courseamount in Model.Courses)
-                {
-                    @(courseamount.Price + "$")
-                }
+            @{
+                 double price = 0;
+             }
+             @foreach (var courseamount in Model.Courses)
+             {
+                 price += courseamount.Price;
+             }
+            @(price.ToString("#,##0.00"))
             </h4> <span>Course Total Amount</span></div>
         </div>
     </div>

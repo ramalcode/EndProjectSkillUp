@@ -11,15 +11,17 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         readonly ICourseService _courseService;
         readonly IProductService _productService;
         readonly IInstructorService _instructorService;
+        readonly ILectureService _lectureService;   
         readonly AppDbContext _appDbContext; //
 
 
-        public DashboardController(ICourseService courseService, IProductService productService, AppDbContext appDbContext, IInstructorService instructorService)
+        public DashboardController(ICourseService courseService, IProductService productService, AppDbContext appDbContext, IInstructorService instructorService, ILectureService lectureService)
         {
             _courseService = courseService;
             _productService = productService;
             _appDbContext = appDbContext;
             _instructorService = instructorService;
+            _lectureService = lectureService;
         }
 
 
@@ -32,6 +34,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                 Products = await _productService.GetAllProductAsync(),
                 Instructors = await _instructorService.GetAllInstructorAsync(), 
                 AppUsers = _appDbContext.AppUsers.ToList(),
+                Lectures = await _lectureService.GetAllLectureAsync(),
             };
             return View(dashboardVM);
         }

@@ -6,8 +6,14 @@
             <li class="active">
                 <a asp-controller="Home" asp-action="Index">@User.Identity.Name<span class="submenu-indicator"></span></a>
                 <ul style="" class="nav-dropdown nav-submenu">
-                   @* <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(User.AppUser.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>
-                    <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(Model.Instructor.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>*@
+                    @if (Model.Instructor==null)
+                    {
+                         <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(Model.AppUser.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>
+                    }
+                    else
+                    {
+                        <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(Model.Instructor.Wallet/ 100)<i class="fas fa-wallet"> </i> </a></li>
+                    }
                     <li><a asp-controller="Account" asp-action="Signout">SignOut</a></li>
                 </ul>
             </li>

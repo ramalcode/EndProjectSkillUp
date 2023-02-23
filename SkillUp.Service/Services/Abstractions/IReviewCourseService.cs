@@ -8,6 +8,7 @@ namespace SkillUp.Service.Services.Abstractions
     {
         Task CreateReviewAsync(CreateCourseReviewVM reviewVM, string id);
         Task<ICollection<CourseReview>> GetAllCourseReviewAsync();
+        Task DeleteReviewAsync(int id);
 
     }
 }

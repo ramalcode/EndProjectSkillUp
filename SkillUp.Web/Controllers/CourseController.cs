@@ -6,6 +6,7 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SkillUp.Web.Controllers
 {
@@ -24,9 +25,23 @@ namespace SkillUp.Web.Controllers
             _courseService = courseService;
         }
 
-        public async Task<IActionResult> FindCourses(int page=1)
+        public async Task<IActionResult> FindCourses(string? query ,int page=1)
         {
-            
+            if (query!=null)
+            {
+                var course = await _courseService.GetAllCourseAsync();
+                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 2).Take(2);
+                PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 2),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query   
+                    
+                };
+                return View(searchpaginationVM);
+            }
             var courses = await _courseService.GetAllCourseAsync();
             IEnumerable<Course> pagination = courses.Skip((page-1) * 4).Take(4);
             PaginationVM<Course> paginationVM = new PaginationVM<Course>
@@ -36,6 +51,14 @@ namespace SkillUp.Web.Controllers
                 Items = pagination
             };
             return View(paginationVM);
+        }
+
+
+        public async Task<IActionResult> SearchCourse(string query)
+        {
+            var course = await _courseService.GetAllCourseAsync();
+            var search = course.Where(c=>c.Name.Contains(query)).ToList();   
+            return RedirectToAction("FindCourses","Course",search);
         }
 
 

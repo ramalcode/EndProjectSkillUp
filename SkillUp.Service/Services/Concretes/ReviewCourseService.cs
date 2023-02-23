@@ -22,10 +22,16 @@ namespace SkillUp.Service.Services.Concretes
                CourseId = reviewVM.CourseId,
                ReviewContent = reviewVM.ReviewContent,  
                ReviewDate = DateTime.Now,
-               Status = true,
+               Status = false,
            };  
             await _unitOfWork.GetRepository<CourseReview>().AddAsync(courseReview);
             await _unitOfWork.SaveAsync();
+        }
+
+        public async Task DeleteReviewAsync(int id)
+        {
+            await _unitOfWork.GetRepository<CourseReview>().DeleteAsync(id);
+            await _unitOfWork.SaveAsync();  
         }
 
         public Task<ICollection<CourseReview>> GetAllCourseReviewAsync()
