@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using SkillUp.Core.Entities;
 using SkillUp.DAL.Context;
 using SkillUp.DAL.Repositories.Abstractions;
@@ -20,18 +19,7 @@ namespace SkillUp.DAL.Repositories.Concretes.GenericRepository
         }
 
 
-        public async Task AddAsync(T entity)
-        {
-            await _obj.AddAsync(entity);    
-        }
-
-
-        public async Task DeleteAsync(int id)
-        {
-            T item = await _obj.FirstOrDefaultAsync(x => x.Id == id);
-            if(item != null) _obj.Remove(item); 
-        }
-
+        //GetAll
         public async Task<ICollection<T>> GetAllAsync(Expression<Func<T, bool>> predicate = null, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _obj;
@@ -42,6 +30,8 @@ namespace SkillUp.DAL.Repositories.Concretes.GenericRepository
             return await query.ToListAsync();
         }
 
+
+        //Get
         public async Task<T> GetAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties)
         {
             IQueryable<T> query = _obj;
@@ -53,18 +43,35 @@ namespace SkillUp.DAL.Repositories.Concretes.GenericRepository
             return await query.SingleAsync();
         }
 
+
+        //GetById
         public  T GetByIdAsync(int id)
         {
             return _obj.Find(id);
             
         }
 
+
+        //Add
+        public async Task AddAsync(T entity)
+        {
+            await _obj.AddAsync(entity);    
+        }
+
+
+        //Delete
+        public async Task DeleteAsync(int id)
+        {
+            T item = await _obj.FirstOrDefaultAsync(x => x.Id == id);
+            if(item != null) _obj.Remove(item); 
+        }
+
+
+        //Update
         public async Task<T> UpdateAsync(T entity)
         {
             await Task.Run(()=>_obj.Update(entity));
             return entity;
         }
-
-       
     }
 }

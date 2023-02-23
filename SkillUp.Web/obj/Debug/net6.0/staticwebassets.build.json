@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "S5hdl2bSLJTjgfWjYlHfLQvy+Rxca3nP4xzljDjDqB8=",
+  "Hash": "M+2nyN+LvRtQh7hf03m3IP0PIkwA4/lKPrlzp2qpEOY=",
   "Source": "SkillUp.Web",
   "BasePath": "_content/SkillUp.Web",
   "Mode": "Default",
@@ -6934,6 +6934,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\productimg\\8274b206-cb1b-4291-b7b4-117dc4352b87flower.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\productimg\\8692f4d0-86a0-4cd8-b067-3432131cb3a7flower.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/productimg/8692f4d0-86a0-4cd8-b067-3432131cb3a7flower.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\productimg\\8692f4d0-86a0-4cd8-b067-3432131cb3a7flower.jfif"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\productimg\\8beb78ca-5699-49f4-a4be-d291d7409492flower.jfif",

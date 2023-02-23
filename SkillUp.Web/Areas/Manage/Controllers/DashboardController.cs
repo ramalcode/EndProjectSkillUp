@@ -6,22 +6,25 @@ using SkillUp.Service.Services.Abstractions;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+
     public class DashboardController : Controller
     {
         readonly ICourseService _courseService;
         readonly IProductService _productService;
         readonly IInstructorService _instructorService;
         readonly ILectureService _lectureService;   
-        readonly AppDbContext _appDbContext; //
+        readonly IUserService _userService;
+        readonly IContactService _contactService;
 
 
-        public DashboardController(ICourseService courseService, IProductService productService, AppDbContext appDbContext, IInstructorService instructorService, ILectureService lectureService)
+        public DashboardController(ICourseService courseService, IProductService productService, IInstructorService instructorService, ILectureService lectureService, IUserService userService, IContactService contactService)
         {
             _courseService = courseService;
             _productService = productService;
-            _appDbContext = appDbContext;
             _instructorService = instructorService;
             _lectureService = lectureService;
+            _userService = userService;
+            _contactService = contactService;
         }
 
 
@@ -33,9 +36,11 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                 Courses = await _courseService.GetAllCourseAsync(),
                 Products = await _productService.GetAllProductAsync(),
                 Instructors = await _instructorService.GetAllInstructorAsync(), 
-                AppUsers = _appDbContext.AppUsers.ToList(),
+                AppUsers = await _userService.GetAllUserAsync(),
                 Lectures = await _lectureService.GetAllLectureAsync(),
+                Contacts = await _contactService.GetAllMessageAsync(),
             };
+
             return View(dashboardVM);
         }
     }

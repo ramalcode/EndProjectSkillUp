@@ -12,13 +12,18 @@ namespace SkillUp.DAL.Extension
     {
         public static IServiceCollection DataLayerExtension(this IServiceCollection services, IConfiguration configuration)
         {
+            //DataBase
             services.AddDbContext<AppDbContext>(opt =>
             {
                 opt.UseSqlServer(configuration.GetConnectionString("MSSQL"));
             });
 
+
+            //Repository
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
+
+            //UnitOfWork
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;

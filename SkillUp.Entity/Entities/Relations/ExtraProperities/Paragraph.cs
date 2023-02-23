@@ -4,7 +4,9 @@ namespace SkillUp.Entity.Entities.Relations.CourseExtraProperities
 {
     public class Paragraph : BaseNameableEntity
     {
+
         public int CourseId { get; set; }
+
         public Course Course { get; set; }
 
 

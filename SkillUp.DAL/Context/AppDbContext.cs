@@ -13,22 +13,28 @@ namespace SkillUp.DAL.Context
     {
         public AppDbContext(DbContextOptions options) : base(options) { }
 
+        //Main Properities
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
         public DbSet<Product> Products { get; set; }
 
+
+        //Extra Relations
         public DbSet<Lecture> Lectures { get; set; }
         public DbSet<Paragraph> Paragraphs { get; set; }
         public DbSet<Profession> Professions { get; set; } 
         public DbSet<Category> Categories { get; set; }
         public DbSet<SubCategory> SubCategories { get; set; }
 
+
+        //Contact
         public DbSet<CourseReview> CourseReviews { get; set; }
         public DbSet<ProductReview> ProductReviews { get; set; }
         public DbSet<ContactUs> ContactsUs { get; set; }
 
 
+        //ManyToMany Relations
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
         public DbSet<AppUserInstructor> AppUserInstructors { get; set; }
         public DbSet<AppUserProduct> AppUserProducts { get; set; }

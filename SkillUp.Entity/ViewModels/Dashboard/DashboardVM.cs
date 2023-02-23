@@ -1,5 +1,6 @@
 ﻿using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
+using SkillUp.Entity.Entities.Settings;
 
 namespace SkillUp.Entity.ViewModels
 {
@@ -10,5 +11,6 @@ namespace SkillUp.Entity.ViewModels
         public ICollection<AppUser> AppUsers { get; set; }
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Lecture> Lectures { get; set; }
+        public ICollection<ContactUs> Contacts { get; set; }
     }
 }

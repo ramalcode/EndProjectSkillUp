@@ -14,21 +14,29 @@ namespace SkillUp.DAL.UnitOfWorks
             _context = context;
         }
 
+
+        //Dispose
         public async ValueTask DisposeAsync()
         {
             await _context.DisposeAsync();
         }
 
+
+        //Get Repository
         public IRepository<T> GetRepository<T>() where T : BaseEntity
         {
             return new Repository<T>(_context);
         }
 
+
+        //Save
         public int Save()
         {
             return _context.SaveChanges();
         }
 
+
+        //SaveChanges
         public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();   

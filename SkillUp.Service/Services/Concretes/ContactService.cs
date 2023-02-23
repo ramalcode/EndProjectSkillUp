@@ -26,13 +26,15 @@ namespace SkillUp.Service.Services.Concretes
         //Create Message
         public async Task CreateContactAsync(CreateContactVM contactVM)
         {
-            ContactUs contact = new ContactUs 
-            { 
+            ContactUs contact = new ContactUs
+            {
                 Name = contactVM.Name,
                 Surname = contactVM.Surname,
                 Email = contactVM.Email,
                 PhoneNumber = contactVM.PhoneNumber,
-                Message = contactVM.Message,    
+                Message = contactVM.Message,
+                IsRead = false,
+                CreateDate = DateTime.Now
             };
             await _unitOfWork.GetRepository<ContactUs>().AddAsync(contact);
             await _unitOfWork.SaveAsync();  

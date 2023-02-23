@@ -11,9 +11,9 @@ namespace SkillUp.Web.Areas.InstructorPanel.ViewComponents
         readonly UserManager<Instructor> _userManager;
         readonly AppDbContext _context;
 
-        public InstructorInfoViewComponent(UserManager<Instructor> userManageer, AppDbContext context)
+        public InstructorInfoViewComponent(UserManager<Instructor> userManager, AppDbContext context)
         {
-            _userManager = userManageer;
+            _userManager = userManager;
             _context = context;
         }
 

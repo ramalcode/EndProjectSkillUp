@@ -2,11 +2,10 @@
 <html lang="zxx">
 <head>
     <meta charset="utf-8" />
-    <meta name="author" content="Themezhub" />
+    <meta name="author" content="Ramal" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SkillUp - Online Learning Platform</title>
 
-    <!-- Custom CSS -->
     <link href="~/user/assets/css/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
@@ -14,308 +13,8 @@
 
 <body>
 
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-
-        <!-- ============================================================== -->
-        <!-- Top header  -->
-        <!-- ============================================================== -->
-        <!-- Start Navigation -->
-        <div class="header header-light">
-            <div class="container">
-                <nav id="navigation" class="navigation navigation-landscape">
-                    <div class="nav-header">
-                        <a class="nav-brand" href="#">
-                            <img src="~/user/assets/img/logo.png" class="logo" alt="" />
-                        </a>
-                        <div class="nav-toggle"></div>
-                        <div class="mobile_nav">
-                            <ul>
-                                <li class="account-drop">
-                                    <a href="javascript:void(0);" class="crs_yuo12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="embos_45"><i class="fas fa-bell"></i><i class="embose_count red">3</i></span>
-                                    </a>
-                                    <div class="dropdown-menu pull-right animated flipInX">
-                                        <div class="drp_menu_headr bg-warning">
-                                            <h4>22 Notifications</h4>
-                                        </div>
-                                        <div class="ground-list ground-hover-list">
-                                            <div class="ground ground-list-single">
-                                                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
-                                                    <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
-                                                </div>
-
-                                                <div class="ground-content">
-                                                    <h6><a href="#">Maryam Amiri</a></h6>
-                                                    <small class="text-fade">New User Enrolled in Python</small>
-                                                    <span class="small">Just Now</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="ground ground-list-single">
-                                                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-danger">
-                                                    <div class="position-absolute text-danger h5 mb-0"><i class="fas fa-comments"></i></div>
-                                                </div>
-
-                                                <div class="ground-content">
-                                                    <h6><a href="#">Shilpa Rana</a></h6>
-                                                    <small class="text-fade">Shilpa Send a Message</small>
-                                                    <span class="small">02 Min Ago</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="ground ground-list-single">
-                                                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-info">
-                                                    <div class="position-absolute text-info h5 mb-0"><i class="fas fa-grin-squint-tears"></i></div>
-                                                </div>
-
-                                                <div class="ground-content">
-                                                    <h6><a href="#">Amar Muskali</a></h6>
-                                                    <small class="text-fade">Need Responsive Business Tem...</small>
-                                                    <span class="small">10 Min Ago</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="ground ground-list-single">
-                                                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-purple">
-                                                    <div class="position-absolute text-purple h5 mb-0"><i class="fas fa-briefcase"></i></div>
-                                                </div>
-
-                                                <div class="ground-content">
-                                                    <h6><a href="#">Maryam Amiri</a></h6>
-                                                    <small class="text-fade">Next Meeting on Tuesday..</small>
-                                                    <span class="small">15 Min Ago</span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <div class="btn-group account-drop">
-                                        <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="https://via.placeholder.com/500x500" class="avater-img" alt="">
-                                        </a>
-                                        <div class="dropdown-menu pull-right animated flipInX">
-                                            <div class="drp_menu_headr">
-                                                <h4>Hi, Daniel</h4>
-                                            </div>
-                                            <ul>
-                                                <li><a href="dashboard.html"><i class="fa fa-tachometer-alt"></i>Dashboard<span class="notti_coun style-1">4</span></a></li>
-                                                <li><a href="my-profile.html"><i class="fa fa-user-tie"></i>My Profile</a></li>
-                                                <li><a href="manage-course.html"><i class="fas fa-shopping-basket"></i>Manage Courses<span class="notti_coun style-2">7</span></a></li>
-                                                <li><a href="manage-instructor.html"><i class="fas fa-toolbox"></i>Manage Instructor</a></li>
-                                                <li><a href="manage-students.html"><i class="fa fa-envelope"></i>Manage Students<span class="notti_coun style-3">3</span></a></li>
-                                                <li><a href="messages.html"><i class="fas fa-comments"></i>Messages</a></li>
-                                                <li><a href="login.html"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="nav-menus-wrapper" style="transition-property: none;">
-                        <ul class="nav-menu">
-
-                            <li class="active"><a asp-controller="Home" asp-action="Index">Back To Home</a></li>
-
-                        </ul>
-
-                        <ul class="nav-menu nav-menu-social align-to-right">
-
-                            <li class="account-drop">
-                                <a href="javascript:void(0);" class="crs_yuo12" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="embos_45"><i class="fas fa-bell"></i><i class="embose_count red">3</i></span>
-                                </a>
-                                <div class="dropdown-menu pull-right animated flipInX">
-                                    <div class="drp_menu_headr bg-warning">
-                                        <h4>22 Notifications</h4>
-                                    </div>
-                                    <div class="ground-list ground-hover-list">
-                                        <div class="ground ground-list-single">
-                                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
-                                                <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
-                                            </div>
-
-                                            <div class="ground-content">
-                                                <h6><a href="#">Maryam Amiri</a></h6>
-                                                <small class="text-fade">New User Enrolled in Python</small>
-                                                <span class="small">Just Now</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="ground ground-list-single">
-                                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-danger">
-                                                <div class="position-absolute text-danger h5 mb-0"><i class="fas fa-comments"></i></div>
-                                            </div>
-
-                                            <div class="ground-content">
-                                                <h6><a href="#">Shilpa Rana</a></h6>
-                                                <small class="text-fade">Shilpa Send a Message</small>
-                                                <span class="small">02 Min Ago</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="ground ground-list-single">
-                                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-info">
-                                                <div class="position-absolute text-info h5 mb-0"><i class="fas fa-grin-squint-tears"></i></div>
-                                            </div>
-
-                                            <div class="ground-content">
-                                                <h6><a href="#">Amar Muskali</a></h6>
-                                                <small class="text-fade">Need Responsive Business Tem...</small>
-                                                <span class="small">10 Min Ago</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="ground ground-list-single">
-                                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-purple">
-                                                <div class="position-absolute text-purple h5 mb-0"><i class="fas fa-briefcase"></i></div>
-                                            </div>
-
-                                            <div class="ground-content">
-                                                <h6><a href="#">Maryam Amiri</a></h6>
-                                                <small class="text-fade">Next Meeting on Tuesday..</small>
-                                                <span class="small">15 Min Ago</span>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="btn-group account-drop">
-                                    <a href="javascript:void(0);" class="crs_yuo12 btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="https://via.placeholder.com/500x500" class="avater-img" alt="">
-                                    </a>
-                                    <div class="dropdown-menu pull-right animated flipInX">
-                                        <div class="drp_menu_headr">
-                                            <h4>Hi, Daniel</h4>
-                                        </div>
-                                        <ul>
-                                            <li><a href="dashboard.html"><i class="fa fa-tachometer-alt"></i>Dashboard<span class="notti_coun style-1">4</span></a></li>
-                                            <li><a href="my-profile.html"><i class="fa fa-user-tie"></i>My Profile</a></li>
-                                            <li><a href="manage-course.html"><i class="fas fa-shopping-basket"></i>Manage Courses<span class="notti_coun style-2">7</span></a></li>
-                                            <li><a href="manage-instructor.html"><i class="fas fa-toolbox"></i>Manage Instructor</a></li>
-                                            <li><a href="manage-students.html"><i class="fa fa-envelope"></i>Manage Students<span class="notti_coun style-3">3</span></a></li>
-                                            <li><a href="messages.html"><i class="fas fa-comments"></i>Messages</a></li>
-                                            <li><a href="login.html"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </div>
-        <!-- End Navigation -->
-        <section class="gray pt-4">
-            <div class="container-fluid">
-
-                <div class="row">
-
-                    <div class="col-lg-3 col-md-3">
-                        <div class="dashboard-navbar">
-
-                            <div class="d-user-avater">
-                                <img src="https://via.placeholder.com/500x500" class="img-fluid avater" alt="">
-                                <h4>Adam Harshvardhan</h4>
-                                <span>Senior Designer</span>
-                                <div class="elso_syu89">
-                                    <ul>
-                                        <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                        <li><a href="#"><i class="ti-twitter"></i></a></li>
-                                        <li><a href="#"><i class="ti-instagram"></i></a></li>
-                                        <li><a href="#"><i class="ti-linkedin"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="elso_syu77">
-                                    <div class="one_third"><div class="one_45ic text-warning bg-light-warning"><i class="fas fa-star"></i></div><span>Ratings</span></div>
-                                    <div class="one_third"><div class="one_45ic text-success bg-light-success"><i class="fas fa-file-invoice"></i></div><span>Courses</span></div>
-                                    <div class="one_third"><div class="one_45ic text-purple bg-light-purple"><i class="fas fa-user"></i></div><span>Enrolled User</span></div>
-                                </div>
-                            </div>
-
-                            <div class="d-navigation">
-                                <ul id="side-menu">
-                                    <li class="active"><a asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-th"></i>Dashboard</a></li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Courses<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Course" asp-action="ManageCourses">Manage Courses</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Category" asp-action="CourseCategory">Course Category</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Products<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Product" asp-action="ManageProducts">Manage Products</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-gem"></i>Enrollment<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollStudent">Enroll a Couse</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollProduct">Enroll a Product</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-archive"></i>Report<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Report" asp-action="AdminCourseRevenue">Admin Course Revenue</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Report" asp-action="AdminProductRevenue">Admin Product Revenue</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Report" asp-action="InstructorCourseRevenue">Instructor Course Revenue</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Report" asp-action="InstructorProductRevenue">Instructor Product Revenue</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-user-shield"></i>Admins<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Admin" asp-action="ManageAdmin">Manage Admins</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Admin" asp-action="AddNewAdmin">Add New Admins</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-toolbox"></i>Instructors<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Instructor" asp-action="ManageInstructor">Manage Instructors</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-user"></i>Students<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Student" asp-action="ManageStudents">Manage Students</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a asp-area="Manage" asp-controller="Message" asp-action="Index"><i class="fas fa-comments"></i>Message</a></li>
-                                    <li><a asp-area="Manage" asp-controller="MyProfile" asp-action="Index"><i class="fas fa-address-card"></i>My Profile</a></li>
-                                    <li class="dropdown">
-                                        <a href="javascript:void(0);"><i class="fas fa-cog"></i>Settings<span class="ti-angle-left"></span></a>
-                                        <ul class="nav nav-second-level">
-                                            <li><a asp-area="Manage" asp-controller="Setting" asp-action="WebsiteSettings">Website Settings</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Setting" asp-action="SystemSettings">System Settings</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Setting" asp-action="PaymentSettings">Payment Settings</a></li>
-                                            <li><a asp-area="Manage" asp-controller="Setting" asp-action="SocialLogin">Social Logins</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-9 col-md-9 col-sm-12">
-                        <div class="clearfix"></div>
-                        <!-- ============================================================== -->
-                        <!-- Top header  -->
-                        <!-- ============================================================== -->
+    @await Component.InvokeAsync("AdminInfo")
                         @RenderBody()
-                        <!-- ============================ Call To Action ================================== -->
                         <section class="theme-bg call_action_wrap-wrap">
                             <div class="container">
                                 <div class="row">
@@ -333,8 +32,6 @@
                                 </div>
                             </div>
                         </section>
-                        <!-- ============================ Call To Action End ================================== -->
-                        <!-- ============================ Footer Start ================================== -->
                         <footer class="dark-footer skin-dark-footer style-2">
                             <div class="footer-middle">
                                 <div class="container">
@@ -397,15 +94,9 @@
                                 </div>
                             </div>
                         </footer>
-                        <!-- ============================ Footer End ================================== -->
                         <a id="back2Top" class="top-scroll" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
                     </div>
-                    <!-- ============================================================== -->
-                    <!-- End Wrapper -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- All Jquery -->
-                    <!-- ============================================================== -->
+
                     <script src="~/user/assets/js/jquery.min.js"></script>
                     <script src="~/user/assets/js/popper.min.js"></script>
                     <script src="~/user/assets/js/bootstrap.min.js"></script>
@@ -417,15 +108,10 @@
                     <script src="~/user/assets/js/metisMenu.min.js"></script>
                     <script src="~/user/assets/js/custom.js"></script>
 
-                    <!-- Morris.js charts -->
                     <script src="~/user/assets/js/raphael.min.js"></script>
                     <script src="~/user/assets/js/morris.min.js"></script>
 
-                    <!-- Custom Morrisjs JavaScript -->
                     <script src="~/user/assets/js/morris.js"></script>
-                    <!-- ============================================================== -->
-                    <!-- This page plugins -->
-                    <!-- ============================================================== -->
 
 </body>
 </html>

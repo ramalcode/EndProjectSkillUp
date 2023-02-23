@@ -64,7 +64,7 @@ namespace SkillUp.Service.Services.Concretes
         {
              var course = await _context.Courses.Include(i=>i.Instructor).Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
                 .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).Include(u=>u.AppUserCourses)
-                .ThenInclude(a=>a.AppUser).ToListAsync();
+                .ThenInclude(a=>a.AppUser).Include(r=>r.CourseReviews).ToListAsync();
             //var course = await _unitOfWork.GetRepository<Course>().GetAllAsync(null, i=>i.Instructor, l=>l.Paragraphs, ctg=>ctg.CourseCategories);
 
             return course;
