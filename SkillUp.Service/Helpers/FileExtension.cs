@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using NReco.VideoInfo;
 
 namespace SkillUp.Service.Helpers
 {
@@ -54,6 +55,22 @@ namespace SkillUp.Service.Helpers
                 result += $"{file.FileName} file memory must be {kb} kilobayt";
             }
             return result;
+        }
+
+        public static TimeSpan VideoDuration(string filepath)
+        {
+            var probe = new FFProbe();
+            var videoinfo = probe.GetMediaInfo(filepath);   
+            var lectureduration = TimeSpan.FromSeconds(videoinfo.Duration.TotalSeconds);
+            return lectureduration;
+
+        }
+
+
+        public static string ConvertTime(this TimeSpan duration)
+        {
+            string convert = string.Format("{0:%h}hr {0:%m} min", duration);
+            return convert;
         }
     }
 }

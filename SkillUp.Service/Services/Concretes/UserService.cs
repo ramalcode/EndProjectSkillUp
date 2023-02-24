@@ -56,7 +56,6 @@ namespace SkillUp.Service.Services.Concretes
                 Surname = user.Surname,
                 Email = user.Email, 
                 ImageUrl = user.ImageUrl,
-                CurrentPassword = user.PasswordHash,
             };
             return userVm;  
         }

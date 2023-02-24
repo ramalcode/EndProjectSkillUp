@@ -12,5 +12,6 @@ namespace SkillUp.Entity.ViewModels
         public ICollection<Instructor> Instructors { get; set; }
         public ICollection<Lecture> Lectures { get; set; }
         public ICollection<ContactUs> Contacts { get; set; }
+        public ICollection<Category> Categories { get; set; }
     }
 }

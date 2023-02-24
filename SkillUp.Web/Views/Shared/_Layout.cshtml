@@ -25,7 +25,7 @@
                         <div class="mobile_nav">
                             <ul>
                                 <li>
-                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#login" class="crs_yuo12 w-auto text-white theme-bg">
+                                    <a asp-controller="account" asp-action="signin" data-toggle="modal" data-target="#login" class="crs_yuo12 w-auto text-white theme-bg">
                                         <span class="embos_45"><i class="fas fa-sign-in-alt mr-1"></i>Sign In</span>
                                     </a>
                                 </li>
@@ -58,15 +58,9 @@
                                 <ul class="nav-dropdown nav-submenu">
                                     <li><a asp-controller="Shop" asp-action="Products">PRODUCT</a></li>
                                     <li><a asp-controller="Shop" asp-action="Wishlist">WISHLIST</a></li>
-                                    <li><a asp-controller="Shop" asp-action="CheckOut">CHECKOUT</a></li>
                                 </ul>
                             </li>
-
-                            <li><a href="dashboard.html">Dashboard</a></li>
-
                         </ul>
-                        
-
                         @await Component.InvokeAsync("Wallet")
                     </div>
                 </nav>

@@ -38,7 +38,7 @@ namespace SkillUp.Service.Services.Concretes
 
 
         //Delete Instructor
-        public async Task DeleteCourseAsync(string id)
+        public async Task DeleteInstructorAsync(string id)
         {
             var instructor = await _context.Instructors.FindAsync(id);
             _context.Instructors.Remove(instructor);
@@ -47,16 +47,42 @@ namespace SkillUp.Service.Services.Concretes
 
 
 
-        public Task<bool> UpdateCourseAsync(UpdateCourseVM updateCourseVM)
+        public async Task<bool> UpdateInstructorAsync(string id, UpdateInstructorVM updateInstructorVM)
         {
-            throw new NotImplementedException();
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(u => u.Id == id);
+            instructor.Name = updateInstructorVM.Name;
+            instructor.Surname = updateInstructorVM.Surname;
+            instructor.Email = updateInstructorVM.Email;
+            instructor.Description = updateInstructorVM.Description;    
+            instructor.TwitterUrl = updateInstructorVM.TwitterUrl;
+            instructor.FaceBookUrl = updateInstructorVM.FacebookUrl;
+            instructor.InstagramUrl = updateInstructorVM.InstagramUrl;
+            instructor.LinkedInUrl = updateInstructorVM.LinkedInUrl;
+
+            _context.Instructors.Update(instructor);
+             _context.SaveChanges();
+            return true;
         }
 
 
 
-        public Task<UpdateCourseVM> UpdateCourseById(int id)
+        public async Task<UpdateInstructorVM> UpdateInstructorById(string id)
         {
-            throw new NotImplementedException();
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(u => u.Id == id);
+            UpdateInstructorVM userVm = new UpdateInstructorVM
+            {
+                Name = instructor.Name,
+                Surname = instructor.Surname,
+                Email = instructor.Email,
+                ImageUrl = instructor.ImageUrl,
+                PreviewUrl = instructor.PreviewVideoUrl,
+                LinkedInUrl = instructor.LinkedInUrl,
+                FacebookUrl = instructor.FaceBookUrl,
+                Description = instructor.Description,   
+                InstagramUrl = instructor.InstagramUrl,
+                TwitterUrl = instructor.TwitterUrl,
+            };
+            return userVm;
         }
     }
 }

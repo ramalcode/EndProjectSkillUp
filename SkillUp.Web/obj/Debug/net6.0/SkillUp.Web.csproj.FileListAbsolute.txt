@@ -1187,3 +1187,4 @@ C:\Users\Ramal\Desktop\EndProjectSkillUp\SkillUp.Web\obj\Debug\net6.0\SkillUp.We
 C:\Users\Ramal\Desktop\EndProjectSkillUp\SkillUp.Web\obj\Debug\net6.0\SkillUp.Web.genruntimeconfig.cache
 C:\Users\Ramal\Desktop\EndProjectSkillUp\SkillUp.Web\obj\Debug\net6.0\ref\SkillUp.Web.dll
 C:\Users\Ramal\Desktop\EndProjectSkillUp\SkillUp.Web\bin\Debug\net6.0\Stripe.net.dll
+C:\Users\Ramal\Desktop\EndProjectSkillUp\SkillUp.Web\bin\Debug\net6.0\NReco.VideoInfo.dll

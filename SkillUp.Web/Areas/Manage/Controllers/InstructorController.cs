@@ -27,7 +27,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
 
         public async Task<IActionResult> DeleteInstructor(string id)
         {
-            await _instructorService.DeleteCourseAsync(id);
+            await _instructorService.DeleteInstructorAsync(id);
             return RedirectToAction(nameof(ManageInstructor));
         }
 

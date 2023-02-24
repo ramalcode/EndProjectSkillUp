@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TuWaFxCWQ9dVF/LKl2KwVd1jmCzaBh4wPUCPip6/+Qbd93eXFgwj5m77wcn77kfELGyy8cRU2LqfbTaYsfGGCw==",
+  "dgSpecHash": "P4Fi7KCxq2XuzLN8qcIq7lPwiJ/kfowMfHbvctFSRgSCaTHbFgQlpgy0LnSD3/JakFluzWk4YaL/eFt2/EaCVQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Service\\SkillUp.Service.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "C:\\Users\\Ramal\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
+    "C:\\Users\\Ramal\\.nuget\\packages\\nreco.videoinfo\\1.2.0\\nreco.videoinfo.1.2.0.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
     "C:\\Users\\Ramal\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",

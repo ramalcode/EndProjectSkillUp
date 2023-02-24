@@ -54,7 +54,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                 ModelState.AddModelError("", "Login or Password is wrong");
             }
             var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
-            var appuser = await _userService.UpdateUserAsync(id, userVM);
+            await _userService.UpdateUserAsync(id, userVM);
             return RedirectToAction("Index" ,"Dashboard");
         }
         

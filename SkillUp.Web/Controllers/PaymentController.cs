@@ -1,15 +1,11 @@
-﻿using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
+using SkillUp.Service.Services.Abstractions;
 using Stripe;
-using System;
-using System.Runtime.Serialization.Formatters;
 
 namespace SkillUp.Web.Controllers
 {
@@ -17,11 +13,15 @@ namespace SkillUp.Web.Controllers
     {
         UserManager<AppUser> _userManager;
         AppDbContext _appDbContext;
+        readonly IInstructorService _instructorService;
+        readonly IUserService _userService;
 
-        public PaymentController(UserManager<AppUser> userManager, AppDbContext appDbContext)
+
+        public PaymentController(UserManager<AppUser> userManager, AppDbContext appDbContext, IUserService userService)
         {
             _userManager = userManager;
             _appDbContext = appDbContext;
+            _userService = userService;
         }
 
         public async Task<IActionResult> Payment()
@@ -85,7 +85,7 @@ namespace SkillUp.Web.Controllers
         {
             var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
             string userid = _userManager.GetUserId(HttpContext.User);
-            AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == userid);
+            AppUser user = await _userService.GetUserById(userid);
             
             if (user.Wallet > course.Price * 100)
             {
@@ -97,6 +97,10 @@ namespace SkillUp.Web.Controllers
                 };
 
                 user.Wallet = user.Wallet - course.Price * 100;
+
+                Instructor instructor = await _appDbContext.Instructors.Include(i=>i.Courses).FirstOrDefaultAsync(i=>i.Id == course.InstructorId);
+
+                instructor.Wallet = instructor.Wallet + (course.Price * 100)*0.75; 
 
                 await _appDbContext.AddAsync(userCourse);
                 await _appDbContext.SaveChangesAsync();

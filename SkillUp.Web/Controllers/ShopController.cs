@@ -55,16 +55,6 @@ namespace SkillUp.Web.Controllers
             if (userProduct.IsBuyed == false) _reviewProductService.CreateReviewAsync(reviewVM, userid);
             return RedirectToAction("Index", "Home");
         }
-
-      
-
-
-        public IActionResult Wishlist()
-        {
-            return View();
-        }
-
-
         
     }
 }

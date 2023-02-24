@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
+using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 using SkillUp.Service.Services.Concretes;
 
@@ -27,6 +28,17 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         {
             await _userService.DeleteUserAsync(id);
             return RedirectToAction(nameof(ManageStudents));
+        }
+
+
+        public async Task<IActionResult> UpdateStudent(string id)
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> UpdateStudent(string id, UpdateUserVM userVM)
+        {
+            return View();
         }
     }
 }

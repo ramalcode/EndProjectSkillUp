@@ -26,7 +26,9 @@ namespace SkillUp.Service.Services.Concretes
                 Name = lectureVM.Name,
                 ParagraphId = id,
                 IsWatched = false,
-                VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo"))
+                VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo")),
+                //Duration = FileExtension.VideoDuration(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo")).ConvertTime();
+                
             };
 
             await _unitOfWork.GetRepository<Lecture>().AddAsync(lecture);

@@ -22,10 +22,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
-
-        public IActionResult SocialLogin()
-        {
-            return View();
-        }
+      
     }
 }
