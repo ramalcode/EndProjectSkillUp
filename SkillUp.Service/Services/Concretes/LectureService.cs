@@ -19,12 +19,12 @@ namespace SkillUp.Service.Services.Concretes
             _env = env;
         }
 
-        public async Task CreateLectureAsync(CreateLectureVM lectureVM)
+        public async Task CreateLectureAsync(CreateLectureVM lectureVM, int id)
         {
             Lecture lecture = new Lecture
             {
                 Name = lectureVM.Name,
-                ParagraphId = lectureVM.ParagraphId,
+                ParagraphId = id,
                 IsWatched = false,
                 VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo"))
             };
@@ -46,9 +46,10 @@ namespace SkillUp.Service.Services.Concretes
             return lectures;
         }
 
-        public Task<Lecture> GetLectureById(int id)
+        public async Task<Lecture> GetLectureById(int id)
         {
-            throw new NotImplementedException();
+            var lecture =  await _unitOfWork.GetRepository<Lecture>().GetAsync(l => l.Id == id, l => l.Paragraph);
+            return lecture;
         }
 
         public async Task<bool> UpdateLectureAsync(int id ,UpdateLectureVM lectureVM)

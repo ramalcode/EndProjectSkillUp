@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
@@ -41,7 +42,19 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 return View();
             }
             if (studentVM is null) return NotFound();
-            await _enrollService.EnrollStudentAsync(studentVM);
+            var student = await _context.AppUsers.Include(u=>u.AppUserCourses).ThenInclude(c=>c.Course).FirstOrDefaultAsync(u=>u.Id == studentVM.AppUserId);
+            foreach (var studentcourse in student.AppUserCourses)
+            {
+                if (studentcourse.Course.Id == studentVM.CourseId)
+                {
+                    ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
+                    ViewBag.Courses = new SelectList(await _courseService.GetAllCourseAsync(), nameof(Course.Id), nameof(Course.Name));
+                    ModelState.AddModelError("", "Bu kurs movcuddur.");
+                    return View(studentVM);
+                }
+                
+            }
+                await _enrollService.EnrollStudentAsync(studentVM);
             return RedirectToAction(nameof(EnrollCourse));
         }
 

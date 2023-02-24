@@ -579,7 +579,7 @@ namespace SkillUp.DAL.Migrations
                     b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("IsBuyed")
+                    b.Property<bool>("IsNotBuyed")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");

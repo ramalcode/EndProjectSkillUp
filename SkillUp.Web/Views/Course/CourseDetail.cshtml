@@ -2,7 +2,7 @@
     ViewData["Title"] = "SkillUp-CourseDetail";
 }
 @model Course
-<!-- ============================ Page Title Start ================================== -->
+
 <div class="ed_detail_head bg-cover" style="background:#f4f4f4 url(https://via.placeholder.com/1920x1200);" data-overlay="8">
     <div class="container">
         <div class="row align-items-center">
@@ -41,15 +41,8 @@
                     </div>
 
                     <div class="ed_rate_info">
-                        <div class="star_info">
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
                         <div class="review_counter">
-                            <strong class="high">4.7</strong> 3572 Reviews
+                            <strong class="high"><span style="color:lightyellow"><i class="fas fa-eye mr-1"></i> @Model.ViewCount</span><span style="margin-left:15px; color:lightyellow"><i class="fas fa-comment-dots mr-1"> @Model.CourseReviews.Count Reviews</i></span> </strong>
                         </div>
                     </div>
 
@@ -58,17 +51,13 @@
         </div>
     </div>
 </div>
-<!-- ============================ Page Title End ================================== -->
 
-
-<!-- ============================ Course Detail Start ================================== -->
 <section class="gray pt-3">
     <div class="container">
         <div class="row justify-content-between">
 
             <div class="col-lg-8 col-md-12 order-lg-first">
 
-                <!-- All Info Show in Tab -->
                 <div class="tab_box_info mt-4">
                     <ul class="nav nav-pills mb-3 light" id="pills-tab" role="tablist">
                         <li class="nav-item">
@@ -87,9 +76,7 @@
 
                     <div class="tab-content" id="pills-tabContent">
 
-                        <!-- Overview Detail -->
                         <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                            <!-- Overview -->
                             <div class="edu_wraper">
                                 <h4 class="edu_title">Course Overview</h4>
                                 <p>@Model.CourseOverview.</p>
@@ -104,38 +91,59 @@
 
                         </div>
 
-                        <!-- Curriculum Detail -->
                         <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
                             <div class="edu_wraper">
                                 <h4 class="edu_title">Course Circullum</h4>
                                 <div id="accordionExample" class="accordion shadow circullum">
                                     @foreach (var item in Model.Paragraphs)
                                     {
-                                       
-                                            <!-- Part 1 -->
                                             <div class="card">
                                                 <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-                                                <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#@(item.Name + "dsvewvbrbb")" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part 01:@item.Name</a></h6>
+                                                <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#@(item.Name)" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part :@("  9" + item.Name)</a></h6>
                                                 </div>
-                                            <div id="@(item.Name + "dsvewvbrbb")" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+                                            <div id="@(item.Name)" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
                                                     <div class="card-body pl-3 pr-3">
                                                         <ul class="lectures_lists">
                                                           @foreach (var lectures in item.Lectures)
                                                             {
                                                                 if (lectures.IsWatched==true)
                                                                 {
-                                                                  <li class="complete"><div class="lectures_lists_title"><i class="fas fa-check dios"></i></div>@lectures.Name<span class="cls_timing">40:20</span></li>
+                                                                    @if (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name))
+                                                                    {
+                                                                        <li class="complete"><div class="lectures_lists_title"><i class="fas fa-check dios"></i></div><a asp-controller="Lecture" asp-action="Index" asp-route-id="@lectures.Id">@lectures.Name</a><span class="cls_timing">40:20</span></li>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                       <li class="complete"><div class="lectures_lists_title"><i class="fas fa-check dios"></i></div>@lectures.Name<span class="cls_timing">40:20</span></li>
+
+                                                                    }
                                                                     
                                                                 }
                                                                 if (lectures.IsWatched == false)
                                                                 {
-                                                                    <li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>@lectures.Name<span class="cls_timing">32:10</span></li>
-                                                                    
-                                                                }
+                                                                    @if (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name))
+                                                                    {
+                                                                       <li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div><a asp-controller="Lecture" asp-action="Index" asp-route-id="@lectures.Id">@lectures.Name</a><span class="cls_timing">32:10</span></li>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                       <li class="unview"><div class="lectures_lists_title"><i class="fa fa-lock dios lock"></i></div>@lectures.Name<span class="cls_timing">32:10</span></li>
+                                                                    }
+
+                                                                 }
                                                                 if(lectures.IsWatched == null)
                                                                 {
-                                                                    <li class="progressing"><div class="lectures_lists_title"><i class="fas fa-play dios"></i></div>@lectures.Name<span class="cls_timing">20:12</span></li>
-                                                                    
+
+                                                                    @if (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name))
+                                                                    {
+                                                                        <li class="progressing"><div class="lectures_lists_title"><i class="fas fa-play dios"></i></div><a asp-controller="Lecture" asp-action="Index" asp-route-id="@lectures.Id">@lectures.Name</a><span class="cls_timing">20:12</span></li>
+
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <li class="progressing"><div class="lectures_lists_title"><i class="fas fa-play dios"></i></div>@lectures.Name<span class="cls_timing">20:12</span></li>
+                                                                    }
                                                                 }
                                                             }
                                                         </ul>
@@ -147,7 +155,6 @@
                             </div>
                         </div>
 
-                        <!-- Instructor Detail -->
                         <div class="tab-pane fade" id="instructors" role="tabpanel" aria-labelledby="instructors-tab">
                             <div class="single_instructor">
                                 <div class="single_instructor_thumb">
@@ -211,59 +218,9 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Reviews Detail -->
                         <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-                            <!-- Overall Reviews -->
-                            <div class="rating-overview">
-                                <div class="rating-overview-box">
-                                    <span class="rating-overview-box-total">4.2</span>
-                                    <span class="rating-overview-box-percent">out of 5.0</span>
-                                    <div class="star-rating" data-rating="5">
-                                        <i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i><i class="ti-star"></i>
-                                    </div>
-                                </div>
+                            
 
-                                <div class="rating-bars">
-                                    <div class="rating-bars-item">
-                                        <span class="rating-bars-name">5 Star</span>
-                                        <span class="rating-bars-inner">
-                                            <span class="rating-bars-rating high" data-rating="4.7">
-                                                <span class="rating-bars-rating-inner" style="width: 85%;"></span>
-                                            </span>
-                                            <strong>85%</strong>
-                                        </span>
-                                    </div>
-                                    <div class="rating-bars-item">
-                                        <span class="rating-bars-name">4 Star</span>
-                                        <span class="rating-bars-inner">
-                                            <span class="rating-bars-rating good" data-rating="3.9">
-                                                <span class="rating-bars-rating-inner" style="width: 75%;"></span>
-                                            </span>
-                                            <strong>75%</strong>
-                                        </span>
-                                    </div>
-                                    <div class="rating-bars-item">
-                                        <span class="rating-bars-name">3 Star</span>
-                                        <span class="rating-bars-inner">
-                                            <span class="rating-bars-rating mid" data-rating="3.2">
-                                                <span class="rating-bars-rating-inner" style="width: 52.2%;"></span>
-                                            </span>
-                                            <strong>53%</strong>
-                                        </span>
-                                    </div>
-                                    <div class="rating-bars-item">
-                                        <span class="rating-bars-name">1 Star</span>
-                                        <span class="rating-bars-inner">
-                                            <span class="rating-bars-rating poor" data-rating="2.0">
-                                                <span class="rating-bars-rating-inner" style="width:20%;"></span>
-                                            </span>
-                                            <strong>20%</strong>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews -->
                             <div class="list-single-main-item fl-wrap">
                                 <div class="list-single-main-item-title fl-wrap">
                                     <h3>Course Reviews -  <span> @Model.CourseReviews.Count </span></h3>
@@ -271,7 +228,6 @@
                                 <div class="reviews-comments-wrap">
                                     @foreach (var review in Model.CourseReviews)
                                     {
-                                        <!-- reviews-comments-item -->
                                         <div class="reviews-comments-item">
                                             <div class="review-comments-avatar">
                                                 @if (review.AppUser.ImageUrl!=null)
@@ -293,7 +249,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--reviews-comments-item end-->
                                     }
                                 </div>
                             </div>
@@ -304,14 +259,18 @@
                             reviewVM.CourseId = Model.Id;
                             reviewVM.Course = Model;
                         }
-                        @await Html.PartialAsync("_SubmitReviewPartial", reviewVM, new ViewDataDictionary(ViewData){{"courseid" , Model.Id}})
+                         @if (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name))
+                         {
+                            @await Html.PartialAsync("_SubmitReviewPartial", reviewVM, new ViewDataDictionary(ViewData){{"courseid" , Model.Id}})
+                         }
 
                     </div>
                 </div>
 
             </div>
-            @await Html.PartialAsync("_BuyCoursePartial",Model, new ViewDataDictionary(ViewData){{"buycourseid" , Model.Id}})
+          
+                 @await Html.PartialAsync("_BuyCoursePartial",Model, new ViewDataDictionary(ViewData){{"buycourseid" , Model.Id}})
+             
         </div>
     </div>
 </section>
-<!-- ============================ Course Detail End ================================== -->

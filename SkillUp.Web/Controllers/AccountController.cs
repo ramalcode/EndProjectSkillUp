@@ -30,6 +30,9 @@ namespace SkillUp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(RegisterVM register)
         {
+            if (!ModelState.IsValid) return View(register);  
+            AppUser user = await _userManager.FindByNameAsync(register.UserName);
+
             if (register.Image != null)
             {
                 string imgresult = register.Image.CheckValidate("image/", 500);
@@ -37,10 +40,11 @@ namespace SkillUp.Web.Controllers
                 {
                     ModelState.AddModelError("Image", imgresult);
                 }
+
+                user.ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"));
+
             }
-            if (!ModelState.IsValid) return View(register);  
-            AppUser user = await _userManager.FindByNameAsync(register.UserName);
-            if(user is not null)
+            if (user is not null)
             {
                 ModelState.AddModelError("UserName", "UserName already exist");
                 return View(register);
@@ -51,7 +55,6 @@ namespace SkillUp.Web.Controllers
                 Surname = register.Surname,
                 UserName = register.UserName,
                 Email = register.Email,
-                ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg")),
 
             };
 

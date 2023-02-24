@@ -18,12 +18,12 @@ namespace SkillUp.Service.Services.Concretes
 			this.appDbContext = appDbContext;
 		}
 
-		public async Task CreateParagraphAsync(CreateParagraphVM paragraphVM)
+		public async Task CreateParagraphAsync(CreateParagraphVM paragraphVM,int id)
 		{
 			Paragraph paragraph = new Paragraph
 			{
 				Name = paragraphVM.Name,
-				CourseId = paragraphVM.CourseId,
+				CourseId = id
 			};
 			 await _unitOfWork.GetRepository<Paragraph>().AddAsync(paragraph);
 			await _unitOfWork.SaveAsync();

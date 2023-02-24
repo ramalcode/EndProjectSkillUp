@@ -162,7 +162,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="slide_items">
 
-                    @foreach (var item in Model.Courses)
+                    @foreach (var item in Model.Courses.OrderByDescending(c=>c.CreateDate).Take(10))
                     {
                         <!-- Single Item -->
                         <div class="lios_item">
@@ -227,7 +227,6 @@
                                                 <ul>
                                                     <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">@item.AppUserCourses.Count</div></li>
                                                     <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">@item.ViewCount</div></li>
-                                                    <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">Yazacam</div></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -264,7 +263,7 @@
 
         <div class="row justify-content-center">
 
-            @foreach (var category in Model.Categories)
+            @foreach (var category in Model.Categories.Take(16))
             {
                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6">
                 <div class="cates_crs_wrip">

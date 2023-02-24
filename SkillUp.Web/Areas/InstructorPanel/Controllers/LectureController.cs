@@ -29,28 +29,26 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _env = env;
         }
 
-        public async Task<IActionResult> AddNewCourseParagraph()
+        public async Task<IActionResult> AddNewCourseParagraph(int id)
         {
-            ViewBag.Course = new SelectList(await _courseService.GetAllCourseAsync(), nameof(Course.Id), nameof(Course.Name));
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewCourseParagraph(CreateParagraphVM paragraphVM)
+        public async Task<IActionResult> AddNewCourseParagraph(int id, CreateParagraphVM paragraphVM)
         {
             if (!ModelState.IsValid) return View();
-            await _paragraph.CreateParagraphAsync(paragraphVM);
+            await _paragraph.CreateParagraphAsync(paragraphVM,id);
             return RedirectToAction(nameof(AddNewCourseParagraph));
         }
 
-        public async Task<IActionResult> AddNewCourseLectures()
+        public async Task<IActionResult> AddNewCourseLectures(int id)
         {
-            ViewBag.Paragraph = new SelectList(await _paragraph.GetAllParagraphAsync(), nameof(Paragraph.Id), nameof(Paragraph.Name));
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddNewCourseLectures(CreateLectureVM lectureVM)
+        public async Task<IActionResult> AddNewCourseLectures(int id, CreateLectureVM lectureVM)
         {
             ViewBag.Paragraph = new SelectList(await _paragraph.GetAllParagraphAsync(), nameof(Paragraph.Id), nameof(Paragraph.Name));
 
@@ -63,7 +61,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 }
             }
 
-            await _lectureService.CreateLectureAsync(lectureVM);
+            await _lectureService.CreateLectureAsync(lectureVM,id);
             return View();
         }
 

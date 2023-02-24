@@ -6,7 +6,6 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace SkillUp.Web.Controllers
 {
@@ -54,13 +53,6 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        public async Task<IActionResult> SearchCourse(string query)
-        {
-            var course = await _courseService.GetAllCourseAsync();
-            var search = course.Where(c=>c.Name.Contains(query)).ToList();   
-            return RedirectToAction("FindCourses","Course",search);
-        }
-
 
         public async Task<IActionResult> CourseDetail(int id)
         {
@@ -68,9 +60,9 @@ namespace SkillUp.Web.Controllers
             .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category)
             .Include(a=>a.AppUserCourses).ThenInclude(u=>u.AppUser)
             .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
-            coursedetail.ViewCount ++ ;
-            _appDbContext.SaveChanges();
-            return View(coursedetail);
+             coursedetail.ViewCount ++ ;
+             _appDbContext.SaveChanges();
+             return View(coursedetail);
         }
 
         [HttpPost]
@@ -79,18 +71,9 @@ namespace SkillUp.Web.Controllers
             string userid =  _userManager.GetUserId(HttpContext.User);
             if (!ModelState.IsValid) return View(review);
             AppUserCourse userCourse = new AppUserCourse();
-            if (userCourse.IsBuyed == false) await  _reviewcourseService.CreateReviewAsync(review, userid);
+            if (userCourse.IsNotBuyed == false) await  _reviewcourseService.CreateReviewAsync(review, userid);
             return RedirectToAction("Index", "Home");
         }
-
-
-        public ActionResult Search(string searchText)
-        {
-            var products = _appDbContext.Courses.Where(p => p.Name.Contains(searchText)).ToList();
-            return View(products);
-        }
-
-
 
     }
 }

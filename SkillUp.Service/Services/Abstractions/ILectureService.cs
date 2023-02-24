@@ -9,7 +9,7 @@ namespace SkillUp.Service.Services.Abstractions
         Task<ICollection<Lecture>> GetAllLectureAsync();
         Task<UpdateLectureVM> UpdateLectureById(int id);
         Task<Lecture> GetLectureById(int id);
-        Task CreateLectureAsync(CreateLectureVM lectureVM);
+        Task CreateLectureAsync(CreateLectureVM lectureVM,int id);
         Task DeleteLectureAsync(int id);
         Task<bool> UpdateLectureAsync(int id,UpdateLectureVM lectureVM);
     }

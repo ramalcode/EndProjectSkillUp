@@ -7,7 +7,6 @@ namespace SkillUp.Entity.ViewModels
         public string Name { get; set; }
         public bool IsWatched { get; set; }
         public IFormFile Video { get; set; }
-        public int ParagraphId { get; set; }
 
     }
 }

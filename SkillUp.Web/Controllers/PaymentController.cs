@@ -1,11 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using Stripe;
 using System;
+using System.Runtime.Serialization.Formatters;
 
 namespace SkillUp.Web.Controllers
 {
@@ -29,6 +33,7 @@ namespace SkillUp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Charge(string stripeEmail, string stripeToken, double wallet)
         {
+           
             var customers = new CustomerService();
             var chargers = new ChargeService();
 
@@ -38,10 +43,11 @@ namespace SkillUp.Web.Controllers
                 Source = stripeToken,
             });
 
+            
+           
             var charge = chargers.Create(new ChargeCreateOptions
             {
-                
-                Amount = (long) wallet*100,
+                Amount = (long) wallet,
                 Description = "Add Balance",
                 Currency = "usd",
                 Customer = customer.Id,
@@ -80,14 +86,14 @@ namespace SkillUp.Web.Controllers
             var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
             string userid = _userManager.GetUserId(HttpContext.User);
             AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == userid);
+            
             if (user.Wallet > course.Price * 100)
             {
                 AppUserCourse userCourse = new AppUserCourse
                 {
-                    
                     AppUserId = user.Id,
                     CourseId = id,
-                    IsBuyed = true,
+                    IsNotBuyed = false,
                 };
 
                 user.Wallet = user.Wallet - course.Price * 100;
