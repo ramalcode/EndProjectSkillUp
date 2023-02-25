@@ -26,9 +26,6 @@ namespace SkillUp.Service.Services.Concretes
                 AppUserId = studentVM.AppUserId,
                 CourseId = studentVM.CourseId,  
             };
-            //var courses = await _unitOfWork.GetRepository<Course>().GetAllAsync(c => studentVM.CourseIds.Any());
-            //var users = _context.AppUsers.Where(u => studentVM.AppUserIds.Contains(u.Id));
-
             await _unitOfWork.GetRepository<AppUserCourse>().AddAsync(userCourse);
             await _unitOfWork.SaveAsync();
         }
@@ -64,10 +61,8 @@ namespace SkillUp.Service.Services.Concretes
             {
                 AppUserId = productVM.AppUserId,
                 ProductId = productVM.ProductId,
+                
             };
-            //var courses = await _unitOfWork.GetRepository<Course>().GetAllAsync(c => studentVM.CourseIds.Any());
-            //var users = _context.AppUsers.Where(u => studentVM.AppUserIds.Contains(u.Id));
-
             await _unitOfWork.GetRepository<AppUserProduct>().AddAsync(userProduct);
             await _unitOfWork.SaveAsync();
         }

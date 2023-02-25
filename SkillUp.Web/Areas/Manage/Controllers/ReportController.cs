@@ -1,5 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillUp.Entity.Entities;
+using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
+using Stripe;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Product = SkillUp.Entity.Entities.Product;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
@@ -15,30 +20,120 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _productService = productService;
         }
 
-        public async Task<IActionResult> AdminCourseRevenue()
+        public async Task<IActionResult> AdminCourseRevenue(string? query, int page = 1)
         {
+            if (query!=null)
+            {
+                var course = await _courseService.GetAllCourseAsync();
+                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 5).Take(5);
+                PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 5),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+            }
             var courses = await _courseService.GetAllCourseAsync();
-            return View(courses);
+            IEnumerable<Course> pagination = courses.Skip((page - 1) * 5).Take(5);
+            PaginationVM<Course> paginationVM = new PaginationVM<Course>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal)courses.Count / 5),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
+        }
+        public async Task<IActionResult> AdminProductRevenue(string? query, int page = 1)
+        {
+            if (query!=null)
+            {
+                var product = await _productService.GetAllProductAsync();
+                var search = product.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 5).Take(5);
+                PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 5),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+
+            }
+            var products = await _productService.GetAllProductAsync();
+            IEnumerable<Product> pagination = products.Skip((page - 1) * 5).Take(5);
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal)products.Count / 5),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
 
-        public async Task<IActionResult> InstructorCourseRevenue()
+        public async Task<IActionResult> InstructorCourseRevenue(string query, int page = 1)
         {
+            if (query != null)
+            {
+                var course = await _courseService.GetAllCourseAsync();
+                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 5).Take(5);
+                PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 5),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+            }
             var courses = await _courseService.GetAllCourseAsync();
-            return View(courses);
+            IEnumerable<Course> pagination = courses.Skip((page - 1) * 5).Take(5);
+            PaginationVM<Course> paginationVM = new PaginationVM<Course>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal)courses.Count / 5),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
-        public async Task<IActionResult> AdminProductRevenue()
-        {
-            var products = await _productService.GetAllProductAsync();
-            return View(products);
-        }
 
 
-        public async Task<IActionResult> InstructorProductRevenue()
+        public async Task<IActionResult> InstructorProductRevenue(string query, int page = 1)
         {
+            if (query != null)
+            {
+                var product = await _productService.GetAllProductAsync();
+                var search = product.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 5).Take(5);
+                PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 5),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+
+            }
             var products = await _productService.GetAllProductAsync();
-            return View(products);
+            IEnumerable<Product> pagination = products.Skip((page - 1) * 5).Take(5);
+            PaginationVM<Product> paginationVM = new PaginationVM<Product>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal)products.Count / 5),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
     }
 }

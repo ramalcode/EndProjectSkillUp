@@ -1,15 +1,11 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
-using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
-using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
@@ -31,10 +27,33 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> ManageCourses()
+        public async Task<IActionResult> ManageCourses(string? query ,int page = 1)
         {
+            if (query!=null)
+            {
+                var course = await _courseService.GetAllCourseAsync();
+                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 4).Take(4);
+                PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 4),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+
+            }
             var courses = await _courseService.GetAllCourseAsync();
-            return View(courses);
+            IEnumerable<Course> pagination = courses.Skip((page - 1) * 4).Take(4);
+            PaginationVM<Course> paginationVM = new PaginationVM<Course>
+            {
+                MaxPageCount = (int)Math.Ceiling((decimal)courses.Count / 4),
+                CurrentPage = page,
+                Items = pagination
+            };
+            return View(paginationVM);
         }
 
 

@@ -69,7 +69,7 @@ namespace SkillUp.Service.Helpers
 
         public static string ConvertTime(this TimeSpan duration)
         {
-            string convert = string.Format("{0:%h}hr {0:%m} min", duration);
+            string convert = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", duration);
             return convert;
         }
     }

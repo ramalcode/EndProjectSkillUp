@@ -27,12 +27,10 @@ namespace SkillUp.Service.Services.Concretes
                 ParagraphId = id,
                 IsWatched = false,
                 VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo")),
-                //Duration = FileExtension.VideoDuration(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo")).ConvertTime();
-                
             };
-
+            lecture.Duration = FileExtension.VideoDuration(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo", lecture.VideoUrl)).ConvertTime();
             await _unitOfWork.GetRepository<Lecture>().AddAsync(lecture);
-             await _unitOfWork.SaveAsync();
+            await _unitOfWork.SaveAsync();
         }
     
 

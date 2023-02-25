@@ -112,68 +112,68 @@
                                 <img src="~/user/assets/userimg/@Model.AppUser.ImageUrl" width="100px" class="avater-img" alt="">
                             }
                             <h4>@(Model.AppUser.Name + " " + Model.AppUser.Surname)</h4>
+                            <h6 class="text-danger">@ViewBag.AdminRole</h6>
                         </div>
 
                         <div class="d-navigation">
                             <ul id="side-menu">
-                                <li class="active"><a asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-th"></i>Dashboard</a></li>
+                                <li class="active"><a asp-area="manage" asp-controller="Dashboard" asp-action="Index"><i class="fas fa-th"></i>Dashboard</a></li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Courses<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Course" asp-action="ManageCourses">Manage Courses</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Category" asp-action="CourseCategory">Course Category</a></li>
+                                        <li><a asp-area="manage" asp-controller="Course" asp-action="ManageCourses">Manage Courses</a></li>
+                                        <li><a asp-area="manage" asp-controller="Category" asp-action="CourseCategory">Course Category</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-shopping-basket"></i>Products<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Product" asp-action="ManageProducts">Manage Products</a></li>
+                                        <li><a asp-area="manage" asp-controller="Product" asp-action="ManageProducts">Manage Products</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-gem"></i>Enrollment<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollStudent">Enroll a Couse</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Enrollment" asp-action="EnrollProduct">Enroll a Product</a></li>
+                                        <li><a asp-area="manage" asp-controller="Enrollment" asp-action="EnrollStudent">Enroll a Couse</a></li>
+                                        <li><a asp-area="manage" asp-controller="Enrollment" asp-action="EnrollProduct">Enroll a Product</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-archive"></i>Report<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Report" asp-action="AdminCourseRevenue">Admin Course Revenue</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Report" asp-action="AdminProductRevenue">Admin Product Revenue</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Report" asp-action="InstructorCourseRevenue">Instructor Course Revenue</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Report" asp-action="InstructorProductRevenue">Instructor Product Revenue</a></li>
+                                        <li><a asp-area="manage" asp-controller="Report" asp-action="AdminCourseRevenue">Admin Courses Revenue</a></li>
+                                        <li><a asp-area="manage" asp-controller="Report" asp-action="AdminProductRevenue">Admin Products Revenue</a></li>
+                                        <li><a asp-area="manage" asp-controller="Report" asp-action="InstructorCourseRevenue">Instructor Courses Revenue</a></li>
+                                        <li><a asp-area="manage" asp-controller="Report" asp-action="InstructorProductRevenue">Instructor Products Revenue</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-user-shield"></i>Admins<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Admin" asp-action="ManageAdmin">Manage Admins</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Admin" asp-action="AddNewAdmin">Add New Admins</a></li>
+                                        <li><a asp-area="manage" asp-controller="Admin" asp-action="ManageAdmin">Manage Admins</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-toolbox"></i>Instructors<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Instructor" asp-action="ManageInstructor">Manage Instructors</a></li>
+                                        <li><a asp-area="manage" asp-controller="Instructor" asp-action="ManageInstructor">Manage Instructors</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-user"></i>Students<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Student" asp-action="ManageStudents">Manage Students</a></li>
+                                        <li><a asp-area="manage" asp-controller="Student" asp-action="ManageStudents">Manage Students</a></li>
                                     </ul>
                                 </li>
-                                <li><a asp-area="Manage" asp-controller="Message" asp-action="Index"><i class="fas fa-comments"></i>Message</a></li>
-                                <li><a asp-area="Manage" asp-controller="MyProfile" asp-action="Index"><i class="fas fa-address-card"></i>My Profile</a></li>
+                                <li><a asp-area="manage" asp-controller="Message" asp-action="Index"><i class="fas fa-comments"></i>Message</a></li>
+                                <li><a asp-area="manage" asp-controller="MyProfile" asp-action="Index"><i class="fas fa-address-card"></i>My Profile</a></li>
                                 <li class="dropdown">
                                     <a href="javascript:void(0);"><i class="fas fa-cog"></i>Settings<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
-                                        <li><a asp-area="Manage" asp-controller="Setting" asp-action="WebsiteSettings">Website Settings</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Setting" asp-action="SystemSettings">System Settings</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Setting" asp-action="PaymentSettings">Payment Settings</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Setting" asp-action="SocialLogin">Social Logins</a></li>
+                                        <li><a asp-area="manage" asp-controller="Setting" asp-action="WebsiteSettings">Website Settings</a></li>
+                                        <li><a asp-area="manage" asp-controller="Setting" asp-action="SystemSettings">System Settings</a></li>
+                                        <li><a asp-area="manage" asp-controller="Setting" asp-action="PaymentSettings">Payment Settings</a></li>
+                                        <li><a asp-area="manage" asp-controller="Setting" asp-action="SocialLogin">Social Logins</a></li>
                                     </ul>
                                 </li>
                             </ul>

@@ -119,17 +119,17 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        //public async Task AddRoles()
-        //{
-        //    foreach (var item in Enum.GetValues(typeof(Roles)))
-        //    {
-        //        if (!await _roleManager.RoleExistsAsync(item.ToString()))
-        //        {
-        //            await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+        public async Task AddRoles()
+        {
+            foreach (var item in Enum.GetValues(typeof(Roles)))
+            {
+                if (!await _roleManager.RoleExistsAsync(item.ToString()))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
 
-        //        }
-        //    }
+                }
+            }
 
-        //}
+        }
     }
 }

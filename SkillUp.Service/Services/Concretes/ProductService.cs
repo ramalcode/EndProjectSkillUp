@@ -34,6 +34,7 @@ namespace SkillUp.Service.Services.Concretes
                 Name = productVM.Name,
                 InstructorId = instructorid,
                 Description = productVM.Description,
+                CreateDate = DateTime.Now,
                 ImageUrl = productVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "productimg")),
             };
             foreach (var item in categories)
@@ -54,8 +55,7 @@ namespace SkillUp.Service.Services.Concretes
         public async Task<ICollection<Product>> GetAllProductAsync()
         {
             var product = await _context.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
-               .Include(ap=>ap.AppUserProducts)
-                .ThenInclude(a=>a.AppUser).ToListAsync();
+               .Include(ap=>ap.AppUserProducts).ThenInclude(a=>a.AppUser).Include(p=>p.Instructor).ToListAsync();
             return product;
         }
 

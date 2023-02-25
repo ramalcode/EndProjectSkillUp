@@ -50,15 +50,15 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> AddNewCourseLectures(int id, CreateLectureVM lectureVM)
         {
-            ViewBag.Paragraph = new SelectList(await _paragraph.GetAllParagraphAsync(), nameof(Paragraph.Id), nameof(Paragraph.Name));
-
             if (lectureVM.Video != null)
             {
                 string result = lectureVM.Video.CheckValidate("video/", 50000);
                 if (result.Length > 0)
                 {
-                    ModelState.AddModelError("Preview", result);
+                    ModelState.AddModelError("Video", result);
                 }
+
+
             }
 
             await _lectureService.CreateLectureAsync(lectureVM,id);

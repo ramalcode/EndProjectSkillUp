@@ -5,7 +5,7 @@ namespace SkillUp.Entity.Entities.Relations.CourseExtraProperities
     public class Lecture : BaseNameableEntity
     {
 
-        public int Duration { get; set; }
+        public string Duration { get; set; }
 
         public string VideoUrl { get; set; }
 

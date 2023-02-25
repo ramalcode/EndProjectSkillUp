@@ -11,6 +11,7 @@ namespace SkillUp.Entity.Entities
         public string Description { get; set; }
         public string SKU { get; set; }
         public string ImageUrl { get; set; }
+        public DateTime CreateDate { get; set; }
         public bool IsActive { get; set; } = true;
 
         public string InstructorId { get; set; }
