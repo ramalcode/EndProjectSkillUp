@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
+using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities;
+using SkillUp.Entity.Entities.Settings;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 
@@ -16,8 +18,9 @@ namespace SkillUp.Web.Controllers
         readonly IProductService _productService;
         readonly IContactService _contactService;
         readonly IReviewCourseService _reviewCourseService;
+        readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ICourseService courseService, ICategoryService categoryService, IInstructorService instructorService, IProductService productService, IContactService contactService, IReviewCourseService reviewCourseService)
+        public HomeController(ICourseService courseService, ICategoryService categoryService, IInstructorService instructorService, IProductService productService, IContactService contactService, IReviewCourseService reviewCourseService, IUnitOfWork unitOfWork)
         {
             _courseService = courseService;
             _categoryService = categoryService;
@@ -25,6 +28,7 @@ namespace SkillUp.Web.Controllers
             _productService = productService;
             _contactService = contactService;
             _reviewCourseService = reviewCourseService;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<IActionResult> Index()
@@ -60,9 +64,10 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        public IActionResult FAQs()
+        public async Task<IActionResult> FAQs()
         {
-            return View();
+            var faqs = await _unitOfWork.GetRepository<Faq>().GetAllAsync();  
+            return View(faqs);
         }
 
     }

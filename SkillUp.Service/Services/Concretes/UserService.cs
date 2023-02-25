@@ -26,7 +26,7 @@ namespace SkillUp.Service.Services.Concretes
         public async Task<ICollection<AppUser>> GetAllUserAsync()
         {
             return await _context.AppUsers.Include(ac => ac.AppUserCourses).ThenInclude(c => c.Course).ThenInclude(i => i.Instructor)
-               .Include(ap => ap.AppUserProducts).ThenInclude(p => p.Product).ToListAsync();
+               .Include(ap => ap.AppUserProducts).ThenInclude(p => p.Product).ThenInclude(i=>i.Instructor).ToListAsync();
         }
 
         public async Task<AppUser> GetUserById(string id)

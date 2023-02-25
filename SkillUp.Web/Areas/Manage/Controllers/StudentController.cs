@@ -1,50 +1,105 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    //[Authorize(Roles ="Admin, SuperAdmin")]
     public class StudentController : Controller
     {
         readonly IUserService _userService;
         readonly UserManager<AppUser> _userManager;
+        readonly IWebHostEnvironment _env;
 
 
-        public StudentController(IUserService userService, UserManager<AppUser> userManager)
+        public StudentController(IUserService userService, UserManager<AppUser> userManager, IWebHostEnvironment env)
         {
             _userService = userService;
             _userManager = userManager;
+            _env = env;
         }
 
-        public async Task<IActionResult> ManageStudents()
+        public async Task<IActionResult> ManageStudents(string? query , int page = 1)
         {
-            var students = await _userService.GetAllUserAsync();
-            return View(students);
+            if (query!=null)
+            {
+                var student = await _userService.GetAllUserAsync();
+                var search = student.Where(c => c.UserName.Contains(query)).ToList();
+                IEnumerable<AppUser> paginationsearch = search.Skip((page - 1) * 4).Take(4);
+                PaginationVM<AppUser> searchpaginationVM = new PaginationVM<AppUser>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 4),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+            }
+            else
+            {
+                var students = await _userService.GetAllUserAsync();
+                IEnumerable<AppUser> pagination = students.Skip((page - 1) * 4).Take(4);
+                PaginationVM<AppUser> paginationVM = new PaginationVM<AppUser>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)students.Count / 4),
+                    CurrentPage = page,
+                    Items = pagination
+                };
+
+                return View(paginationVM);
+            }
         }
 
+        [Authorize(Roles ="SuperAdmin")]
         public async Task<IActionResult> DeleteStudent(string id)
         {
             await _userService.DeleteUserAsync(id);
             return RedirectToAction(nameof(ManageStudents));
         }
 
-
         public async Task<IActionResult> UpdateStudent(string id)
         {
-            return View();
+            var user = await _userService.UpdateUserById(id);
+            return View(user);
         }
 
+
+        [Authorize(Roles = "SuperAdmin")]
+        [HttpPost]
         public async Task<IActionResult> UpdateStudent(string id, UpdateUserVM userVM)
         {
-            return View();
+            AppUser user = new AppUser();
+            if (userVM.Image != null)
+            {
+                string imgresult = userVM.Image.CheckValidate("image/", 500);
+                if (imgresult.Length > 0)
+                {
+                    ModelState.AddModelError("Image", imgresult);
+                }
+
+                //user.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/userimg");
+                user.ImageUrl = userVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"));
+
+            }
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Login or Password is wrong");
+            }
+            var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
+            await _userService.UpdateUserAsync(id, userVM);
+            return RedirectToAction(nameof(ManageStudents));
         }
 
+        
         public async Task<IActionResult> UpgradeRole(string id)
         {
-            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var user = await _userService.GetUserById(id);
             var result = await _userManager.RemoveFromRoleAsync(user, "Student");
             if (result.Succeeded)
             {

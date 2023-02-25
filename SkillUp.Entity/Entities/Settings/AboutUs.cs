@@ -2,8 +2,9 @@
 
 namespace SkillUp.Entity.Entities.Settings
 {
-    public class AboutUs:BaseNameableEntity
+    public class AboutUs:BaseEntity
     {
-        public string SecondSection { get; set; }
+        public string Key { get; set; }
+        public string Value { get; set; }
     }
 }

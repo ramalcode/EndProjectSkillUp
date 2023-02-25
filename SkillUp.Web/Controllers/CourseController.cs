@@ -62,7 +62,7 @@ namespace SkillUp.Web.Controllers
             .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
              coursedetail.ViewCount ++ ;
              _appDbContext.SaveChanges();
-             return View(coursedetail);
+             return View();
         }
 
         [HttpPost]

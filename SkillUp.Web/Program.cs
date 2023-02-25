@@ -47,6 +47,8 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseStatusCodePagesWithReExecute("/Error/NotFound", "?code={0}");
+
 app.UseAuthentication();
 
 app.UseAuthorization();

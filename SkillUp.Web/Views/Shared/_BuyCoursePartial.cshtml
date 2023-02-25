@@ -38,7 +38,21 @@
                         <span>@Model.AppUserCourses.Count Students Enroll</span>
                     }
                 </li>
-                <li><i class="ti-time"></i>2 hour 30 min</li>
+               @* @{
+                    TimeSpan totalduration = new TimeSpan(0,0,0);
+                    @foreach (var paragraphs in Model.Paragraphs)
+                    {
+                        @foreach (var lectures in paragraphs.Lectures)
+                        {
+                            TimeSpan time = TimeSpan.ParseExact(lectures.Duration, @"h\hr\ mm\min\ ss\sec", null);
+                            totalduration = totalduration.Add(time);
+                        }
+                    }
+
+                    string duration = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", totalduration);
+                }
+
+                <li><i class="ti-time">@duration</i></li>*@
                 <li><i class="ti-bar-chart-alt"></i>Principiante</li>
                 <li><i class="ti-cup"></i>Certified</li>
             </ul>

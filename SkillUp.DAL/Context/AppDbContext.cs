@@ -34,6 +34,12 @@ namespace SkillUp.DAL.Context
         public DbSet<ContactUs> ContactsUs { get; set; }
 
 
+        //Page Info
+        public DbSet<Home> HomeInfos { get; set; }
+        public DbSet<AboutUs> Abouts{ get; set; }
+        public DbSet<Faq> Faqs{ get; set; }
+
+
         //ManyToMany Relations
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
         public DbSet<AppUserInstructor> AppUserInstructors { get; set; }

@@ -18,10 +18,38 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        public async Task<IActionResult> ManageInstructor()
+        public async Task<IActionResult> ManageInstructor(string? query , int page = 1)
         {
-            var instructors = await _instructorService.GetAllInstructorAsync();
-            return View(instructors);
+            if (query!=null)
+            {
+                var instructor = await _instructorService.GetAllInstructorAsync();
+                var search = instructor.Where(c => c.UserName.Contains(query)).ToList();
+                IEnumerable<Instructor> paginationsearch = search.Skip((page - 1) * 4).Take(4);
+                PaginationVM<Instructor> searchpaginationVM = new PaginationVM<Instructor>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 4),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+
+            }
+            else
+            {
+                var instructors = await _instructorService.GetAllInstructorAsync();
+                IEnumerable<Instructor> pagination = instructors.Skip((page - 1) * 4).Take(4);
+                PaginationVM<Instructor> paginationVM = new PaginationVM<Instructor>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)instructors.Count / 4),
+                    CurrentPage = page,
+                    Items = pagination
+                };
+
+                return View(paginationVM);
+            }
+           
         }
 
 

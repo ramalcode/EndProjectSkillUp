@@ -341,7 +341,6 @@
     <None Include="wwwroot\user\assets\css\plugins\themify.css" />
     <None Include="wwwroot\user\assets\css\styles.css" />
     <None Include="wwwroot\user\assets\img\01_preview.jpg" />
-    <None Include="wwwroot\user\assets\img\404.png" />
     <None Include="wwwroot\user\assets\img\app.png" />
     <None Include="wwwroot\user\assets\img\apple.png" />
     <None Include="wwwroot\user\assets\img\at-1.png" />
