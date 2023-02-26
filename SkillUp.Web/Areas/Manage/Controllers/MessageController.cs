@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillUp.DAL.UnitOfWorks;
+using SkillUp.Entity.Entities.Settings;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -7,11 +9,13 @@ namespace SkillUp.Web.Areas.Manage.Controllers
     public class MessageController : Controller
     {
         readonly IContactService _contactService;
+        readonly IUnitOfWork _unitOfWork;
 
 
-        public MessageController(IContactService contactService)
+        public MessageController(IContactService contactService, IUnitOfWork unitOfWork)
         {
             _contactService = contactService;
+            _unitOfWork = unitOfWork;
         }
 
 
@@ -28,6 +32,12 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         {
             await _contactService.DeleteMessageAsync(id);
             return RedirectToAction(nameof(Index)); 
+        }
+
+        public async Task<IActionResult> ReadMessage(int id)
+        {
+            await _contactService.ReadMessageAsync(id);
+            return RedirectToAction(nameof(Index));
         }
 
         

@@ -2,15 +2,13 @@
     ViewData["Title"] = "SystemSettings";
 }
 
-<!-- ============================ Dashboard: Dashboard Start ================================== -->
-<!-- Row -->
 <div class="row justify-content-between">
     <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
         <div class="dashboard_wrap d-flex align-items-center justify-content-between">
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-area="manage" asp-controller="dashboard" asp-action="index">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">System Settings</li>
                     </ol>
                 </nav>
@@ -18,7 +16,6 @@
         </div>
     </div>
 </div>
-<!-- /Row -->
 
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">

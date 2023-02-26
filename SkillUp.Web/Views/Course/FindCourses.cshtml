@@ -59,7 +59,7 @@
                                 </a>
                                 @foreach (var user in course.AppUserCourses)
                                     {
-                                        if (user.IsNotBuyed)
+                                        if (user.IsSold)
                                         {
                                              <div class="crs_video_ico">
                                                     <i class="fa fa-play"></i>
@@ -98,6 +98,7 @@
                                 <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id ="@course.Id" class="crs_title_link">@course.Name</a></h4></div>
                                 <div class="crs_info_detail">
                                     <ul>
+
                                         <li><i class="fa fa-clock text-danger"></i><span>Yazacam</span></li>
                                             <li><i class="fa fa-video text-success"></i><span>@course.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span></li>
                                     </ul>

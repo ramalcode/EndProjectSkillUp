@@ -62,7 +62,7 @@ namespace SkillUp.Web.Controllers
             .Include(i=>i.Instructor).Include(c=>c.CourseReviews).ThenInclude(u=>u.AppUser).FirstOrDefault(x=>x.Id == id);
              coursedetail.ViewCount ++ ;
              _appDbContext.SaveChanges();
-             return View();
+             return View(coursedetail);
         }
 
         [HttpPost]
@@ -71,7 +71,7 @@ namespace SkillUp.Web.Controllers
             string userid =  _userManager.GetUserId(HttpContext.User);
             if (!ModelState.IsValid) return View(review);
             AppUserCourse userCourse = new AppUserCourse();
-            if (userCourse.IsNotBuyed == false) await  _reviewcourseService.CreateReviewAsync(review, userid);
+             await  _reviewcourseService.CreateReviewAsync(review, userid);
             return RedirectToAction("Index", "Home");
         }
 

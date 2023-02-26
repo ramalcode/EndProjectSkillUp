@@ -47,5 +47,16 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.GetRepository<ContactUs>().DeleteAsync(id);  
             await _unitOfWork.SaveAsync();  
         }
+
+
+        //Read Message
+        public async Task<bool> ReadMessageAsync(int id)
+        {
+            var message =  _unitOfWork.GetRepository<ContactUs>().GetByIdAsync(id);
+            message.IsRead = true;
+            await _unitOfWork.GetRepository<ContactUs>().UpdateAsync(message);
+            await _unitOfWork.SaveAsync();
+            return true; 
+        }
     }
 }

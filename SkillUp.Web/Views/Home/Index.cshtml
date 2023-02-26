@@ -28,7 +28,7 @@
                         <div class="lios_item">
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
+                                    <a asp-controller="course" asp-action="coursedetail" class="crs_detail_link">
                                         <img style="width:350px; height:208px" src="~/user/assets/courseimg/@item.ImageUrl"  alt="" />
                                     </a>
                                     <div class="crs_video_ico">
@@ -68,10 +68,22 @@
                                     <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id ="@item.Id" class="crs_title_link">@item.Name</a></h4></div>
                                     <div class="crs_info_detail">
                                         <ul>
-                                            <li><i class="fa fa-clock text-danger"></i><span>Yazacam</span></li>
+                                            @{
+                                                TimeSpan totalduration = new TimeSpan(0, 0, 0);
+                                                @foreach (var paragraphs in item.Paragraphs)
+                                                {
+                                                    @foreach (var lectures in paragraphs.Lectures)
+                                                    {
+                                                        TimeSpan timeSpan = TimeSpan.ParseExact(lectures.Duration.Replace("hr ", ":").Replace("min ", ":").Replace("sec", ""), @"h\:m\:s", null);
+                                                        totalduration = totalduration.Add(timeSpan);
+                                                    }
+                                                }
+                                                string duration = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", totalduration);
+                                            }
                                             <li><i class="fa fa-video text-success"></i><span>
                                                  <span>@item.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span>
                                             </span></li>
+                                            <li><i class="fa fa-clock text-danger"></i><span>@duration</span></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -169,7 +181,12 @@
                                    <a asp-controller="Instructor" asp-action="InstructorDetail" asp-route-id="@instructor.Id" class="crs_trt_thum_link"><img src="~/user/assets/instructorimg/@instructor.ImageUrl" style="width:370px; height:200px" alt=""></a>
                                </div>
                                 <div class="crs_trt_caption large">
-                                    <div class="instructor_tag dark"><span>Sanskrit Teacher</span></div>
+                                    <div class="instructor_tag dark"><span>
+                                            @foreach (var profession in instructor.InstructorProfessions.Where(p => p.InstructorId == instructor.Id))
+                                            {
+                                                <span>@profession.Profession.Name</span>
+                                            }
+                                    </span></div>
                                     <div class="instructor_title"><h4><a href="instructor-detail.html">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
                                 </div>
                             </div>
@@ -202,24 +219,11 @@
             {
                 <div  class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="prd_grid_box">
-                        <div class="shd_142">
-                            <div class="prt_saveed_12lk">
-                                <label class="toggler toggler-danger"><input type="checkbox"><i class="fas fa-heart"></i></label>
-                            </div>
-                        </div>
                         <div class="prd_grid_thumb">
                             <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id"><img src="~/user/assets/productimg/@product.ImageUrl" class="img-fluid" alt=""></a>
                         </div>
                         <div class="prd_grid_caption">
                             <div class="prd_center_capt">
-                                <div class="prd_review">
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star filled"></i>
-                                    <i class="fa fa-star"></i>
-                                    <span>(34)</span>
-                                </div>
                                 <div class="prd_title"><h4><a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id">@product.Name</a></h4></div>
                                 <div class="prd_price_info">
                                     @if (product.DiscountPrice>0 && product.Price>0)
@@ -311,118 +315,4 @@
 <!-- ============================ Students Reviews End ================================== -->
 
 
-<!-- ============================ Article Start ================================== -->
-<section>
-    <div class="container">
-
-        <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8">
-                <div class="sec-heading center">
-                    <h2>Latest News & <span class="theme-cl">Articles</span></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-
-            <!-- Single Item -->
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                <div class="blg_grid_box">
-                    <div class="blg_grid_thumb">
-                        <a href="blog-detail.html"><img src="https://via.placeholder.com/1200x800" class="img-fluid" alt="" /></a>
-                    </div>
-                    <div class="blg_grid_caption">
-                        <div class="blg_tag"><span>Marketing</span></div>
-                        <div class="blg_title"><h4><a href="blog-detail.html">How To Register & Enrolled on SkillUp Step by Step?</a></h4></div>
-                        <div class="blg_desc"><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p></div>
-                    </div>
-                    <div class="crs_grid_foot">
-                        <div class="crs_flex">
-                            <div class="crs_fl_first">
-                                <div class="crs_tutor">
-                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                </div>
-                            </div>
-                            <div class="crs_fl_last">
-                                <div class="foot_list_info">
-                                    <ul>
-                                        <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
-                                        <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">10 July 2021</div></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Item -->
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                <div class="blg_grid_box">
-                    <div class="blg_grid_thumb">
-                        <a href="blog-detail.html"><img src="https://via.placeholder.com/1200x800" class="img-fluid" alt="" /></a>
-                    </div>
-                    <div class="blg_grid_caption">
-                        <div class="blg_tag"><span>Business</span></div>
-                        <div class="blg_title"><h4><a href="blog-detail.html">Let's Know How Skillup Work Fast and Secure?</a></h4></div>
-                        <div class="blg_desc"><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p></div>
-                    </div>
-                    <div class="crs_grid_foot">
-                        <div class="crs_flex">
-                            <div class="crs_fl_first">
-                                <div class="crs_tutor">
-                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                </div>
-                            </div>
-                            <div class="crs_fl_last">
-                                <div class="foot_list_info">
-                                    <ul>
-                                        <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
-                                        <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">10 July 2021</div></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Single Item -->
-            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
-                <div class="blg_grid_box">
-                    <div class="blg_grid_thumb">
-                        <a href="blog-detail.html"><img src="https://via.placeholder.com/1200x800" class="img-fluid" alt="" /></a>
-                    </div>
-                    <div class="blg_grid_caption">
-                        <div class="blg_tag"><span>Accounting</span></div>
-                        <div class="blg_title"><h4><a href="blog-detail.html">How To Improove Digital Marketing for Fast SEO</a></h4></div>
-                        <div class="blg_desc"><p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum</p></div>
-                    </div>
-                    <div class="crs_grid_foot">
-                        <div class="crs_flex">
-                            <div class="crs_fl_first">
-                                <div class="crs_tutor">
-                                    <div class="crs_tutor_thumb"><a href="instructor-detail.html"><img src="https://via.placeholder.com/500x500" class="img-fluid circle" alt="" /></a></div>
-                                </div>
-                            </div>
-                            <div class="crs_fl_last">
-                                <div class="foot_list_info">
-                                    <ul>
-                                        <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">10k Views</div></li>
-                                        <li><div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div><div class="elsio_tx">10 July 2021</div></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-<div class="clearfix"></div>
-<!-- ============================ Article End ================================== -->
 

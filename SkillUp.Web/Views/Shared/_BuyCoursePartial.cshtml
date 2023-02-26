@@ -10,11 +10,15 @@
         <div class="ed_view_price pl-3">
             <span>Acctual Price</span>
             <h2 class="theme-cl">
-                @if (Model.Price > 0)
+                @if (Model.DiscountPrice > 0)
                 {
-                    <h2 class="theme-cl">$@Model.Price</h2>
+                    <h2 class="theme-cl">$@Model.DiscountPrice</h2>
                 }
-                else
+                @if (Model.DiscountPrice == 0 && Model.Price>0)
+                {
+                    <h2 class="theme-cl">$@Model.DiscountPrice</h2>
+                }
+                @if (Model.DiscountPrice == 0 && Model.Price == 0)
                 {
                     <h2 class="theme-cl">Free</h2>
                 }
@@ -38,31 +42,34 @@
                         <span>@Model.AppUserCourses.Count Students Enroll</span>
                     }
                 </li>
-               @* @{
+                @{
                     TimeSpan totalduration = new TimeSpan(0,0,0);
                     @foreach (var paragraphs in Model.Paragraphs)
                     {
                         @foreach (var lectures in paragraphs.Lectures)
                         {
-                            TimeSpan time = TimeSpan.ParseExact(lectures.Duration, @"h\hr\ mm\min\ ss\sec", null);
-                            totalduration = totalduration.Add(time);
+                            TimeSpan timeSpan = TimeSpan.ParseExact(lectures.Duration.Replace("hr ", ":").Replace("min ", ":").Replace("sec", ""), @"h\:m\:s", null);
+                            totalduration = totalduration.Add(timeSpan);
                         }
                     }
-
                     string duration = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", totalduration);
                 }
 
-                <li><i class="ti-time">@duration</i></li>*@
+                <li><i class="ti-time"></i>@duration</li>
                 <li><i class="ti-bar-chart-alt"></i>Principiante</li>
                 <li><i class="ti-cup"></i>Certified</li>
             </ul>
         </div>
         <div class="ed_view_link">
             
-            @if (!Model.AppUserCourses.Any(a=>a.AppUser.UserName == User.Identity.Name))
+            @*@if (!Model.AppUserCourses.Any(a=>a.AppUser.UserName == User.Identity.Name))
             {
               <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
                 
+            }*@
+            @if (!(Model.Price == 0 && Model.DiscountPrice == 0) || (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name)))
+            {
+                <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
             }
         </div>
     </div>

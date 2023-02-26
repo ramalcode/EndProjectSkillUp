@@ -1,8 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
+using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
+using SkillUp.Entity.Entities.Relations.InstructorExtraProperities;
+using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
+using SkillUp.Service.Services.Abstractions;
+using SkillUp.Service.Services.Concretes;
+using Stripe;
 
 namespace SkillUp.Web.Controllers
 {
@@ -11,19 +20,22 @@ namespace SkillUp.Web.Controllers
         readonly UserManager<Instructor> _userManager;
         readonly SignInManager<Instructor> _signInManager;
         readonly RoleManager<IdentityRole> _roleManager;
+        readonly AppDbContext _context;
         readonly IWebHostEnvironment _env;
 
 
-        public AccountInstructorController(UserManager<Instructor> userManager, SignInManager<Instructor> signInManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env)
+        public AccountInstructorController(UserManager<Instructor> userManager, SignInManager<Instructor> signInManager, RoleManager<IdentityRole> roleManager, IWebHostEnvironment env, AppDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             _env = env;
+            _context = context;
         }
 
         public IActionResult SignUp()
         {
+            ViewBag.Professions = new SelectList(_context.Professions, nameof(Profession.Id), nameof(Profession.Name));
             return View();
         }
 
@@ -47,7 +59,11 @@ namespace SkillUp.Web.Controllers
                     ModelState.AddModelError("Preview", previewresult);
                 }
             }
-            if (!ModelState.IsValid) return View(registerVM);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Professions = new SelectList(_context.Professions, nameof(Profession.Id), nameof(Profession.Name));
+                return View(registerVM);
+            }
             Instructor user = await _userManager.FindByNameAsync(registerVM.UserName);
             if (user is not null)
             {
@@ -68,9 +84,12 @@ namespace SkillUp.Web.Controllers
                 Experince = registerVM.Experience,
                 ImageUrl = registerVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorimg")),
                 PreviewVideoUrl = registerVM.Preview.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorpreview")),
-
             };
-
+            var professions = _context.Professions.Where(p => registerVM.ProfessionIds.Contains(p.Id));
+            foreach (var item in professions)
+            {
+                _context.InstructorProfessions.Add(new InstructorProfession { Instructor = user, ProfessionId = item.Id });
+            }
 
             var result = await _userManager.CreateAsync(user, registerVM.Password);
 

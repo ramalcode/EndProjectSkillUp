@@ -24,7 +24,8 @@ namespace SkillUp.Service.Services.Concretes
             AppUserCourse userCourse = new AppUserCourse
             {
                 AppUserId = studentVM.AppUserId,
-                CourseId = studentVM.CourseId,  
+                CourseId = studentVM.CourseId,
+                IsSold = false
             };
             await _unitOfWork.GetRepository<AppUserCourse>().AddAsync(userCourse);
             await _unitOfWork.SaveAsync();

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ike+lia0Y9GQBnvY4XN0GFomvLXSM5Zgmv+/B/8c6D4=",
+  "Hash": "eIN39lRRwGQU5sOma+SJpPGwq9JhA+rfTEgr+Wx5osI=",
   "Source": "SkillUp.Web",
   "BasePath": "_content/SkillUp.Web",
   "Mode": "Default",
@@ -119,6 +119,40 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\34714fd3-1a7b-4f8e-9117-daf8c34034d82.jfif"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\52bd377e-a9f4-46ac-b10b-c459fa9f3d152.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/courseimg/52bd377e-a9f4-46ac-b10b-c459fa9f3d152.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\52bd377e-a9f4-46ac-b10b-c459fa9f3d152.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\5829ddc4-c342-47ec-814a-d47afaa5286f33.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/courseimg/5829ddc4-c342-47ec-814a-d47afaa5286f33.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\5829ddc4-c342-47ec-814a-d47afaa5286f33.jfif"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\71b3b407-8a10-4b02-bc7b-addea1fb3cf233.jfif",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -151,6 +185,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\8a6fe55b-6d27-4560-a45f-5e32d958ef7dflower.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\9cfea342-7701-4769-a7a7-a996105ce69233.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/courseimg/9cfea342-7701-4769-a7a7-a996105ce69233.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\9cfea342-7701-4769-a7a7-a996105ce69233.jfif"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\a0a9c548-6c29-464b-b176-e4628de65c9b2.jfif",
@@ -187,6 +238,23 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\a2bd401b-c8c4-4daa-b876-3d8fa1b498a6cr-1.jpg"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\b01cb995-fa72-4464-a51c-aaaa3539cc0133.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/courseimg/b01cb995-fa72-4464-a51c-aaaa3539cc0133.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\b01cb995-fa72-4464-a51c-aaaa3539cc0133.jfif"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\d87a1fc7-860d-4346-9cfb-9e9de23a80f833.jfif",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -202,23 +270,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\d87a1fc7-860d-4346-9cfb-9e9de23a80f833.jfif"
-    },
-    {
-      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\dbbb2c56-f319-4dc0-a7f0-bea83fd3015933.jfif",
-      "SourceId": "SkillUp.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
-      "BasePath": "_content/SkillUp.Web",
-      "RelativePath": "user/assets/courseimg/dbbb2c56-f319-4dc0-a7f0-bea83fd3015933.jfif",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\user\\assets\\courseimg\\dbbb2c56-f319-4dc0-a7f0-bea83fd3015933.jfif"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\courseimg\\ea509485-c948-4c91-aeab-34fa83df8449cr-1.jpg",
@@ -406,6 +457,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\coursepreview\\146338e8-5357-4c0d-bce6-b6978870ff3dHTML1.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursepreview\\1c832b65-38b1-4f46-a4b7-07bf26aa8511HTML1.mp4",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/coursepreview/1c832b65-38b1-4f46-a4b7-07bf26aa8511HTML1.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\coursepreview\\1c832b65-38b1-4f46-a4b7-07bf26aa8511HTML1.mp4"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursepreview\\1d49b5ca-c290-44c9-a7c8-745dac5ed3a8HTML1.mp4",
@@ -1105,6 +1173,23 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\coursepreview\\caaf653b-a6a3-44e0-b76b-8e697c7690e2HTML1.mp4"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursepreview\\cc22a61c-8f07-4cf3-ac12-c5c1a32d6b93HTML1.mp4",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/coursepreview/cc22a61c-8f07-4cf3-ac12-c5c1a32d6b93HTML1.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\coursepreview\\cc22a61c-8f07-4cf3-ac12-c5c1a32d6b93HTML1.mp4"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursepreview\\cda08ef2-864a-4457-bf77-76b16445357bsample-mp4-file-small.mp4",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -1596,6 +1681,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\coursevideo\\3dfeaec9-ce40-40a0-a0de-bda4a4291906file_example_MP4_480_1_5MG.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursevideo\\3f3a3345-75d5-400d-9b74-53c7c9e860f9HTML1.mp4",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/coursevideo/3f3a3345-75d5-400d-9b74-53c7c9e860f9HTML1.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\coursevideo\\3f3a3345-75d5-400d-9b74-53c7c9e860f9HTML1.mp4"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\coursevideo\\450ec2ec-ae2c-42fb-bc52-18341efb3a8bHTML1.mp4",
@@ -6494,6 +6596,23 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\instructorimg\\2d532e39-8621-4eaf-95ba-ed271494aa021.jfif"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\461c0889-3064-4f95-bb00-c98374b13a6c33.jfif",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/instructorimg/461c0889-3064-4f95-bb00-c98374b13a6c33.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\instructorimg\\461c0889-3064-4f95-bb00-c98374b13a6c33.jfif"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\4f22eeba-83ef-4449-994e-35821cd999091.jfif",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -6849,6 +6968,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\instructorpreview\\b124e407-9ac7-4556-bf30-b977dcd0d7afHTML1.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorpreview\\b5a58b11-74a2-47f0-b30f-bad3e1c52fd1HTML1.mp4",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/instructorpreview/b5a58b11-74a2-47f0-b30f-bad3e1c52fd1HTML1.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\instructorpreview\\b5a58b11-74a2-47f0-b30f-bad3e1c52fd1HTML1.mp4"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorpreview\\ca378803-4246-40e9-98c9-b38bc811cff3HTML1.mp4",

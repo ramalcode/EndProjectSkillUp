@@ -77,6 +77,13 @@
                                     <input asp-for="TwitterUrl" type="url" class="form-control" placeholder="Twitter" />
                                     <span asp-validation-for="TwitterUrl" class="text-danger"></span>
                                 </div>
+                                 <div class="form-group smalls">
+                                        <label>Profession*</label>
+                                        <div class="simple-input">
+                                            <select asp-for="ProfessionIds" asp-items="@ViewBag.Professions" id="cates" class="form-control" >
+                                            </select>
+                                        </div>
+                                    </div>
                                 <div class="form-group smalls">
                                     <label asp-for="Image">Add Your Photo</label>
                                     <div class="custom-file">

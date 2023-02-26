@@ -62,9 +62,9 @@
             @{
                  double price = 0;
              }
-             @foreach (var courseamount in Model.Courses)
+             @foreach (var course in Model.Courses)
              {
-                 price += courseamount.Price * courseamount.AppUserCourses.Count;
+                price += course.Price * course.AppUserCourses.Where(c => c.IsSold).ToList().Count;
              }
             @(price.ToString("#,##0.00"))
             </h4> <span>Course Total Amount</span></div>

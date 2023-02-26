@@ -21,7 +21,7 @@ namespace SkillUp.Service.Services.Concretes
         //GetAll Instructor
         public async Task<ICollection<Instructor>> GetAllInstructorAsync()
         {
-            return await _context.Instructors.Include(c=>c.Courses).ToListAsync();
+            return await _context.Instructors.Include(c=>c.Courses).Include(ip=>ip.InstructorProfessions).ThenInclude(p=>p.Profession).ToListAsync();
         }
 
 
@@ -33,7 +33,8 @@ namespace SkillUp.Service.Services.Concretes
                 .ThenInclude(c => c.CourseCategories).ThenInclude(c => c.Category).
                 Include(c => c.Courses).ThenInclude(p => p.Paragraphs).ThenInclude(l=>l.Lectures).
                 Include(p => p.Products).Include(ia => ia.AppUserInstructors).ThenInclude(a => a.AppUser).Include(p => p.Products).ThenInclude(pc => pc.ProductCategories)
-                .ThenInclude(c=>c.Category).Include(p=>p.Products).ThenInclude(ap=>ap.AppUserProducts).FirstOrDefaultAsync(i=>i.Id == id);
+                .ThenInclude(c=>c.Category).Include(p=>p.Products).ThenInclude(ap=>ap.AppUserProducts).Include(cr=>cr.Courses).ThenInclude(c=>c.CourseReviews).ThenInclude(u=>u.AppUser)
+                .FirstOrDefaultAsync(i=>i.Id == id);
         }
 
 

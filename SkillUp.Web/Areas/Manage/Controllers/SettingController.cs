@@ -1,26 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SkillUp.DAL.Context;
+using SkillUp.Entity.Entities.Settings;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
     public class SettingController : Controller
     {
-        public IActionResult WebsiteSettings()
+        readonly AppDbContext _context;
+
+        public SettingController(AppDbContext context)
         {
-            return View();
+            _context = context;
         }
+
+        //public IActionResult WebsiteSettings()
+        //{
+            
+        //}
+
+        //[HttpPost]
+        //public IActionResult WebsiteSettings()
+        //{
+           
+        //}
 
 
         public IActionResult SystemSettings()
         {
+           
             return View();
         }
 
-
-        public IActionResult PaymentSettings()
-        {
-            return View();
-        }
 
       
     }

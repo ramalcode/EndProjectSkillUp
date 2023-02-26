@@ -42,19 +42,19 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 return View();
             }
             if (studentVM is null) return NotFound();
-            var student = await _context.AppUsers.Include(u=>u.AppUserCourses).ThenInclude(c=>c.Course).FirstOrDefaultAsync(u=>u.Id == studentVM.AppUserId);
+            var student = await _context.AppUsers.Include(u => u.AppUserCourses).ThenInclude(c => c.Course).FirstOrDefaultAsync(u => u.Id == studentVM.AppUserId);
             foreach (var studentcourse in student.AppUserCourses)
             {
                 if (studentcourse.Course.Id == studentVM.CourseId)
                 {
                     ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
                     ViewBag.Courses = new SelectList(await _courseService.GetAllCourseAsync(), nameof(Course.Id), nameof(Course.Name));
-                    ModelState.AddModelError("", "Bu kurs movcuddur.");
+                    ModelState.AddModelError("", $"{student.Name} has {studentcourse.Course.Name} course");
                     return View(studentVM);
                 }
-                
+
             }
-                await _enrollService.EnrollStudentAsync(studentVM);
+            await _enrollService.EnrollStudentAsync(studentVM);
             return RedirectToAction(nameof(EnrollCourse));
         }
 
@@ -71,9 +71,22 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
-                ViewBag.Products = new SelectList(await _productService.GetAllProductAsync(), nameof(Product.Id), nameof(Product.Name)); return View();
+                ViewBag.Products = new SelectList(await _productService.GetAllProductAsync(), nameof(Product.Id), nameof(Product.Name)); 
+                return View(productVM);
             }
             if (productVM is null) return NotFound();
+            var student = await _context.AppUsers.Include(u => u.AppUserProducts).ThenInclude(c => c.Product).FirstOrDefaultAsync(u => u.Id == productVM.AppUserId);
+            foreach (var studentproduct in student.AppUserProducts)
+            {
+                if (studentproduct.Product.Id == productVM.ProductId)
+                {
+                    ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
+                    ViewBag.Products = new SelectList(await _productService.GetAllProductAsync(), nameof(Course.Id), nameof(Course.Name));
+                    ModelState.AddModelError("", $"{student.Name} has {studentproduct.Product.Name} product");
+                    return View(productVM);
+                }
+
+            }
             await _enrollService.EnrollProductAsync(productVM);
             return RedirectToAction(nameof(EnrollProduct));
         }

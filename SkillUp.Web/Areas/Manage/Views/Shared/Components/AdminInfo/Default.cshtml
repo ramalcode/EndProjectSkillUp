@@ -15,7 +15,7 @@
                 <div class="nav-menus-wrapper" style="transition-property: none;">
                     <ul class="nav-menu">
 
-                        <li class="active"><a asp-area="Default" asp-controller="Home" asp-action="Index">Back To Home</a></li>
+                        <li class="active"><a asp-area="Default" asp-controller="home" asp-action="index">Back To Home</a></li>
 
                     </ul>
 
@@ -44,17 +44,21 @@
                                 <div class="ground-list ground-hover-list">
                                     @foreach (var message in Model.Contacts.OrderByDescending(m=>m.CreateDate))
                                     {
-                                        <div class="ground ground-list-single">
-                                        <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
-                                            <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
-                                        </div>
+                                        if (message.IsRead==false)
+                                        {
+                                            <div class="ground ground-list-single">
+                                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
+                                                <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
+                                            </div>
 
-                                        <div class="ground-content">
-                                            <h6><a href="#">@(message.Name + " " + message.Surname)</a></h6>
-                                            <small class="text-fade">@message.Message</small>
-                                            <span class="small">@message.CreateDate</span>
+                                            <div class="ground-content">
+                                                <h6><a href="#">@(message.Name + " " + message.Surname)</a></h6>
+                                                <small class="text-fade">@message.Message</small>
+                                                <span class="small">@message.CreateDate</span>
+                                            </div>
                                         </div>
-                                    </div>
+                                            
+                                        }
                                     }
                                 </div>
                             </div>
@@ -157,6 +161,7 @@
                                     <a href="javascript:void(0);"><i class="fas fa-toolbox"></i>Instructors<span class="ti-angle-left"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li><a asp-area="manage" asp-controller="Instructor" asp-action="ManageInstructor">Manage Instructors</a></li>
+                                        <li><a asp-area="manage" asp-controller="profession" asp-action="instructorprofession">Instructor Professions</a></li>
                                     </ul>
                                 </li>
                                 <li class="dropdown">

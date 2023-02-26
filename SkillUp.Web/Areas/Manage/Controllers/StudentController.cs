@@ -14,14 +14,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
     {
         readonly IUserService _userService;
         readonly UserManager<AppUser> _userManager;
+        readonly SignInManager<AppUser> _signInManager; 
         readonly IWebHostEnvironment _env;
 
 
-        public StudentController(IUserService userService, UserManager<AppUser> userManager, IWebHostEnvironment env)
+        public StudentController(IUserService userService, UserManager<AppUser> userManager, IWebHostEnvironment env, SignInManager<AppUser> signInManager)
         {
             _userService = userService;
             _userManager = userManager;
             _env = env;
+            _signInManager = signInManager;
         }
 
         public async Task<IActionResult> ManageStudents(string? query , int page = 1)
@@ -74,7 +76,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateStudent(string id, UpdateUserVM userVM)
         {
-            AppUser user = new AppUser();
+            AppUser user = await _userManager.FindByIdAsync(id);
             if (userVM.Image != null)
             {
                 string imgresult = userVM.Image.CheckValidate("image/", 500);
@@ -92,6 +94,22 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                 ModelState.AddModelError("", "Login or Password is wrong");
             }
             var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    if (error.Code == "PasswordMismatch")
+                    {
+                        ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+                
+            }
+
             await _userService.UpdateUserAsync(id, userVM);
             return RedirectToAction(nameof(ManageStudents));
         }

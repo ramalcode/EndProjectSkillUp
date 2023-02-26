@@ -75,7 +75,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(int id,UpdateCourseVM courseVM )
         {
-            Course course = new Course();
+            Course course = await _courseService.GetCourseById(id);
 
             if (courseVM.Image != null)
             {
@@ -85,7 +85,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                     ModelState.AddModelError("Image", result);
                 }
 
-                //course.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/courseimg");
+                course.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/courseimg");
                 course.ImageUrl = courseVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "courseimg"));
 
             }

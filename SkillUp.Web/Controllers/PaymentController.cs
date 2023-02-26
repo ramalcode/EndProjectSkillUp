@@ -86,27 +86,48 @@ namespace SkillUp.Web.Controllers
             var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
             string userid = _userManager.GetUserId(HttpContext.User);
             AppUser user = await _userService.GetUserById(userid);
-            
-            if (user.Wallet > course.Price * 100)
+            if (course.DiscountPrice==0)
             {
-                AppUserCourse userCourse = new AppUserCourse
+                if (user.Wallet > course.Price * 100)
                 {
-                    AppUserId = user.Id,
-                    CourseId = id,
-                    IsNotBuyed = false,
-                };
+                    AppUserCourse userCourse = new AppUserCourse
+                    {
+                        AppUserId = user.Id,
+                        CourseId = id,
+                        IsSold = true,
+                    };
 
-                user.Wallet = user.Wallet - course.Price * 100;
+                    user.Wallet = user.Wallet - course.Price * 100;
 
-                Instructor instructor = await _appDbContext.Instructors.Include(i=>i.Courses).FirstOrDefaultAsync(i=>i.Id == course.InstructorId);
+                    Instructor instructor = await _appDbContext.Instructors.Include(i => i.Courses).FirstOrDefaultAsync(i => i.Id == course.InstructorId);
 
-                instructor.Wallet = instructor.Wallet + (course.Price * 100)*0.75; 
+                    instructor.Wallet = instructor.Wallet + (course.Price * 100) * 0.75;
 
-                await _appDbContext.AddAsync(userCourse);
-                await _appDbContext.SaveChangesAsync();
+                    await _appDbContext.AddAsync(userCourse);
+                }
             }
+            else
+            {
+                if (user.Wallet > course.DiscountPrice * 100)
+                {
+                    AppUserCourse userCourse = new AppUserCourse
+                    {
+                        AppUserId = user.Id,
+                        CourseId = id,
+                        IsSold = true,
+                    };
 
-            return RedirectToAction("CourseDetail" ,"Course");
+                    user.Wallet = user.Wallet - course.DiscountPrice * 100;
+
+                    Instructor instructor = await _appDbContext.Instructors.Include(i => i.Courses).FirstOrDefaultAsync(i => i.Id == course.InstructorId);
+
+                    instructor.Wallet = instructor.Wallet + (course.DiscountPrice * 100) * 0.75;
+
+                    await _appDbContext.AddAsync(userCourse);
+                }   
+            }
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction("Index" ,"Home");
 
         }
 

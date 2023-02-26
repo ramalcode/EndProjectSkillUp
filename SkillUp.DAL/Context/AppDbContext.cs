@@ -38,6 +38,7 @@ namespace SkillUp.DAL.Context
         public DbSet<Home> HomeInfos { get; set; }
         public DbSet<AboutUs> Abouts{ get; set; }
         public DbSet<Faq> Faqs{ get; set; }
+        public DbSet<ContactInfo> ContactInfos{ get; set; }
 
 
         //ManyToMany Relations

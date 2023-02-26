@@ -37,6 +37,8 @@ namespace SkillUp.Entity.ViewModels
         [Required]
         public IFormFile Preview { get; set; }
 
+        public List<int> ProfessionIds { get; set; }
+
         [Required, DataType(DataType.Password)]
         public string Password { get; set; }
 

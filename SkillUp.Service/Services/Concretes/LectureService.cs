@@ -56,6 +56,8 @@ namespace SkillUp.Service.Services.Concretes
         {
             var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
             lecture.Name = lectureVM.Name;
+            lecture.Duration = lectureVM.Duration;
+            lecture.VideoUrl = lectureVM.VideoUrl;
             await _unitOfWork.GetRepository<Lecture>().UpdateAsync(lecture);
             await _unitOfWork.SaveAsync();
             return true;    

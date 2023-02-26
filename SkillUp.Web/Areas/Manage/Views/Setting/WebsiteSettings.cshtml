@@ -1,16 +1,14 @@
 ﻿@{
     ViewData["Title"] = "WebsiteSettings";
 }
-
-<!-- ============================ Dashboard: Dashboard Start ================================== -->
-<!-- Row -->
+@model Dictionary<string,string>
 <div class="row justify-content-between">
     <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
         <div class="dashboard_wrap d-flex align-items-center justify-content-between">
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-area="manage" asp-controller="dashboard" asp-action="index">Home</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Website Settings</li>
                     </ol>
                 </nav>
@@ -18,7 +16,6 @@
         </div>
     </div>
 </div>
-<!-- /Row -->
 
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12">
@@ -32,96 +29,72 @@
 
             <div class="row justify-content-center">
                 <div class="col-xl-12 col-lg-12 col-md-12">
-                    <form>
+                    <form method="post" asp-controller="setting" asp-action="websitesettings">
                         <div class="form-group smalls">
-                            <label>Banner Name*</label>
-                            <input type="text" class="form-control" placeholder="Best Education Place" />
+                            <label>Banner Name</label>
+                            <input asp-for="@Model[" BannerSubTitle"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model[" BannerSubTitle"]"></span>
                         </div>
                         <div class="form-group smalls">
                             <label>Banner Sub Title*</label>
-                            <input type="text" class="form-control" placeholder="At vero eos et accusamus et iusto odio dignissimos" />
+                            <input asp-for="@Model["BannerSubTitle"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["BannerSubTitle"]"></span>
                         </div>
                         <div class="form-group smalls">
-                            <label>Banner Policy</label>
-                            <textarea class="form-control summernote"></textarea>
+                            <label>Banner Second Title*</label>
+                            <input asp-for="@Model["BannerSecondTitle"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["BannerSecondTitle"]"></span>
                         </div>
                         <div class="form-group smalls">
-                            <label>About Us</label>
-                            <textarea class="form-control summernote"></textarea>
+                            <label>Banner Description*</label>
+                            <input asp-for="@Model["BannerDescription"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["BannerDescription"]"></span>
                         </div>
                         <div class="form-group smalls">
-                            <label>Terms & Conditions</label>
-                            <textarea class="form-control summernote"></textarea>
+                            <label>Courses Info*</label>
+                            <input asp-for="@Model["MainInfo1"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["MainInfo1"]"></span>
                         </div>
                         <div class="form-group smalls">
-                            <label>Privacy Policy</label>
-                            <textarea class="form-control summernote"></textarea>
+                            <label>Access Info*</label>
+                            <input asp-for="@Model["MainInfo2"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["MainInfo2"]"></span>
                         </div>
                         <div class="form-group smalls">
-                            <button class="btn theme-bg text-white" type="button">Save Change</button>
+                            <label>Enrolled Info*</label>
+                            <input asp-for="@Model["MainInfo3"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["BannerSubTitle"]"></span>
+                        </div>
+                        <div class="form-group smalls">
+                            <label>How IT Works*</label>
+                            <input asp-for="@Model["HowITWorks"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["MainInfo3"]"></span>
+                        </div>
+                        <div class="form-group smalls">
+                            <label>Find Courses Description*</label>
+                            <input asp-for="@Model["MainInfo3"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["MainInfo3"]"></span>
+                        </div>
+                        <div class="form-group smalls">
+                            <label>Watch Courses Lecture Description*</label>
+                            <input asp-for="@Model["Watch Course Lecture"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["Watch Course Lecture"]"></span>
+                        </div>
+                        <div class="form-group smalls">
+                            <label> Get Certificate Description*</label>
+                            <input asp-for="@Model["Get Certificate"]" type="text" class="form-control" />
+                            <span asp-validation-for="@Model["Get Certificate"]"></span>
+                        </div>
+                        <div class="form-group smalls">
+                            <button class="btn theme-bg text-white" type="submit">Save Change</button>
                         </div>
                     </form>
                 </div>
             </div>
-
         </div>
-
-        <div class="dashboard_wrap">
-
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 mb-4">
-                    <h6 class="m-0">Logo & Banners</h6>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-xl-12 col-lg-12 col-md-12">
-                    <form>
-                        <div class="form-group smalls">
-                            <label>Banner Image*</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="bimage">
-                                <label class="custom-file-label" for="bimage">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="form-group smalls">
-                            <label>Logo*</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="logo">
-                                <label class="custom-file-label" for="logo">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="form-group smalls">
-                            <label>Light Logo*</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="llogo">
-                                <label class="custom-file-label" for="llogo">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="form-group smalls">
-                            <label>Favicon*</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="favi">
-                                <label class="custom-file-label" for="favi">Choose file</label>
-                            </div>
-                        </div>
-                        <div class="form-group smalls">
-                            <button class="btn theme-bg text-white" type="button">Save Change</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-        </div>
-
     </div>
 </div>
-
-
 </div>
-
 </div>
-
 </div>
 </section>
-<!-- ============================ Dashboard: Dashboard End ================================== -->
