@@ -97,19 +97,24 @@
             <div class="ground-list ground-hover-list">
                 @foreach (var courses in Model.Instructor.Courses)
                 {
-                    @foreach (var notifications in courses.CourseReviews)
+                    @foreach (var notifications in courses.CourseReviews.OrderByDescending(r=>r.ReviewDate).Take(5))
                     {
-                      <div class="ground ground-list-single">
-                        <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
-                            <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
-                        </div>
+                        if (notifications.Status == false)
+                        {
+                          <div class="ground ground-list-single">
+                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
+                                <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
+                            </div>
 
-                        <div class="ground-content">
-                            <h6><a href="#">@(notifications.AppUser.Name + "-" + notifications.AppUser.Surname)</a></h6>
-                            <small class="text-fade">@(notifications.ReviewContent + " " + courses.Name) </small>
-                            <span class="small">@notifications.ReviewDate</span>
-                        </div>
-                      </div>  
+                            <div class="ground-content">
+                                <h6><a href="#">@(notifications.AppUser.Name + " " + notifications.AppUser.Surname)</a></h6>
+                                <small class="text-fade">@(notifications.ReviewContent) </small><br>
+                                    <small class="text-fade">Coure : <b>@courses.Name </b></small>
+                                <span class="small">@notifications.ReviewDate</span>
+                            </div>
+                          </div>  
+                            
+                        }
                         
                     }
                 }
@@ -119,11 +124,9 @@
     </div>
 
 </div>
-<!-- /Row -->
                         </div>
 
                     </div>
 
                 </div>
             </section>
-<!-- ============================ Dashboard: Dashboard End ================================== -->

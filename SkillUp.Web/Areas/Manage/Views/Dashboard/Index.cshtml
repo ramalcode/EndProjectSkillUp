@@ -120,19 +120,24 @@
                 <h6><a class="text-success" asp-controller="Message" asp-action="Index"> Show All...</a></h6>
             </div>
             <div class="ground-list ground-hover-list">
+                
                 @foreach (var contact in Model.Contacts.OrderByDescending(c=>c.CreateDate))
                 {
-                 <div class="ground ground-list-single">
-                    <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
-                        <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
-                    </div>
+                    if (contact.IsRead == false)
+                    {
+                         <div class="ground ground-list-single">
+                            <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-light-success">
+                                <div class="position-absolute text-success h5 mb-0"><i class="fas fa-user"></i></div>
+                            </div>
 
-                    <div class="ground-content">
-                        <h6><a href="#">@(contact.Name + " " +contact.Surname)</a></h6>
-                        <small class="text-fade">@contact.Message</small>
-                        <span class="small">@contact.CreateDate</span>
-                    </div>
-                </div>
+                            <div class="ground-content">
+                                <h6><a href="#">@(contact.Name + " " +contact.Surname)</a></h6>
+                                <small class="text-fade">@contact.Message</small>
+                                <span class="small">@contact.CreateDate</span>
+                            </div>
+                        </div>
+                        
+                    }
                 }
             </div>
         </div>

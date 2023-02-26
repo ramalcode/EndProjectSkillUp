@@ -1,5 +1,6 @@
 ﻿using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities.Reviews;
+using SkillUp.Entity.Entities.Settings;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 
@@ -38,6 +39,15 @@ namespace SkillUp.Service.Services.Concretes
         {
            var reviews = _unitOfWork.GetRepository<CourseReview>().GetAllAsync(null,u=>u.AppUser);   
            return reviews;
+        }
+
+        public async Task<bool> ReadReviewAsync(int id)
+        {
+            var review = _unitOfWork.GetRepository<CourseReview>().GetByIdAsync(id);
+            review.Status = true;
+            await _unitOfWork.GetRepository<CourseReview>().UpdateAsync(review);
+            await _unitOfWork.SaveAsync();
+            return true;
         }
     }
 }

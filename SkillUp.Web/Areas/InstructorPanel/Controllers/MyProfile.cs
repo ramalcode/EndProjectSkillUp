@@ -34,7 +34,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         public async Task<IActionResult> Index(UpdateInstructorVM instructorVM)
         {
             string id = _userManager.GetUserId(HttpContext.User);
-            Instructor instructor = new Instructor();
+            Instructor instructor = await _instructorService.GetInstructorById(id);
             if (instructorVM.Image != null)
             {
                 string imgresult = instructorVM.Image.CheckValidate("image/", 500);
@@ -43,7 +43,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                     ModelState.AddModelError("Image", imgresult);
                 }
 
-                //instructor.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/instructorimg");
+                instructor.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/instructorimg");
                 instructor.ImageUrl = instructorVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorimg"));
 
             }
@@ -55,8 +55,28 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                     ModelState.AddModelError("Image", prevresult);
                 }
 
-                //instructor.PreviewVideoUrl.DeleteFile(_env.WebRootPath, "user/assets/instructorpreview");
+                instructor.PreviewVideoUrl.DeleteFile(_env.WebRootPath, "user/assets/instructorpreview");
                 instructor.PreviewVideoUrl = instructorVM.Preview.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "instructorpreview"));
+            }
+            if (instructor == null)
+            {
+                ModelState.AddModelError("", "Login or Password is wrong");
+            }
+            var result = await _userManager.ChangePasswordAsync(instructor, instructorVM.CurrentPassword, instructorVM.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    if (error.Code == "PasswordMismatch")
+                    {
+                        ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+
             }
             await _instructorService.UpdateInstructorAsync(id, instructorVM);
             return RedirectToAction("Index", "Dashboard");

@@ -1,32 +1,38 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using SkillUp.Entity.Entities;
 using SkillUp.Service.Services.Abstractions;
+using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
     [Area("InstructorPanel")]
     public class ReportController : Controller
     {
-        readonly ICourseService _courseService;
-        readonly IProductService _productService;
+        
+        readonly UserManager<Instructor> _userManager;
+        readonly IInstructorService _instructorService;
 
-        public ReportController(ICourseService courseService, IProductService productService)
+        public ReportController(UserManager<Instructor> userManager, IInstructorService instructorService)
         {
-            _courseService = courseService;
-            _productService = productService;
+            _userManager = userManager;
+            _instructorService = instructorService;
         }
 
 
         public async Task<IActionResult> MyCourseRevenue()
         {
-            var courses = await _courseService.GetAllCourseAsync();
-            return View(courses);
+            string id = _userManager.GetUserId(HttpContext.User);
+            var instructor = await _instructorService.GetInstructorById(id);
+            return View(instructor);
         }
 
 
         public async Task<IActionResult> MyProductRevenue()
         {
-            var products = await _productService.GetAllProductAsync();
-            return View(products);
+            string id = _userManager.GetUserId(HttpContext.User);
+            var instructor = await _instructorService.GetInstructorById(id);
+            return View(instructor);
         }
     }
 }

@@ -83,6 +83,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFByb2R1Y3RcVXBkYXRlUHJvZHVjdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Report/MyCourseRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFJlcG9ydFxNeUNvdXJzZVJldmVudWUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Report/MyProductRevenue.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFJlcG9ydFxNeVByb2R1Y3RSZXZlbnVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/InstructorPanel/Views/Shared/Components/InstructorInfo/Default.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW5zdHJ1Y3RvclBhbmVsXFZpZXdzXFNoYXJlZFxDb21wb25lbnRzXEluc3RydWN0b3JJbmZvXERlZmF1bHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -215,8 +223,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFJlcG9ydFxJbnN0cnVjdG9yUHJvZHVjdFJldmVudWUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Setting/SystemSettings.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNldHRpbmdcU3lzdGVtU2V0dGluZ3MuY3NodG1s
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Setting/AboutSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNldHRpbmdcQWJvdXRTZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Setting/ContactSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcTWFuYWdlXFZpZXdzXFNldHRpbmdcQ29udGFjdFNldHRpbmdzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ramal/Desktop/EndProjectSkillUp/SkillUp.Web/Areas/Manage/Views/Setting/WebsiteSettings.cshtml]

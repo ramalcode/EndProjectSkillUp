@@ -78,13 +78,12 @@
                                     <h4>Hi, @(Model.Name + " " + Model.Surname)</h4>
                                 </div>
                                 <ul>
-                                    <li><a asp-area="instructorpanel" asp-controller="dashboard" asp-action="index"><i class="fa fa-tachometer-alt"></i>Dashboard<span class="notti_coun style-1">4</span></a></li>
+                                    <li><a asp-area="instructorpanel" asp-controller="dashboard" asp-action="index"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>
                                     <li><a asp-area="instructorpanel" asp-controller="myprofile" asp-action="index"><i class="fa fa-user-tie"></i>My Profile</a></li>
-                                    <li><a asp-area="instructorpanel" asp-controller="course" asp-action="mycourses"><i class="fas fa-shopping-basket"></i>Manage Courses<span class="notti_coun style-2">7</span></a></li>
-                                    <li><a asp-area="instructorpanel" asp-controller="product" asp-action="myproducts"><i class="fas fa-shopping-basket"></i>Manage Products<span class="notti_coun style-2">7</span></a></li>
-                                    <li><a href="manage-students.html"><i class="fa fa-envelope"></i>Manage Students<span class="notti_coun style-3">3</span></a></li>
-                                    <li><a href="messages.html"><i class="fas fa-comments"></i>Messages</a></li>
-                                    <li><a asp-controller="account" asp-action="signout"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
+                                    <li><a asp-area="instructorpanel" asp-controller="course" asp-action="mycourses"><i class="fas fa-shopping-basket"></i>Manage Courses</a></li>
+                                    <li><a asp-area="instructorpanel" asp-controller="product" asp-action="myproducts"><i class="fas fa-shopping-basket"></i>Manage Products</a></li>
+                                        <li><a asp-area="instructorpanel" asp-controller="message" asp-action="index"><i class="fas fa-comments"></i>Messages</a></li>
+                                    <li><a asp-area="default" asp-controller="account" asp-action="signout"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -165,7 +164,8 @@
                             <li class="dropdown">
                                 <a href="javascript:void(0);"><i class="fas fa-archive"></i>Report<span class="ti-angle-left"></span></a>
                                 <ul class="nav nav-second-level">
-                                    <li><a asp-area="InstructorPanel" asp-controller="Report" asp-action="InstructorRevenue">My Revenue</a></li>
+                                    <li><a asp-area="InstructorPanel" asp-controller="Report" asp-action="myCourseRevenue">My Courses Revenue</a></li>
+                                        <li><a asp-area="InstructorPanel" asp-controller="Report" asp-action="MyProductRevenue">My Products Revenue</a></li>
                                 </ul>
                             </li>
 

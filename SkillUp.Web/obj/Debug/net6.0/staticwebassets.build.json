@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eIN39lRRwGQU5sOma+SJpPGwq9JhA+rfTEgr+Wx5osI=",
+  "Hash": "c2xCF9yCpg0taXQRXY3h6jpTDlKB7bqSL4aaGynswTc=",
   "Source": "SkillUp.Web",
   "BasePath": "_content/SkillUp.Web",
   "Mode": "Default",
@@ -6579,6 +6579,23 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\img\\yoga.png"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\169b11fb-948e-44e7-84c6-80c63ba37c25cr-1.jpg",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/instructorimg/169b11fb-948e-44e7-84c6-80c63ba37c25cr-1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\instructorimg\\169b11fb-948e-44e7-84c6-80c63ba37c25cr-1.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\2d532e39-8621-4eaf-95ba-ed271494aa021.jfif",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -6764,23 +6781,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\instructorimg\\d8c25521-f355-4f60-b670-f221f65824992.jfif"
-    },
-    {
-      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\dff8061b-d602-474e-a3ab-5fbeaf4b55221.jfif",
-      "SourceId": "SkillUp.Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
-      "BasePath": "_content/SkillUp.Web",
-      "RelativePath": "user/assets/instructorimg/dff8061b-d602-474e-a3ab-5fbeaf4b55221.jfif",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\user\\assets\\instructorimg\\dff8061b-d602-474e-a3ab-5fbeaf4b55221.jfif"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\instructorimg\\f65654aa-8d51-4d6c-a2b2-fa79a2f21d6c1.jfif",

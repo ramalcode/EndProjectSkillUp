@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Service.Services.Abstractions;
+using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
@@ -31,6 +32,12 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         public async Task<IActionResult> DeleteMessage(int id)
         {
             var review = _reviewCourse.DeleteReviewAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> ReadMessage(int id)
+        {
+            await _reviewCourse.ReadReviewAsync(id);
             return RedirectToAction(nameof(Index));
         }
     }
