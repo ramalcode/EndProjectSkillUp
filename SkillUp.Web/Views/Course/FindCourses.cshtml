@@ -80,7 +80,7 @@
                                     <div class="crs_fl_last">
                                         <div class="crs_price"><h2>
                                             <span class="theme-cl">
-                                                @if (course.DiscountPrice == 0)
+                                                @if (course.DiscountPrice == 0 && course.Price>0)
                                                 {
                                                   <span class="currency">$@course.Price</span>    
                                                 }
@@ -98,9 +98,20 @@
                                 <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id ="@course.Id" class="crs_title_link">@course.Name</a></h4></div>
                                 <div class="crs_info_detail">
                                     <ul>
-
-                                        <li><i class="fa fa-clock text-danger"></i><span>Yazacam</span></li>
                                             <li><i class="fa fa-video text-success"></i><span>@course.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span></li>
+                                            @{
+                                                TimeSpan totalduration = new TimeSpan(0, 0, 0);
+                                                @foreach (var paragraphs in course.Paragraphs)
+                                                {
+                                                    @foreach (var lectures in paragraphs.Lectures)
+                                                    {
+                                                        TimeSpan timeSpan = TimeSpan.ParseExact(lectures.Duration.Replace("hr ", ":").Replace("min ", ":").Replace("sec", ""), @"h\:m\:s", null);
+                                                        totalduration = totalduration.Add(timeSpan);
+                                                    }
+                                                }
+                                                string duration = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", totalduration);
+                                            }
+                                        <li><i class="fa fa-clock text-danger"></i><span>@duration</span></li>
                                     </ul>
                                 </div>
                             </div>
@@ -116,7 +127,6 @@
                                             <ul class="light">
                                                     <li><div class="elsio_ic"><i class="fa fa-user text-danger"></i></div><div class="elsio_tx">@course.AppUserCourses.Count</div></li>
                                                     <li><div class="elsio_ic"><i class="fa fa-eye text-success"></i></div><div class="elsio_tx">@course.ViewCount</div></li>
-                                                <li><div class="elsio_ic"><i class="fa fa-star text-warning"></i></div><div class="elsio_tx">Yazacam</div></li>
                                             </ul>
                                         </div>
                                     </div>

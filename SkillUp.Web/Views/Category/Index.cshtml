@@ -11,7 +11,7 @@
                     <h1 class="breadcrumb-title">Explore Category</h1>
                     <nav class="transparent">
                         <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class="breadcrumb-item active theme-cl" aria-current="page">All Categories</li>
                         </ol>
                     </nav>
@@ -35,12 +35,11 @@
                     </div>
                         <div class="col">
                        <h6 class="text-white">@category.CourseCategories.Count Course</h6>
-                        <h6 class="text-white">@category.ProductCategories.Count Product</h6>
                         </div>
                         </div>
                     <div class="row crs_capt_cat">
                         <div class="col">
-                        <h4>@category.Name </h4>
+                                <a asp-controller="Category" asp-action="CourseCategory" asp-route-id="@category.Id"><h4>@category.Name</h4> </a>
                         </div>
                     </div>
                         <div class="row crs_capt_cat">

@@ -62,12 +62,7 @@
         </div>
         <div class="ed_view_link">
             
-            @*@if (!Model.AppUserCourses.Any(a=>a.AppUser.UserName == User.Identity.Name))
-            {
-              <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
-                
-            }*@
-            @if (!(Model.Price == 0 && Model.DiscountPrice == 0) || (Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name)))
+            @if ((Model.Price != 0 && Model.DiscountPrice != 0) && (!Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name)))
             {
                 <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
             }

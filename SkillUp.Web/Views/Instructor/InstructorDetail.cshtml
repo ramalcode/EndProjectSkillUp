@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-md-12 col-sm-12">
                 <div class="authi_125">
                     <div class="authi_125_thumb">
-                        <video src="~/user/assets/instructorpreview/@Model.PreviewVideoUrl" style="width:100%" alt="" controls loop></video>
+                          <video src="~/user/assets/instructorpreview/@Model.PreviewVideoUrl" style="width:100%" alt="" controls loop></video>
                     </div>
                 </div>
             </div>
@@ -28,17 +28,19 @@
                             <ul>
                                 <li>
                                     <i class="ti-control-forward"></i>
-                                    @foreach (var course in Model.Courses)
-                                    {
-
-                                        <span>@course.Paragraphs.Sum(x => x.Lectures.Count) Lectures</span>
-
-
+                                    @{
+                                        var totalLecture = 0;
                                     }
+                                    @foreach (var paragraph in Model.Courses)
+                                    {
+                                        @foreach (var lecture in paragraph.Paragraphs)
+                                        {
+                                            totalLecture += lecture.Lectures.Count;
+                                        }
+                                    }
+                                    <span>@totalLecture Lectures </span>
                                 </li>
                                 <li>
-                                    <i class="ti-user"></i>
-                                    <span>@Model.AppUserInstructors.Count Enroll Student</span>
                                 </li>
                             </ul>
                         </div>
@@ -47,9 +49,6 @@
                         </div>
                     </div>
                     <div class="dlkio_last">
-                        <div class="ed_view_link">
-                            <a href="#" class="btn theme-bg enroll-btn">Enroll Now<i class="ti-angle-right"></i></a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -65,14 +64,14 @@
                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                     <div class="crs_grid">
                         <div class="crs_grid_thumb">
-                            <img src="~/user/assets/courseimg/@course.ImageUrl" style="width:100%" class="img-fluid rounded" alt="" />
+                            <img src="~/user/assets/courseimg/@course.ImageUrl" style="width:400px; height:310px" class="img-fluid rounded" alt="" />
                         </div>
                         <div class="crs_grid_caption">
                             <div class="crs_flex">
                                 <div class="crs_fl_first">
                                     <div class="crs_cates cl_7">
                                         <span>
-                                            @foreach (var category in course.CourseCategories.Where(ctg => ctg.CategoryId == course.Id))
+                                            @foreach (var category in course.CourseCategories.Where(ctg => ctg.CourseId == course.Id))
                                             {
                                                 <span>@category.Category.Name</span>
                                             }
@@ -86,8 +85,21 @@
                             <div class="crs_title"><h4><a asp-controller="Course" asp-action="CourseDetail" asp-route-id="@course.Id" class="crs_title_link">@course.Name</a></h4></div>
                             <div class="crs_info_detail">
                                 <ul>
-                                    <li><i class="fa fa-clock text-danger"></i><span>Yazacam</span></li>
+                                    @{
+                                        TimeSpan totalduration = new TimeSpan(0, 0, 0);
+                                        @foreach (var paragraphs in course.Paragraphs)
+                                        {
+                                            @foreach (var lectures in paragraphs.Lectures)
+                                            {
+                                                TimeSpan timeSpan = TimeSpan.ParseExact(lectures.Duration.Replace("hr ", ":").Replace("min ", ":").Replace("sec", ""), @"h\:m\:s", null);
+                                                totalduration = totalduration.Add(timeSpan);
+                                            }
+                                        }
+                                        string duration = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", totalduration);
+                                    }
                                     <li><i class="fa fa-video text-success"></i><span>@course.Paragraphs.Sum(x=>x.Lectures.Count) Lectures</span></li>
+
+                                    <li><i class="fa fa-clock text-danger"></i><span>@duration</span></li>
                                 </ul>
                             </div>
                         </div>

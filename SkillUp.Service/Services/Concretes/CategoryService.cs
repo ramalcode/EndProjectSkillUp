@@ -52,16 +52,15 @@ namespace SkillUp.Service.Services.Concretes
             return categoryVM;
         }
 
-        public async Task<bool> UpdateCategoryAsync(UpdateCategoryVM categoryVM)
+        public async Task<bool> UpdateCategoryAsync(int id, UpdateCategoryVM categoryVM)
         {
-            Category category = await _unitOfWork.GetRepository<Category>().GetAsync(c => c.Id == categoryVM.Id);
-            
+            var category =  _unitOfWork.GetRepository<Category>().GetByIdAsync(id);
             category.Name = categoryVM.Name;
             category.Description = categoryVM.Description;
             category.IconUrl = categoryVM.IconUrl;
 
-            _unitOfWork.GetRepository<Category>().UpdateAsync(category);
-            _unitOfWork.SaveAsync();
+            await _unitOfWork.GetRepository<Category>().UpdateAsync(category);
+            await _unitOfWork.SaveAsync();
 
             return true;
         }

@@ -6,6 +6,8 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
+using Stripe;
+using Product = SkillUp.Entity.Entities.Product;
 
 namespace SkillUp.Web.Controllers
 {
@@ -17,6 +19,7 @@ namespace SkillUp.Web.Controllers
         readonly UserManager<AppUser> _userManager;
 
 
+
         public ShopController(AppDbContext appDbContext, UserManager<AppUser> userManager, IReviewProductService reviewProductService, IProductService productService)
         {
             this.appDbContext = appDbContext;
@@ -25,24 +28,43 @@ namespace SkillUp.Web.Controllers
             _productService = productService;
         }
 
-        public async Task<IActionResult> Products(int page = 1)
+        public async Task<IActionResult> Products(string? query , int page = 1)
         {
-            var products = await _productService.GetAllProductAsync();
-            IEnumerable<Product> pagination = products.Skip((page - 1) * 1).Take(1);
-            PaginationVM<Product> paginationVM = new PaginationVM<Product>
+            if (query!=null)
             {
-                MaxPageCount = (int)Math.Ceiling((decimal) products.Count / 1),
-                CurrentPage = page,
-                Items = pagination
-            };
-            return View(paginationVM);
+                var products = await _productService.GetAllProductAsync();
+                var search = products.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
+                IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 2).Take(2);
+                PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal)search.Count / 2),
+                    CurrentPage = page,
+                    Items = paginationsearch,
+                    Query = query
+
+                };
+                return View(searchpaginationVM);
+            }
+            else
+            {
+                var products = await _productService.GetAllProductAsync();
+                IEnumerable<Product> pagination = products.Skip((page - 1) * 1).Take(1);
+                PaginationVM<Product> paginationVM = new PaginationVM<Product>
+                {
+                    MaxPageCount = (int)Math.Ceiling((decimal) products.Count / 1),
+                    CurrentPage = page,
+                    Items = pagination
+                };
+                return View(paginationVM);
+
+            }
         }
 
 
         public async Task<IActionResult> ProductDetail(int id)
         {
-            var product = await appDbContext.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category)
-              .Include(product=>product.ProductReviews).ThenInclude(u=>u.Appuser).FirstOrDefaultAsync(p=>p.Id == id); 
+            var product = await appDbContext.Products.Include(pc=>pc.ProductCategories).ThenInclude(c=>c.Category).Include(up=>up.AppUserProducts).
+              ThenInclude(u=>u.AppUser).Include(product=>product.ProductReviews).ThenInclude(u=>u.Appuser).Include(i=>i.Instructor).FirstOrDefaultAsync(p=>p.Id == id); 
             return View(product);
         }
 
@@ -52,7 +74,7 @@ namespace SkillUp.Web.Controllers
             string userid = _userManager.GetUserId(HttpContext.User);
             if (!ModelState.IsValid) return View(reviewVM);
             AppUserProduct userProduct = new AppUserProduct();
-            if (userProduct.IsBuyed == false) _reviewProductService.CreateReviewAsync(reviewVM, userid);
+            await _reviewProductService.CreateReviewAsync(reviewVM, userid);
             return RedirectToAction("Index", "Home");
         }
         

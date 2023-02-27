@@ -64,7 +64,14 @@
              }
              @foreach (var course in Model.Courses)
              {
-                price += course.Price * course.AppUserCourses.Where(c => c.IsSold).ToList().Count;
+                 if (course.DiscountPrice>0)
+                 {
+                     price += course.DiscountPrice * course.AppUserCourses.Where(c => c.IsSold).ToList().Count;
+                 }
+                 if (course.DiscountPrice == 0 && course.Price>0)
+                 {
+                    price += course.Price * course.AppUserCourses.Where(c => c.IsSold).ToList().Count;
+                 }
              }
             @(price.ToString("#,##0.00"))
             </h4> <span>Course Total Amount</span></div>
@@ -80,7 +87,14 @@
                     }
                     @foreach (var productamount in Model.Products)
                     {
-                        productprice += productamount.Price*productamount.AppUserProducts.Count;
+                        if (productamount.DiscountPrice>0)
+                        {
+                            productprice += productamount.DiscountPrice * productamount.AppUserProducts.Where(p => p.IsBuyed).ToList().Count;
+                        }
+                        if (productamount.DiscountPrice == 0 && productamount.Price>0)
+                        {
+                            productprice += productamount.Price*productamount.AppUserProducts.Where(p=>p.IsBuyed).ToList().Count;
+                        }
                     }
                     @(productprice.ToString("#,##0.00"))
                 </h4> <span>Product Total Amount</span>

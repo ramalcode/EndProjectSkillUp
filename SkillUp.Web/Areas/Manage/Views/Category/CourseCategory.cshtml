@@ -4,28 +4,26 @@
 }
 
 @model ICollection<Category>
-<!-- ============================ Dashboard: Dashboard Start ================================== -->
-<!-- Row -->
+
 <div class="row justify-content-between">
     <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
         <div class="dashboard_wrap d-flex align-items-center justify-content-between">
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a asp-area="manage" asp-controller="dashboard" asp-action="index">Home</a></li>
+                        <li class="breadcrumb-item"><a  asp-controller="dashboard" asp-action="index">Go To Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Course Category</li>
                     </ol>
                 </nav>
             </div>
             <div class="elkios">
-                <a asp-area="Manage" asp-controller="Category" asp-action="AddNewCategory" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Category</a><br /><br />
-                <a asp-area="Manage" asp-controller="Category" asp-action="AddNewSubcategory" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Sub Category  </a>
+                <a asp-area="manage" asp-controller="category" asp-action="AddNewCategory" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Category</a><br /><br />
+                <a asp-area="manage" asp-controller="category" asp-action="AddNewSubcategory" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add New Sub Category  </a>
 
             </div>
         </div>
     </div>
 </div>
-<!-- /Row -->
 
 <div class="row">
     @foreach (var item in Model)
@@ -65,5 +63,4 @@
 
 </div>
 </section>
-<!-- ============================ Dashboard: Dashboard End ================================== -->
 

@@ -52,7 +52,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Photo</th>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">User</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Enrolled Course</th>
                                     <th scope="col">Enrolled Product</th>
@@ -73,7 +73,7 @@
                                            <img src="~/user/assets/userimg/@student.ImageUrl" class="img-fluid circle" width="40" alt="" />
                                         }
                                     </td>
-                                    <td><div class="smalls lg">@(student.Name + " " + student.Surname)</div></td>
+                                    <td><div class="smalls lg">@student.UserName</div></td>
                                     <td><span class="smalls lg">@student.Email</span></td>
                                     <td><span class="smalls lg">
                                         @foreach (var course in student.AppUserCourses)

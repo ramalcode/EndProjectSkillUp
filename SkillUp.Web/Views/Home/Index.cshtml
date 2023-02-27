@@ -139,7 +139,7 @@
                 <div class="cates_crs_wrip">
                     <div class="crs_trios">
                         <div class="crs_cate_icon"><i class="@category.IconUrl"></i></div>
-                        <div class="crs_cate_link"><a href="grid-layout-with-sidebar.html">View Cources</a></div>
+                        <div class="crs_cate_link"><a asp-controller="Category" asp-action="CourseCategory" asp-route-id = "@category.Id">View Cources</a></div>
                     </div>
                     <div class="crs_capt_cat">
                         <h4>@category.Name</h4>
@@ -173,7 +173,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="tutor-slide">
 
-                    @foreach (var instructor in Model.Instructors)
+                    @foreach (var instructor in Model.Instructors.Take(10))
                     {
                         <div class="lios_item">
                             <div class="crs_trt_grid theme-light shadow_none">
@@ -187,7 +187,7 @@
                                                 <span>@profession.Profession.Name</span>
                                             }
                                     </span></div>
-                                    <div class="instructor_title"><h4><a href="instructor-detail.html">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
+                                    <div class="instructor_title"><h4><a asp-controller="instructor" asp-action="instructorDetail" asp-route-id= "@instructor.Id">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
                                 </div>
                             </div>
                         </div>

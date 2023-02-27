@@ -3182,8 +3182,7 @@ span.esli_vd {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 33.333333%;
-    flex: 0 0 33.333333%;
+    margin-left:10px;
     color: #4e6579;
     font-size: 14px;
     list-style: none;

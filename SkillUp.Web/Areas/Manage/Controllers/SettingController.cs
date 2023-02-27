@@ -1,10 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities.Settings;
+using SkillUp.Service.Helpers;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "SuperAdmin")]
+
     public class SettingController : Controller
     {
         readonly AppDbContext _context;

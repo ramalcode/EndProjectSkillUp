@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 using Stripe;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -9,6 +11,8 @@ using Product = SkillUp.Entity.Entities.Product;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class ReportController : Controller
     {
         readonly ICourseService _courseService;
@@ -25,7 +29,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query!=null)
             {
                 var course = await _courseService.GetAllCourseAsync();
-                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                var search = course.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 5).Take(5);
                 PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
                 {
@@ -52,7 +56,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query!=null)
             {
                 var product = await _productService.GetAllProductAsync();
-                var search = product.Where(c => c.Name.Contains(query)).ToList();
+                var search = product.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 5).Take(5);
                 PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
                 {
@@ -82,7 +86,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query != null)
             {
                 var course = await _courseService.GetAllCourseAsync();
-                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                var search = course.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 5).Take(5);
                 PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
                 {
@@ -112,7 +116,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query != null)
             {
                 var product = await _productService.GetAllProductAsync();
-                var search = product.Where(c => c.Name.Contains(query)).ToList();
+                var search = product.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 5).Take(5);
                 PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
                 {

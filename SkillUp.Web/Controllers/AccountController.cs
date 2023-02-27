@@ -40,9 +40,6 @@ namespace SkillUp.Web.Controllers
                 {
                     ModelState.AddModelError("Image", imgresult);
                 }
-
-                user.ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"));
-
             }
             if (user is not null)
             {
@@ -55,8 +52,9 @@ namespace SkillUp.Web.Controllers
                 Surname = register.Surname,
                 UserName = register.UserName,
                 Email = register.Email,
+                ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"))
 
-            };
+        };
 
             var result = await _userManager.CreateAsync(user,register.Password);
           

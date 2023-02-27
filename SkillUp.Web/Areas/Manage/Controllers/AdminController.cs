@@ -9,6 +9,7 @@ using SkillUp.Service.Services.Concretes;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles ="Admin, SuperAdmin")]
     public class AdminController : Controller
     {
         readonly IUserService _userService;
@@ -27,7 +28,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query!=null)
             {
                 var admin = await _userManager.GetUsersInRoleAsync("Admin");
-                var search = admin.Where(c => c.Name.Contains(query)).ToList();
+                var search = admin.Where(c => c.UserName.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<AppUser> paginationsearch = search.Skip((page - 1) * 4).Take(4);
                 PaginationVM<AppUser> searchpaginationVM = new PaginationVM<AppUser>
                 {

@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
 
     public class DashboardController : Controller
     {

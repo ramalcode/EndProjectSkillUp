@@ -3,7 +3,7 @@
 }
 
 @model Product
-<!-- ============================ Page Title Start ================================== -->
+
 <section class="page-title gray">
     <div class="container">
         <div class="row">
@@ -13,7 +13,7 @@
                     <h1 class="breadcrumb-title">Product Detail</h1>
                     <nav class="transparent">
                         <ol class="breadcrumb p-0">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class="breadcrumb-item active theme-cl" aria-current="page">Product Detail</li>
                         </ol>
                     </nav>
@@ -23,10 +23,8 @@
         </div>
     </div>
 </section>
-<!-- ============================ Page Title End ================================== -->
 
 
-<!-- ============================ Product Detail Start================================== -->
 <section class="pr_detail">
     <div class="container">
         <div class="row">
@@ -54,13 +52,6 @@
                                 </li>
                             </ul>
                             <div class="woo_price_rate">
-                                <div class="woo_rating">
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star filled"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
                                 <div class="woo_price_fix">
                                     <h3 class="mb-0 theme-cl">
                                         @if (Model.DiscountPrice==0)
@@ -76,7 +67,7 @@
                                         }
                                         @if (Model.DiscountPrice>0)
                                         {
-                                            <h3 class ="mb-0 theme-cl">@Model.DiscountPrice</h3>
+                                            <h3 class ="mb-0 theme-cl">$@Model.DiscountPrice</h3>
                                         }
                                     </h3>
                                 </div>
@@ -95,9 +86,15 @@
                                  
                             </div>
                             <div class="woo_buttons">
-                                <a asp-action="BuyProduct" asp-controller="Payment" asp-route-id="@Model.Id"   class="btn btn-success">Buy Now</a>
-                                <a href="javascript:void(0)" class="btn woo_btn_light" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i class="ti-heart"></i></a>
-                                <a href="javascript:void(0)" class="btn woo_btn_light" data-toggle="tooltip" data-placement="top" title="Compare"><i class="ti-reload"></i></a>
+                                
+                                     @if (!(Model.AppUserProducts.Any(a => a.AppUser.UserName == User.Identity.Name)))
+                                     {
+                                        <a asp-action="BuyProduct" asp-controller="Payment" asp-route-id="@Model.Id"   class="btn btn-success">Buy Now</a>
+
+                                     }
+                                    
+                                
+            
                             </div>
                         </div>
                     </div>
@@ -108,10 +105,8 @@
         </div>
     </div>
 </section>
-<!-- ============================ Product Detail End ================================== -->
 
 
-<!-- ============================ Product Description Start ================================== -->
 <section class="pt-0">
     <div class="container">
 
@@ -138,21 +133,19 @@
 
                 <div class="tab-content tabs_content_creative" id="myTabContent">
 
-                    <!-- general Query -->
                     <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
                         <p>
                             @if (Model.Description.Length > 50)
                             {
-                                <span>@Model.Description.Substring(0,50).</span>
+                                <span>@Model.Description.Substring(0,50)</span>
                             }
                             @if (Model.Description.Length <= 50)
                             {
-                                <span>@Model.Description.</span>
+                                <span>@Model.Description</span>
                             }
                         </p>
                     </div>
 
-                    <!-- general Query -->
                     <div class="tab-pane fade" id="payment" role="tabpanel" aria-labelledby="payment-tab">
                         <div class="table-responsive">
                             <table class="table">
@@ -160,10 +153,7 @@
                                     <tr>
                                         <th scope="row">Author: </th>
                                         <td>
-                                           @* @foreach (var author in Model?.ProductInstructors.Where(a => a.ProductId == Model.Id))
-                                            {
-                                                <span>@(author.Instructor.Name + " " + author.Instructor.Surname)</span>
-                                            }*@
+                                           <span>@(Model.Instructor.Name + " " + Model.Instructor.Surname)</span>
                                         </td>
                                     </tr>
                                     <tr>
@@ -174,7 +164,6 @@
                             </table>
                         </div>
                     </div>
-                    <!-- Reviews Detail -->
                     <div class="tab-pane fade" id="upgrade" role="tabpanel" aria-labelledby="upgrade-tab">
                         @if (Model.ProductReviews.Count == 0)
                         {
@@ -192,7 +181,6 @@
                             <div class="reviews-comments-wrap">
                                 @foreach (var review in Model.ProductReviews)
                                 {
-                                    <!-- reviews-comments-item -->
                                     <div class="reviews-comments-item">
                                         <div class="review-comments-avatar">
                                             @if (review.Appuser.ImageUrl != null)
@@ -206,24 +194,30 @@
                                         </div>
                                         <div class="reviews-comments-item-text">
                                             <h4><a href="#">@(review.Appuser.Name + " " + review.Appuser.Surname)</a><span class="reviews-comments-item-date"><i class="ti-calendar theme-cl"></i>@review.ReviewDate.ToString("MM/dd/yyyy h:mm tt")</span></h4>
-                                            <div class="listing-rating"><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i><i class="fas fa-star active"></i></div>
                                             <div class="clearfix"></div>
                                             <p>"@review.ReviewContent"</p>
                                             <div class="pull-left reviews-reaction">
                                             </div>
                                         </div>
                                     </div>
-                                    <!--reviews-comments-item end-->
                                 } </div>
                            
                         </div>
                    
                         }
-                        <!-- Reviews -->
                     </div>
                     </div>
-                      
-                    @await Html.PartialAsync("_ProductReviewPartial",Model.ProductReviews, new ViewDataDictionary(ViewData){{"productid" , Model.Id}})
+                @{
+                    CreateProductReviewVM reviewVM = new CreateProductReviewVM();
+                    reviewVM.ReviewContent = "";
+                    reviewVM.ProductId = Model.Id;
+                    reviewVM.Product = Model;
+                }
+                @if (Model.AppUserProducts.Any(a => a.AppUser.UserName == User.Identity.Name))
+                {
+                    @await Html.PartialAsync("_ProductReviewPartial", reviewVM, new ViewDataDictionary(ViewData){{"productid" , Model.Id}})
+                }
+                         
                </div>
              
             </div>
@@ -231,4 +225,3 @@
         </div>
     </div>
 </section>
-<!-- ============================ Product Description End ================================== -->

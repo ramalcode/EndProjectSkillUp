@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities;
@@ -10,6 +11,8 @@ using Stripe;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class MyProfileController : Controller
     {
         readonly UserManager<AppUser> _userManager;

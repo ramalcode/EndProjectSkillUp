@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
@@ -12,6 +13,8 @@ using SkillUp.Service.Services.Abstractions;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class LectureController : Controller
     {
         readonly IParagraphService _paragraph;

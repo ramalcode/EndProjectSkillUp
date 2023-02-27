@@ -2,10 +2,11 @@
 @model AppUser
 <div class="text-center" style="margin-top:71px; margin-bottom:73px">
     <div>
-        <form asp-action="Charge" asp-controller="Payment" method="POST">
+        <form asp-action="charge" asp-controller="payment" method="post">
             <article>
-                <label>Add Balance</label>
-                <input asp-for="Wallet" />
+                <label>Add Balance </label><br />
+                <input asp-for="Wallet" /><br />
+                <span class="text-danger">Example : 10,00 ; 5,36 </span>
             </article>
             <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-locale="auto"

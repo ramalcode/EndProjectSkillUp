@@ -10,6 +10,6 @@ namespace SkillUp.Service.Services.Abstractions
         Task CreateCategoryAsync(CreateCategoryVM categoryVM);
         Task DeleteCategoryAsync(int id);
         Task<UpdateCategoryVM> UpdateCategoryById(int id);
-        Task<bool> UpdateCategoryAsync(UpdateCategoryVM categoryVM);
+        Task<bool> UpdateCategoryAsync(int id , UpdateCategoryVM categoryVM);
     }
 }

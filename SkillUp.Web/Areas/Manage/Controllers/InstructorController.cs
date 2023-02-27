@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
@@ -7,6 +8,8 @@ using SkillUp.Service.Services.Abstractions;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class InstructorController : Controller
     {
         readonly IInstructorService _instructorService;
@@ -23,7 +26,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query!=null)
             {
                 var instructor = await _instructorService.GetAllInstructorAsync();
-                var search = instructor.Where(c => c.UserName.Contains(query)).ToList();
+                var search = instructor.Where(c => c.UserName.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Instructor> paginationsearch = search.Skip((page - 1) * 4).Take(4);
                 PaginationVM<Instructor> searchpaginationVM = new PaginationVM<Instructor>
                 {
@@ -58,6 +61,9 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             await _instructorService.DeleteInstructorAsync(id);
             return RedirectToAction(nameof(ManageInstructor));
         }
+
+
+        
 
 
       

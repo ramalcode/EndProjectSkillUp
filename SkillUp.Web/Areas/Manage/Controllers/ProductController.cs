@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
@@ -10,6 +11,8 @@ using SkillUp.Service.Services.Abstractions;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class ProductController : Controller
     {
         readonly ICategoryService _categoryService;
@@ -31,7 +34,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if(query!=null)
             {
                 var product = await _productService.GetAllProductAsync();
-                var search = product.Where(c => c.Name.Contains(query)).ToList();
+                var search = product.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Product> paginationsearch = search.Skip((page - 1) * 4).Take(4);
                 PaginationVM<Product> searchpaginationVM = new PaginationVM<Product>
                 {

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkillUp.DAL.UnitOfWorks;
@@ -6,11 +7,14 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class CategoryController : Controller
     {
         readonly ISubCategoryService _subCategoryService;
@@ -73,9 +77,9 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCategory(UpdateCategoryVM categoryVM)
+        public async Task<IActionResult> UpdateCategory(int id , UpdateCategoryVM categoryVM)
         {
-            await _categoryService.UpdateCategoryAsync(categoryVM);
+            await _categoryService.UpdateCategoryAsync(id,categoryVM);
             return RedirectToAction(nameof(CourseCategory));
         }
 

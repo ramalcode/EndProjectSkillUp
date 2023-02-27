@@ -29,7 +29,7 @@ namespace SkillUp.Web.Controllers
             if (query!=null)
             {
                 var course = await _courseService.GetAllCourseAsync();
-                var search = course.Where(c => c.Name.Contains(query)).ToList();
+                var search = course.Where(c => c.Name.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<Course> paginationsearch = search.Skip((page - 1) * 2).Take(2);
                 PaginationVM<Course> searchpaginationVM = new PaginationVM<Course>
                 {

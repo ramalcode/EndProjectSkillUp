@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
+using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
+
     public class ProfessionController : Controller
     {
         readonly IProfessionService _professionService;

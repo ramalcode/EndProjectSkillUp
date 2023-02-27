@@ -62,21 +62,24 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             {
                 ModelState.AddModelError("", "Login or Password is wrong");
             }
-            var result = await _userManager.ChangePasswordAsync(instructor, instructorVM.CurrentPassword, instructorVM.Password);
-            if (!result.Succeeded)
+            if (instructorVM.CurrentPassword != null && instructorVM.Password !=null && instructorVM.ConfirmPassword !=null)
             {
-                foreach (var error in result.Errors)
+                var result = await _userManager.ChangePasswordAsync(instructor, instructorVM.CurrentPassword, instructorVM.Password);
+                if (!result.Succeeded)
                 {
-                    if (error.Code == "PasswordMismatch")
+                    foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                        if (error.Code == "PasswordMismatch")
+                        {
+                            ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
                     }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
 
+                }
             }
             await _instructorService.UpdateInstructorAsync(id, instructorVM);
             return RedirectToAction("Index", "Dashboard");

@@ -62,6 +62,7 @@ namespace SkillUp.Service.Services.Concretes
             {
                 AppUserId = productVM.AppUserId,
                 ProductId = productVM.ProductId,
+                IsBuyed = false
                 
             };
             await _unitOfWork.GetRepository<AppUserProduct>().AddAsync(userProduct);

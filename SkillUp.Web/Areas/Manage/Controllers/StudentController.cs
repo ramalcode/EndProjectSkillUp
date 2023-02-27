@@ -9,7 +9,7 @@ using SkillUp.Service.Services.Abstractions;
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
-    //[Authorize(Roles ="Admin, SuperAdmin")]
+    [Authorize(Roles = "Admin, SuperAdmin")]
     public class StudentController : Controller
     {
         readonly IUserService _userService;
@@ -31,7 +31,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             if (query!=null)
             {
                 var student = await _userService.GetAllUserAsync();
-                var search = student.Where(c => c.UserName.Contains(query)).ToList();
+                var search = student.Where(c => c.UserName.ToLower().Trim().Contains(query.ToLower().Trim())).ToList();
                 IEnumerable<AppUser> paginationsearch = search.Skip((page - 1) * 4).Take(4);
                 PaginationVM<AppUser> searchpaginationVM = new PaginationVM<AppUser>
                 {
@@ -85,7 +85,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
                     ModelState.AddModelError("Image", imgresult);
                 }
 
-                //user.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/userimg");
+                user.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/userimg");
                 user.ImageUrl = userVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"));
 
             }
@@ -93,23 +93,26 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             {
                 ModelState.AddModelError("", "Login or Password is wrong");
             }
-            var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
-            if (!result.Succeeded)
+            if (userVM.Password != null && userVM.CurrentPassword != null && userVM.ConfirmPassword != null)
             {
-                foreach (var error in result.Errors)
+                var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
+                if (!result.Succeeded)
                 {
-                    if (error.Code == "PasswordMismatch")
+                    foreach (var error in result.Errors)
                     {
-                        ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                        if (error.Code == "PasswordMismatch")
+                        {
+                            ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
                     }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
                 
-            }
+                }
 
+            }
             await _userService.UpdateUserAsync(id, userVM);
             return RedirectToAction(nameof(ManageStudents));
         }

@@ -43,15 +43,15 @@
                                         <td><h6>@revenue.AppUserCourses.Count</h6></td>
                                         <td>
                                             <span class="smalls lg">
-                                                @if (revenue.DiscountPrice>0 && revenue.Price == 0)
+                                                @if (revenue.DiscountPrice>0 && revenue.Price > 0)
                                                 {
                                                     <span class="trip gray">$@((revenue.DiscountPrice * revenue.AppUserCourses.Count)*0.75)</span>
                                                 }
-                                                @if (revenue.Price > 0)
+                                                @if (revenue.Price > 0 && revenue.DiscountPrice == 0)
                                                 {
                                                     <span class="trip gray">$@((revenue.Price * revenue.AppUserCourses.Count)*0.75)</span>
                                                 }
-                                                else
+                                                @if (revenue.Price == 0 && revenue.DiscountPrice == 0)
                                                 {
                                                     <span class="trip theme-cl theme-bg-light">Free</span>
 

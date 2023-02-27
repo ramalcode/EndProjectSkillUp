@@ -74,7 +74,6 @@ namespace SkillUp.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            //else 
 
             return RedirectToAction("Index","Home");
         }
@@ -88,7 +87,7 @@ namespace SkillUp.Web.Controllers
             AppUser user = await _userService.GetUserById(userid);
             if (course.DiscountPrice==0)
             {
-                if (user.Wallet > course.Price * 100)
+                if (user.Wallet >= course.Price * 100)
                 {
                     AppUserCourse userCourse = new AppUserCourse
                     {
@@ -108,7 +107,10 @@ namespace SkillUp.Web.Controllers
             }
             else
             {
-                if (user.Wallet > course.DiscountPrice * 100)
+                    //var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
+                    //string userid = _userManager.GetUserId(HttpContext.User);
+                    //AppUser user = await _userService.GetUserById(userid);
+                if (user.Wallet >= course.DiscountPrice * 100)
                 {
                     AppUserCourse userCourse = new AppUserCourse
                     {
@@ -131,24 +133,56 @@ namespace SkillUp.Web.Controllers
 
         }
 
-        public async Task<IActionResult> BuyProduct(int productid)
+        public async Task<IActionResult> BuyProduct(int id)
         {
-            var product = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == productid);
-            string id = _userManager.GetUserId(HttpContext.User);
-            AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == id);
-            if (user.Wallet > product.Price)
+            var product = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+            string userid = _userManager.GetUserId(HttpContext.User);
+            AppUser user = _appDbContext.AppUsers.FirstOrDefault(x => x.Id == userid);
+            if (product.DiscountPrice == 0)
             {
-                AppUserProduct userProduct = new AppUserProduct
+                if (user.Wallet >= product.Price*100)
                 {
-                    AppUserId = user.Id,
-                    ProductId = productid,
-                    IsBuyed = true,   
-                };
+                    AppUserProduct userProduct = new AppUserProduct
+                    {
+                        AppUserId = user.Id,
+                        ProductId = id,
+                        IsBuyed = true,
+                    };
 
-                user.Wallet = user.Wallet - product.Price * 100;
+                    user.Wallet = user.Wallet - product.Price * 100;
+                    Instructor instructor = await _appDbContext.Instructors.Include(i => i.Courses).FirstOrDefaultAsync(i => i.Id == product.InstructorId);
+                    instructor.Wallet = instructor.Wallet + (product.DiscountPrice * 100) * 0.75;
 
-                await _appDbContext.AddAsync(userProduct);
-                await _appDbContext.SaveChangesAsync();
+                    await _appDbContext.AddAsync(userProduct);
+                    await _appDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    return RedirectToAction("Payment", "Payment");
+                }
+            }
+            else
+            {
+                if (user.Wallet >= product.DiscountPrice *100)
+                {
+                    AppUserProduct userProduct = new AppUserProduct
+                    {
+                        AppUserId = user.Id,
+                        ProductId = id,
+                        IsBuyed = true,
+                    };
+
+                    user.Wallet = user.Wallet - product.DiscountPrice * 100;
+                    Instructor instructor = await _appDbContext.Instructors.Include(i => i.Courses).FirstOrDefaultAsync(i => i.Id == product.InstructorId);
+                    instructor.Wallet = instructor.Wallet + (product.DiscountPrice * 100) * 0.75;
+                    await _appDbContext.AddAsync(userProduct);
+                    await _appDbContext.SaveChangesAsync();
+                }
+                else
+                {
+                    return RedirectToAction("Payment", "Payment");
+
+                }
             }
 
             return RedirectToAction("Index", "Home");
