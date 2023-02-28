@@ -59,9 +59,10 @@ namespace SkillUp.Service.Services.Concretes
             return product;
         }
 
-        public Task<Product> GetProductById(int id)
+        public async Task<Product> GetProductById(int id)
         {
-            throw new NotImplementedException();
+            var product =  _unitOfWork.GetRepository<Product>().GetByIdAsync(id);
+            return product;
         }
 
         public async  Task<bool> UpdateProductAsync(int id ,UpdateProductVM productVM)
@@ -72,8 +73,8 @@ namespace SkillUp.Service.Services.Concretes
             product.Description = productVM.Description;
             product.Price = productVM.Price;
             product.DiscountPrice = productVM.DiscountPrice;
-            product.SKU = productVM.SKU;    
-
+            product.SKU = productVM.SKU;
+            
             foreach (var category in product.ProductCategories)
             {
                 if (productVM.CategoryIds.Contains(category.CategoryId))
@@ -85,6 +86,7 @@ namespace SkillUp.Service.Services.Concretes
                     _context.ProductCategories.Remove(category);
                 }
             }
+            
 
             foreach (var categoryId in productVM.CategoryIds)
             {

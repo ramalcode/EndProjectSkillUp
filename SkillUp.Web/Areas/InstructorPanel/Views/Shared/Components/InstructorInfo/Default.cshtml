@@ -111,7 +111,12 @@
                             <img src="~/user/assets/instructorimg/@Model.ImageUrl" width="250" alt="">
                         }
                         <h4>@(Model.Name + " " + Model.Surname)</h4>
-                        <span>Senior Designer</span>
+                            <span>
+                                @foreach (var profession in Model.InstructorProfessions.Where(p => p.InstructorId == Model.Id))
+                                {
+                                    <span class="text-danger">@profession.Profession.Name</span>
+                                }
+                            </span>
                         <div class="elso_syu89">
                             <ul>
                                 @if (Model.FaceBookUrl != null)

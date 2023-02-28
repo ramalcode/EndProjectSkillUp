@@ -12,14 +12,12 @@
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add New Paragraph</li>
+                        <li class="breadcrumb-item"><a asp-controller="dashboard" asp-action="index">Go To Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Update Paragraph</li>
                     </ol>
                 </nav>
             </div>
-            <div class="elkios">
-                <a asp-controller="Lecture" asp-action="AddNewCourseLectures" class="add_new_btn" data-target="#catModal"><i class="fas fa-plus-circle mr-1"></i>Add Course Video</a>
-            </div>
+            
         </div>
     </div>
 </div>
@@ -36,7 +34,6 @@
                         <div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
                             <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                                 <button class="nav-link" id="v-pills-requirements-tab" data-toggle="pill" data-target="#v-pills-requirements" type="button" role="tab" aria-controls="v-pills-requirements" aria-selected="false">Update Course Paragraph</button>
-                                <button class="nav-link" id="v-pills-finish-tab" data-toggle="pill" data-target="#v-pills-finish" type="button" role="tab" aria-controls="v-pills-finish" aria-selected="false">Finish</button>
                             </div>
                         </div>
 
@@ -56,26 +53,10 @@
                                         </div>
                                     </div>
 
-                                    <div class="d-flex align-items-center justify-content-center">
-                                        <ul class="alios_slide_nav">
-                                            <li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-                                            <li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-                                        </ul>
-                                    </div>
+                                    
                                 </div>
 
-
-                                <!-- finish -->
-                                <div class="tab-pane fade" id="v-pills-finish" role="tabpanel" aria-labelledby="v-pills-finish-tab">
-                                    <div class="succ_wrap">
-                                        <div class="succ_121"><i class="fas fa-thumbs-up"></i></div>
-                                        <div class="succ_122">
-                                            <h4>Course Successfully Added</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                        </div>
-                                        <div class="succ_123"><a href="course-detail.html" class="btn theme-bg text-white">View Course</a></div>
-                                    </div>
-                                </div>
+                                
                             </div>
                         </div>
 

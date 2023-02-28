@@ -26,6 +26,7 @@
                         <div class="ed_header_caption">
                             <h2 class="ed_title">@(Model.Name + " " + Model.Surname)</h2>
                             <ul>
+                                <li><i class="ti-video-camera"></i>@Model.Courses.Count Courses</i></li>
                                 <li>
                                     <i class="ti-control-forward"></i>
                                     @{
@@ -40,12 +41,10 @@
                                     }
                                     <span>@totalLecture Lectures </span>
                                 </li>
-                                <li>
-                                </li>
                             </ul>
                         </div>
                         <div class="ed_header_short">
-                            <p>@Model.Description</p>
+                            <p><b><i>@Model.Description</i></b></p>
                         </div>
                     </div>
                     <div class="dlkio_last">
@@ -134,9 +133,6 @@
             }
         </div>
         <div class="row justify-content-center">
-            <div class="col-lg-7 col-md-8 mt-2">
-                <div class="text-center"><a asp-controller="Course" asp-action="FindCourses" class="btn btn-md theme-bg-light theme-cl">Load More Cources</a></div>
-            </div>
         </div>
     </div>
 </section>

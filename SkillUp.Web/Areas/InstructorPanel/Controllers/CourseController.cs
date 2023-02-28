@@ -74,7 +74,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 return View(courseVM);
             }
             await _courseService.CreateCourseAsync(courseVM, id);
-            return View();
+            return RedirectToAction(nameof(MyCourses));
         }
 
         public async Task<IActionResult> DeleteCourse(int id)

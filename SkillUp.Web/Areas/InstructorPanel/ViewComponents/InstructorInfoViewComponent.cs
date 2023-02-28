@@ -21,7 +21,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.ViewComponents
         {
             string id = _userManager.GetUserId(HttpContext.User);
             Instructor instructor = await _context.Instructors.Include(c => c.Courses).ThenInclude(cr=>cr.CourseReviews.OrderByDescending(p => p.ReviewDate)).ThenInclude(u=>u.AppUser)
-                .Include(iu=>iu.AppUserInstructors).ThenInclude(u=>u.AppUser).Include(p=>p.Products).FirstOrDefaultAsync(i => i.Id == id);
+                .Include(iu=>iu.AppUserInstructors).ThenInclude(u=>u.AppUser).Include(p=>p.Products).Include(ip=>ip.InstructorProfessions).ThenInclude(p=>p.Profession).FirstOrDefaultAsync(i => i.Id == id);
             return View(instructor);
         }
     }

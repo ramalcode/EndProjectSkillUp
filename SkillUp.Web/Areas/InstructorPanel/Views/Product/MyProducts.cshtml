@@ -45,6 +45,7 @@
                                     <th scope="col">Enrolled</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">DiscountPrice</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -52,7 +53,7 @@
                                 @foreach (var product in Model.Products)
                                 {
                                     <tr>
-                                        <td><img src="~/user/assets/productimg/@product.ImageUrl" width="80" /></td>
+                                        <td><img src="~/user/assets/productimg/@product.ImageUrl" width="90px" height="80px" /></td>
                                         <td>
                                             <h6>@product.Name</h6>
                                         </td>
@@ -86,7 +87,20 @@
                                                 <span class="trip theme-cl theme-bg-light">Free</span>
 
                                             }
+                                        </td>
                                         <td>
+                                            @if (product.DiscountPrice > 0)
+                                            {
+                                                <span class="trip gray">$@product.DiscountPrice</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="trip gray">$0</span>
+
+                                            }
+                                        </td>
+                                        <td>
+              
                                             <div class="dropdown show">
                                                 <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-h"></i>

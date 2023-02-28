@@ -39,7 +39,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         public async Task<IActionResult> Index(UpdateUserVM userVM)
         {
             string id = _userManager.GetUserId(HttpContext.User);
-            AppUser user = new AppUser();
+            AppUser user = await _userService.GetUserById(id);
             if (userVM.Image != null)
             {
                 string imgresult = userVM.Image.CheckValidate("image/", 500);
@@ -56,7 +56,25 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             {
                 ModelState.AddModelError("", "Login or Password is wrong");
             }
-            var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
+            if (userVM.CurrentPassword != null && userVM.Password != null && userVM.ConfirmPassword != null)
+            {
+                var result = await _userManager.ChangePasswordAsync(user, userVM.CurrentPassword, userVM.Password);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        if (error.Code == "PasswordMismatch")
+                        {
+                            ModelState.AddModelError(string.Empty, "The current password is incorrect.");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+
+                }
+            }
             await _userService.UpdateUserAsync(id, userVM);
             return RedirectToAction("Index" ,"Dashboard");
         }

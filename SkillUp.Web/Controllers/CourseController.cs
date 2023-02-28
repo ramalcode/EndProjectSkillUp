@@ -70,7 +70,6 @@ namespace SkillUp.Web.Controllers
         {
             string userid =  _userManager.GetUserId(HttpContext.User);
             if (!ModelState.IsValid) return View(review);
-            AppUserCourse userCourse = new AppUserCourse();
              await  _reviewcourseService.CreateReviewAsync(review, userid);
             return RedirectToAction("Index", "Home");
         }

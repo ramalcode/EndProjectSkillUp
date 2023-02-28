@@ -69,7 +69,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 return View(productVM);
             }
             await _productService.CreateProductAsync(productVM,id);
-            return View();
+            return RedirectToAction(nameof(MyProducts));
 
         }
 
@@ -90,7 +90,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, UpdateProductVM productVM)
         {
-            Product product = new Product();
+            Product product = await _productService.GetProductById(id);
             if (productVM.Image != null)
             {
                 string result = productVM.Image.CheckValidate("image/", 500);
@@ -98,7 +98,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 {
                     ModelState.AddModelError("Image", result);
                 }
-                //product.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/productimg");
+                product.ImageUrl.DeleteFile(_env.WebRootPath, "user/assets/productimg");
                 product.ImageUrl = productVM.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "productimg"));
 
             }

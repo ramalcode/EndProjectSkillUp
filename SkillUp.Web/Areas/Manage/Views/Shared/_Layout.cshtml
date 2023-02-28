@@ -50,10 +50,10 @@
                                                     <div class="footer_widget">
                                                         <h4 class="widget_title">Pages</h4>
                                                         <ul class="footer-menu">
-                                                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                                                            <li><a asp-controller="Home" asp-action="About">About Us</a></li>
-                                                            <li><a asp-controller="Home" asp-action="FAQs">Faq's</a></li>
-                                                            <li><a asp-controller="Home" asp-action="Contact">Contact US</a></li>
+                                                            <li><a asp-area="default" asp-controller="home" asp-action="index">Home</a></li>
+                                        <li><a asp-area="default" asp-controller="home" asp-action="hbout">About Us</a></li>
+                                        <li><a asp-area="default" asp-controller="home" asp-action="fAQs">Faq's</a></li>
+                                        <li><a asp-area="default" asp-controller="home" asp-action="contact">Contact US</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -62,9 +62,9 @@
                                                     <div class="footer_widget">
                                                         <h4 class="widget_title">Course</h4>
                                                         <ul class="footer-menu">
-                                                            <li><a asp-controller="Category" asp-action="Index">Explore Category</a></li>
-                                                            <li><a asp-controller="Course" asp-action="FindCourses">Courses</a></li>
-                                                            <li><a asp-controller="Instructor" asp-action="FindCourses">Instructors</a></li>
+                                        <li><a asp-area="default" asp-controller="category" asp-action="index">Explore Category</a></li>
+                                        <li><a asp-area="default" asp-controller="course" asp-action="findCourses">Courses</a></li>
+                                        <li><a asp-area="default" asp-controller="instructor" asp-action="findCourses">Instructors</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -73,7 +73,7 @@
                                                     <div class="footer_widget">
                                                         <h4 class="widget_title">Shop</h4>
                                                         <ul class="footer-menu">
-                                                            <li><a asp-controller="Shop" asp-action="Products">Products</a></li>
+                                        <li><a asp-area="default" asp-controller="shop" asp-action="products">Products</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>

@@ -110,11 +110,30 @@ namespace SkillUp.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        //public async Task<IActionResult> ForgotPassword()
+        //{
+        //    return View();
+        //}
 
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> ForgotPassword(ForgotPasswordVM forgotPasswordVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return View(forgotPasswordVM);
+        //    }
+
+        //    var user = await _userManager.FindByEmailAsync(forgotPasswordVM.Email);
+        //    if (user == null) return View(forgotPasswordVM);
+
+        //    string token = await _userManager.GeneratePasswordResetTokenAsync(user);    
+        //    string link = Url.Action("ResetPassword", "Account", new {userId = user.Id, token = token},HttpContext.Request.Scheme);    
+        //    return Json(link);
+        //}
+
+
+
 
 
         public async Task AddRoles()

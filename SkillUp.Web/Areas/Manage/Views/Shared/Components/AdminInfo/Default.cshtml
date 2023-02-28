@@ -80,14 +80,14 @@
                                         <h4>Hi, @(Model.AppUser.Name + " " + Model.AppUser.Surname)</h4>
                                     </div>
                                     <ul>
-                                        <li><a asp-area="Manage" asp-controller="Dashboard" asp-action="Index"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>
-                                        <li><a asp-area="Manage" asp-controller="MyProfile" asp-action="Index"><i class="fa fa-user-tie"></i>My Profile</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Course" asp-action="ManageCourses"><i class="fas fa-shopping-basket"></i>Manage Courses</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Product" asp-action="ManageProducts"><i class="fas fa-shopping-basket"></i>Manage Products</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Instructor" asp-action="ManageInstructor"><i class="fas fa-toolbox"></i>Manage Instructor</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Student" asp-action="ManageStudents"><i class="fa fa-envelope"></i>Manage Students</a></li>
-                                        <li><a asp-area="Manage" asp-controller="Message" asp-action="Index"><i class="fas fa-comments"></i>Messages</a></li>
-                                        <li><a asp-controller="Account" asp-action="Logout"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
+                                        <li><a asp-area="manage" asp-controller="dashboard" asp-action="index"><i class="fa fa-tachometer-alt"></i>Dashboard</a></li>
+                                        <li><a asp-area="manage" asp-controller="myProfile" asp-action="index"><i class="fa fa-user-tie"></i>My Profile</a></li>
+                                        <li><a asp-area="manage" asp-controller="course" asp-action="manageCourses"><i class="fas fa-shopping-basket"></i>Manage Courses</a></li>
+                                        <li><a asp-area="manage" asp-controller="product" asp-action="manageProducts"><i class="fas fa-shopping-basket"></i>Manage Products</a></li>
+                                        <li><a asp-area="manage" asp-controller="instructor" asp-action="manageInstructor"><i class="fas fa-toolbox"></i>Manage Instructor</a></li>
+                                        <li><a asp-area="manage" asp-controller="student" asp-action="manageStudents"><i class="fa fa-envelope"></i>Manage Students</a></li>
+                                        <li><a asp-area="manage" asp-controller="message" asp-action="index"><i class="fas fa-comments"></i>Messages</a></li>
+                                        <li><a  asp-area="default" asp-controller="account" asp-action="signout"><i class="fa fa-unlock-alt"></i>Sign Out</a></li>
                                     </ul>
                                 </div>
                             </div>

@@ -99,9 +99,9 @@
                                     {
                                             <div class="card">
                                                 <div id="headingOne" class="card-header bg-white shadow-sm border-0">
-                                                <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#@(item.Name)" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part :@item.Name</a></h6>
+                                                <h6 class="mb-0 accordion_title"><a href="#" data-toggle="collapse" data-target="#@(item.Name.Trim().Substring(0,3))" aria-expanded="true" aria-controls="" class="d-block position-relative text-dark collapsible-link py-2">Part: @item.Name</a></h6>
                                                 </div>
-                                            <div id="@item.Name" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
+                                            <div id="@item.Name.Trim().Substring(0,3)" aria-labelledby="headingOne" data-parent="#accordionExample" class="collapse show">
                                                     <div class="card-body pl-3 pr-3">
                                                         <ul class="lectures_lists">
                                                           @foreach (var lectures in item.Lectures)
@@ -178,21 +178,17 @@
                                             }
                                             </li>
                                         <li><i class="ti-control-forward"></i>
-                                            @foreach (var item in Model.Instructor.Courses)
+                                            @{
+                                                var totalLecture = 0;
+                                            }
+                                            @foreach (var paragraph in Model.Instructor.Courses)
                                             {
-                                                @foreach (var lectures in item.Paragraphs)
+                                                @foreach (var lecture in paragraph.Paragraphs)
                                                 {
-                                                    
-                                                    if (lectures.Lectures.Count>1)
-                                                    {
-                                                       <span>@lectures.Lectures.Count Lectures </span>
-                                                    }
-                                                    else
-                                                    {
-                                                      <span>@lectures.Lectures.Count Lecture </span>
-                                                    }
+                                                    totalLecture += lecture.Lectures.Count;
                                                 }
                                             }
+                                            <span>@totalLecture Lectures</span>
                                             </li>
                                         <li><i class="ti-user"></i>Exp. @(Model.Instructor.Experince) Year</li>
                                     </ul>
@@ -234,7 +230,7 @@
                                         <h3>Course Reviews -  <span> @Model.CourseReviews.Count </span></h3>
                                     </div>
                                     <div class="reviews-comments-wrap">
-                                        @foreach (var review in Model.CourseReviews)
+                                        @foreach (var review in Model.CourseReviews.OrderByDescending(r=>r.ReviewDate).Take(10))
                                         {
                                             <div class="reviews-comments-item">
                                                 <div class="review-comments-avatar">

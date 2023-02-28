@@ -62,7 +62,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             }
 
             await _lectureService.CreateLectureAsync(lectureVM,id);
-            return View();
+            return RedirectToAction("MyCourses" , "Course");
         }
 
 
@@ -115,7 +115,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateLecture(int id, UpdateLectureVM lectureVM)
         {
-            Lecture lecture = new Lecture();
+            Lecture lecture = await _lectureService.GetLectureById(id);
             if (lectureVM.Video != null)
             {
                 string result = lectureVM.Video.CheckValidate("video/", 50000);
@@ -123,9 +123,6 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
                 {
                     ModelState.AddModelError("Preview", result);
                 }
-
-                lecture.VideoUrl.DeleteFile(_env.WebRootPath, "user/assets/coursevideo");
-                lecture.VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo"));
             }
             await _lectureService.UpdateLectureAsync(id, lectureVM);
             return RedirectToAction("MyCourses", "Course");

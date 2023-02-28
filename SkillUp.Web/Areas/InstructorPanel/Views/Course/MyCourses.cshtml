@@ -46,6 +46,7 @@
                                     <th scope="col">Enrolled</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">DiscountPrice</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -53,7 +54,7 @@
                                 @foreach (var course in Model.Courses)
                                 {
                                    <tr>
-                                        <td><img src="~/user/assets/courseimg/@course.ImageUrl" width="80" /></td>
+                                        <td><img src="~/user/assets/courseimg/@course.ImageUrl" width="100px" height="70px" /></td>
                                     <td><h6>@course.Name</h6></td>
                                     <td>
                                         @foreach (var category in course?.CourseCategories?.Where(ctg=>ctg.CourseId == course.Id))
@@ -89,6 +90,18 @@
                                              <span class="trip theme-cl theme-bg-light">Free</span>
 
                                         }
+                                    </td>
+                                    <td>
+                                        @if (course.DiscountPrice > 0)
+                                        {
+                                            <span class="trip gray">$@course.DiscountPrice</span>
+                                        }
+                                        else
+                                        {
+                                                <span class="trip gray">$0</span>
+
+                                        }
+                                    </td>
                                     <td>
                                         <div class="dropdown show">
                                             <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

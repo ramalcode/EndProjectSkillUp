@@ -16,7 +16,7 @@
                 }
                 @if (Model.DiscountPrice == 0 && Model.Price>0)
                 {
-                    <h2 class="theme-cl">$@Model.DiscountPrice</h2>
+                    <h2 class="theme-cl">$@Model.Price</h2>
                 }
                 @if (Model.DiscountPrice == 0 && Model.Price == 0)
                 {
@@ -62,9 +62,16 @@
         </div>
         <div class="ed_view_link">
             
-            @if ((Model.Price != 0 && Model.DiscountPrice != 0) && (!Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name)))
+            @if (!Model.AppUserCourses.Any(a => a.AppUser.UserName == User.Identity.Name))
             {
-                <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a asp-action="BuyCourse" asp-controller="Payment" asp-route-id="@ViewData["buycourseid"]" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
+                }
+                else
+                {
+                    <a asp-action="signin" asp-controller="account" class="btn theme-bg enroll-btn">Buy Now<i class="ti-angle-right"></i></a>
+                }
             }
         </div>
     </div>

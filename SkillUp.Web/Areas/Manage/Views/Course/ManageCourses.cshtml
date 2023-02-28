@@ -64,7 +64,7 @@
                                 {
                                    <tr>
                                         <td><img src="~/user/assets/courseimg/@course.ImageUrl" width="80" /></td>
-                                    <td><h6>@course.Name</h6><p>Instructor:<span>@course.Instructor.Name @course.Instructor.Surname</span></p></td>
+                                    <td><h6>@course.Name</h6><p>Instructor:<span>@course.Instructor.UserName @course.Instructor.Surname</span></p></td>
                                     <td>
                                         @foreach (var category in course?.CourseCategories.Where(ctg=>ctg.CourseId == course.Id))
                                         {<div class="dhs_tags">

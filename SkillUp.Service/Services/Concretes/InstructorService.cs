@@ -26,7 +26,7 @@ namespace SkillUp.Service.Services.Concretes
 
 
         //Get Instructor By Id
-        public async Task<Instructor> GetInstructorById(string id)
+        public async Task<Instructor>  GetInstructorById(string id)
         {
 
             return await _context.Instructors.Include(c => c.Courses).ThenInclude(ap => ap.AppUserCourses).Include(c => c.Courses)

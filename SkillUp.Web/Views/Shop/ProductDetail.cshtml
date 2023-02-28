@@ -34,7 +34,7 @@
 
                     <div class="woo-single-images">
                         <div class="feature-style-single">
-                            <img src="~/user/assets/productimg/@Model.ImageUrl" alt="product-book-06" width="570">
+                            <img src="~/user/assets/productimg/@Model.ImageUrl" width="296px" height="300px" alt="product-book-06">
                         </div>
                     </div>
 
@@ -74,11 +74,11 @@
                             </div>
                             <div class="woo_short_desc">
                                 <p>
-                                    @if (Model.Description.Length>25)
+                                    @if (Model.Description.Length>40)
                                     {
-                                        <span>@Model.Description.Substring(0,25).</span>
+                                        <span>@Model.Description.Substring(0,40).</span>
                                     }
-                                    @if (Model.Description.Length <= 25)
+                                    @if (Model.Description.Length <= 40)
                                     {
                                         <span>@Model.Description.</span>
                                     }
@@ -86,15 +86,20 @@
                                  
                             </div>
                             <div class="woo_buttons">
-                                
                                      @if (!(Model.AppUserProducts.Any(a => a.AppUser.UserName == User.Identity.Name)))
                                      {
-                                        <a asp-action="BuyProduct" asp-controller="Payment" asp-route-id="@Model.Id"   class="btn btn-success">Buy Now</a>
+                                        if (User.Identity.IsAuthenticated)
+                                        {
+                                            <a asp-action="BuyProduct" asp-controller="Payment" asp-route-id="@Model.Id"   class="btn btn-success">Buy Now</a>
+                                        
+                                        }
+                                        else
+                                        {
+                                          <a asp-action="signin" asp-controller="account"  class="btn btn-success">Buy Now</a>
+
+                                        }
 
                                      }
-                                    
-                                
-            
                             </div>
                         </div>
                     </div>
@@ -137,7 +142,7 @@
                         <p>
                             @if (Model.Description.Length > 50)
                             {
-                                <span>@Model.Description.Substring(0,50)</span>
+                                <span>@Model.Description.Substring(0,100)</span>
                             }
                             @if (Model.Description.Length <= 50)
                             {

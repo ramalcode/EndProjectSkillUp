@@ -22,7 +22,7 @@
             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                 <div class="slide_items">
 
-                    @foreach (var item in Model.Courses.OrderByDescending(c=>c.CreateDate).Take(10))
+                    @foreach (var item in Model.Courses.OrderByDescending(c=>c.CreateDate).Take(16))
                     {
                         <!-- Single Item -->
                         <div class="lios_item">
@@ -70,9 +70,9 @@
                                         <ul>
                                             @{
                                                 TimeSpan totalduration = new TimeSpan(0, 0, 0);
-                                                @foreach (var paragraphs in item.Paragraphs)
+                                                            @foreach (var paragraphs in item.Paragraphs)
                                                 {
-                                                    @foreach (var lectures in paragraphs.Lectures)
+                                                                @foreach (var lectures in paragraphs.Lectures)
                                                     {
                                                         TimeSpan timeSpan = TimeSpan.ParseExact(lectures.Duration.Replace("hr ", ":").Replace("min ", ":").Replace("sec", ""), @"h\:m\:s", null);
                                                         totalduration = totalduration.Add(timeSpan);
@@ -91,7 +91,7 @@
                                     <div class="crs_flex">
                                         <div class="crs_fl_first">
                                             <div class="crs_tutor">
-                                                <span class=" crs_auth small"> By: @(item.Instructor.Name + " " + item.Instructor.Surname)</span>
+                                                <span class=" crs_auth small"> By: <a asp-controller="instructor" asp-action="instructorDetail" asp-route-id="@item.InstructorId">@(item.Instructor.Name + " " + item.Instructor.Surname)</a> </span>
                                            </div>
                                         </div>
                                         <div class="crs_fl_last">
@@ -153,10 +153,8 @@
     </div>
 </section>
 <div class="clearfix"></div>
-<!-- ============================ Categories End ================================== -->
 
 
-<!-- ============================ Top Instructor Start ================================== -->
 <section class="min gray">
     <div class="container">
 
@@ -198,10 +196,8 @@
 
     </div>
 </section>
-<!-- ============================ Top Instructor End ================================== -->
 
 
-<!-- ============================ Top Cources E-books Start ================================== -->
 <section>
     <div class="container">
 
@@ -215,12 +211,12 @@
         </div>
 
         <div class="row justify-content-center">
-            @foreach (var product in Model.Products)
+            @foreach (var product in Model.Products.Take(8))
             {
                 <div  class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="prd_grid_box">
                         <div class="prd_grid_thumb">
-                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id"><img src="~/user/assets/productimg/@product.ImageUrl" class="img-fluid" alt=""></a>
+                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id"><img src="~/user/assets/productimg/@product.ImageUrl" class="img-fluid" style="width:100%; height:300px !important;" alt=""></a>
                         </div>
                         <div class="prd_grid_caption">
                             <div class="prd_center_capt">
@@ -253,10 +249,8 @@
 
     </div>
 </section>
-<!-- ============================ Top Cources E-books End ================================== -->
 
 
-<!-- ============================ Students Reviews Start ================================== -->
 <section class="min gray">
     <div class="container">
 
@@ -275,7 +269,7 @@
                 <div class="reviews-slide space">
                     @if (Model.CourseReviews.Count>0)
                     {
-                        foreach (var reviews in Model.CourseReviews.Take(15))
+                        foreach (var reviews in Model.CourseReviews.OrderByDescending(cr=>cr.ReviewDate).Take(15))
                         {
                                  <!-- Single Item -->
                         <div class="single_items lios_item">
@@ -295,7 +289,6 @@
                                         <div class="_tsl_flex_capst">
                                             <h5>@(reviews.AppUser.Name + " " + reviews.AppUser.Surname)</h5>
                                             <div class="_ovr_posts"><span>@reviews.AppUser.UserName</span></div>
-                                            <div class="_ovr_rates"><span><i class="fa fa-star"></i></span>4.7</div>
                                         </div>
                                     </div>
                                 </div>
@@ -312,7 +305,6 @@
         </div>
     </div>
 </section>
-<!-- ============================ Students Reviews End ================================== -->
 
 
 

@@ -56,8 +56,9 @@ namespace SkillUp.Service.Services.Concretes
         {
             var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
             lecture.Name = lectureVM.Name;
-            lecture.Duration = lectureVM.Duration;
-            lecture.VideoUrl = lectureVM.VideoUrl;
+            lecture.VideoUrl.DeleteFile(_env.WebRootPath, "user/assets/coursevideo");
+            lecture.VideoUrl = lectureVM.Video.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo"));
+            lecture.Duration = FileExtension.VideoDuration(Path.Combine(_env.WebRootPath, "user", "assets", "coursevideo", lecture.VideoUrl)).ConvertTime();
             await _unitOfWork.GetRepository<Lecture>().UpdateAsync(lecture);
             await _unitOfWork.SaveAsync();
             return true;    
