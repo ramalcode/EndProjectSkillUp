@@ -12,6 +12,8 @@ namespace SkillUp.Web.ViewComponents
             _context = context;
         }
 
+
+        //AboutUs Setting
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View(_context.Abouts.ToDictionary(s => s.Key, s => s.Value));

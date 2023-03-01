@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -18,7 +17,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         readonly IEnrollService _enrollService;
         readonly ICourseService _courseService;
         readonly IProductService _productService;
-        readonly AppDbContext _context;  //
+        readonly AppDbContext _context;
 
 
         public EnrollmentController(IEnrollService enrollService, AppDbContext context, ICourseService courseService, IProductService productService)
@@ -29,6 +28,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _productService = productService;
         }
 
+
+        //Enroll Course for Student Get
         public async  Task<IActionResult> EnrollStudent()
         {
             ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
@@ -36,6 +37,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
+
+        //Enroll course for Student Post
         [HttpPost]
         public async Task<IActionResult> EnrollStudent(EnrollStudentVM studentVM)
         {
@@ -62,6 +65,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(EnrollStudent));
         }
 
+
+        //Enroll Product Get
         public async Task<IActionResult> EnrollProduct()
         {
             ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
@@ -69,6 +74,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
+
+        //Enroll Product Post
         [HttpPost]
         public async Task<IActionResult> EnrollProduct(EnrollProductVM productVM)
         {

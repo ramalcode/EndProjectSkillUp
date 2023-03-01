@@ -5,6 +5,14 @@ namespace SkillUp.Entity.Entities.Reviews
 {
     public class CourseReview:BaseEntity
     {
+        [Required, MinLength(5), MaxLength(500)]
+        public string ReviewContent { get; set; }
+
+        public DateTime ReviewDate { get; set; }
+
+        public bool Status { get; set; }
+
+
         public string AppUserId { get; set; }
 
         public AppUser? AppUser { get; set; }
@@ -15,11 +23,5 @@ namespace SkillUp.Entity.Entities.Reviews
         public Course? Course { get; set; }
 
 
-        [Required, MinLength(5), MaxLength(500)]
-        public string ReviewContent { get; set; }
-
-        public DateTime ReviewDate { get; set; }
-
-        public bool Status { get; set; }
     }
 }

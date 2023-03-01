@@ -43,10 +43,10 @@ namespace SkillUp.DAL.Context
 
         //ManyToMany Relations
         public DbSet<AppUserCourse> AppUserCourses { get; set; }
-        public DbSet<AppUserInstructor> AppUserInstructors { get; set; }
         public DbSet<AppUserProduct> AppUserProducts { get; set; }
         public DbSet<CourseCategory> CourseCategories { get; set; }
         public DbSet<InstructorProfession> InstructorProfessions { get; set; }
+        public DbSet<AppUserInstructor> AppUserInstructors { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
 
 

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
-using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
@@ -23,6 +22,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _roleManager = roleManager;
         }
 
+
+        //Manage Admins
         public async Task<IActionResult> ManageAdmin(string? query, int page = 1)
         {
             if (query!=null)
@@ -55,6 +56,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             }
         }
 
+
+        //Upgrade Role - SuperAdmin
         [Authorize(Roles ="SuperAdmin")]
         public async Task<IActionResult> UpgradeRole(string id)
         {
@@ -69,6 +72,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction("manageadmin", "admin");
         }
 
+
+        //DownGrade Role - Student
         [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> DowngradeRole(string id)
         {

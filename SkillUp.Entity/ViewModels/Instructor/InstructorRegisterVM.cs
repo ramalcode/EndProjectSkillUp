@@ -30,13 +30,6 @@ namespace SkillUp.Entity.ViewModels
 
         [Required]
         public byte Experience { get; set; }
-
-        [Required]
-        public IFormFile Image { get; set; }
-
-        [Required]
-        public IFormFile Preview { get; set; }
-
         public List<int> ProfessionIds { get; set; }
 
         [Required, DataType(DataType.Password)]
@@ -44,5 +37,13 @@ namespace SkillUp.Entity.ViewModels
 
         [Required, DataType(DataType.Password), Compare(nameof(Password))]
         public string ConfirmPassword { get; set; }
+
+
+        [Required]
+        public IFormFile Image { get; set; }
+
+        [Required]
+        public IFormFile Preview { get; set; }
+
     }
 }

@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
-using Stripe;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using Product = SkillUp.Entity.Entities.Product;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -24,6 +21,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _productService = productService;
         }
 
+
+        //Admin Course Revenue
         public async Task<IActionResult> AdminCourseRevenue(string? query, int page = 1)
         {
             if (query!=null)
@@ -51,6 +50,9 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             };
             return View(paginationVM);
         }
+
+
+        //Admin Product Revenue
         public async Task<IActionResult> AdminProductRevenue(string? query, int page = 1)
         {
             if (query!=null)
@@ -81,6 +83,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Instructor Course Revenue
         public async Task<IActionResult> InstructorCourseRevenue(string query, int page = 1)
         {
             if (query != null)
@@ -110,7 +113,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-
+        //Instructor Product Revenue
         public async Task<IActionResult> InstructorProductRevenue(string query, int page = 1)
         {
             if (query != null)

@@ -35,34 +35,43 @@
                         <div class="form-group smalls">
                             <label asp-for="Name">First Name*</label>
                             <input asp-for="Name" type="text" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="Surname">Last Name</label>
                             <input asp-for="Surname" type="text" class="form-control" />
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="Description"></label>
                             <input asp-for="Description" type="text" class="form-control" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="Email">Email</label>
                             <input asp-for="Email" type="email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="TwitterUrl">Twitter*</label>
                             <input asp-for="TwitterUrl" type="text" class="form-control" />
+                            <span asp-validation-for="TwitterUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="LinkedInUrl">LinkedIn*</label>
                             <input asp-for="LinkedInUrl" type="text" class="form-control" />
+                            <span asp-validation-for="LinkedInUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="FacebookUrl">Facebook*</label>
                             <input asp-for="FacebookUrl" type="text" class="form-control" />
+                            <span asp-validation-for="FacebookUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="InstagramUrl">Instagram*</label>
                             <input asp-for="InstagramUrl" type="text" class="form-control" />
+                            <span asp-validation-for="InstagramUrl" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <img width="200" src="~/user/assets/instructorimg/@Model.ImageUrl" /><br />
@@ -70,6 +79,7 @@
                             <div class="custom-file">
                                 <input asp-for="Image" type="file" class="custom-file-input" id="customFile">
                                 <label asp-for="Image" class="custom-file-label" for="customFile">Choose file</label>
+                                <span asp-validation-for="Image" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group smalls">
@@ -78,19 +88,23 @@
                             <div class="custom-file">
                                 <input asp-for="Preview" type="file" class="custom-file-input" id="customFile">
                                 <label asp-for="Preview" class="custom-file-label" for="customFile">Choose file</label>
+                                <span asp-validation-for="Preview" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="CurrentPassword">Current Password</label>
                             <input asp-for="CurrentPassword" type="password" class="form-control" />
+                            <span asp-validation-for="CurrentPassword" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="Password">New Password</label>
                             <input asp-for="Password" type="password" class="form-control" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
                         <div class="form-group smalls">
                             <label asp-for="ConfirmPassword">Confirm Password</label>
                             <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
 
                         <div class="form-group smalls">

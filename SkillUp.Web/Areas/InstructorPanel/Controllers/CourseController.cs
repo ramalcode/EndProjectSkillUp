@@ -32,6 +32,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _userManager = userManager;
         }
 
+
+        //My Courses
         public async Task<IActionResult> MyCourses()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -39,6 +41,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(instructor);
         }
 
+
+        //Add New Course Get
         public async Task<IActionResult> AddNewCourse()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
@@ -47,6 +51,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         }
 
 
+        //Add New Course Post
         [HttpPost]
         public async Task<IActionResult> AddNewCourse(CreateCourseVM courseVM)
         {
@@ -77,12 +82,16 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return RedirectToAction(nameof(MyCourses));
         }
 
+
+        //Delete Course
         public async Task<IActionResult> DeleteCourse(int id)
         {
             await _courseService.DeleteCourseAsync(id);
             return RedirectToAction(nameof(MyCourses));
         }
 
+
+        //Update Course Get
         public async Task<IActionResult> UpdateCourse(int id)
         {
 
@@ -91,6 +100,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(course);
         }
 
+
+        //Update Course Post
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(int id, UpdateCourseVM courseVM)
         {

@@ -22,11 +22,14 @@ namespace SkillUp.Web.Controllers
             _env = env;
         }
 
+        //AppUser SignUp Get
         public IActionResult SignUp()
         {
             return View();
         }
 
+
+        //AppUser SignUp Post
         [HttpPost]
         public async Task<IActionResult> SignUp(RegisterVM register)
         {
@@ -40,6 +43,8 @@ namespace SkillUp.Web.Controllers
                 {
                     ModelState.AddModelError("Image", imgresult);
                 }
+
+                user.ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"));
             }
             if (user is not null)
             {
@@ -52,7 +57,6 @@ namespace SkillUp.Web.Controllers
                 Surname = register.Surname,
                 UserName = register.UserName,
                 Email = register.Email,
-                ImageUrl = register.Image.SaveFile(Path.Combine(_env.WebRootPath, "user", "assets", "userimg"))
 
         };
 
@@ -72,21 +76,29 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //AppUser SigIn Get
         public IActionResult SignIn()
         {
             return View();
         }
 
+
+        //AppUser Signin Post
         [HttpPost]
         public async Task<IActionResult> SignIn(LoginVM login, string? returnUrl)
         {
             if (!ModelState.IsValid) return View(login);
-            AppUser user = await _userManager.FindByNameAsync(login.UserName);
+            AppUser user = await _userManager.FindByNameAsync(login.UserNameOrEmail);
             if(user is null)
             {
-                ModelState.AddModelError("", "Login or Password is wrong");
-                return View();
+                user = await _userManager.FindByEmailAsync(login.UserNameOrEmail);
+                if (user == null)
+                {
+                    ModelState.AddModelError("", "Login or Password Wrong!");
+                    return View();
+                }
             }
+          
             var result = await _signInManager.PasswordSignInAsync(user, login.Password, login.RememberMe, true);
             if (!result.Succeeded)
             {
@@ -104,49 +116,26 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //SignOut
         public async Task<IActionResult> SignOut()
         {
             await _signInManager.SignOutAsync();    
             return RedirectToAction("Index", "Home");
         }
 
-        //public async Task<IActionResult> ForgotPassword()
-        //{
-        //    return View();
-        //}
 
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> ForgotPassword(ForgotPasswordVM forgotPasswordVM)
+        //Roles
+        //public async Task AddRoles()
         //{
-        //    if (!ModelState.IsValid)
+        //    foreach (var item in Enum.GetValues(typeof(Roles)))
         //    {
-        //        return View(forgotPasswordVM);
+        //        if (!await _roleManager.RoleExistsAsync(item.ToString()))
+        //        {
+        //            await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
+
+        //        }
         //    }
 
-        //    var user = await _userManager.FindByEmailAsync(forgotPasswordVM.Email);
-        //    if (user == null) return View(forgotPasswordVM);
-
-        //    string token = await _userManager.GeneratePasswordResetTokenAsync(user);    
-        //    string link = Url.Action("ResetPassword", "Account", new {userId = user.Id, token = token},HttpContext.Request.Scheme);    
-        //    return Json(link);
         //}
-
-
-
-
-
-        public async Task AddRoles()
-        {
-            foreach (var item in Enum.GetValues(typeof(Roles)))
-            {
-                if (!await _roleManager.RoleExistsAsync(item.ToString()))
-                {
-                    await _roleManager.CreateAsync(new IdentityRole { Name = item.ToString() });
-
-                }
-            }
-
-        }
     }
 }

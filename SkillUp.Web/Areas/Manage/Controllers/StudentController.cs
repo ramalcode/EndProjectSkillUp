@@ -26,6 +26,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _signInManager = signInManager;
         }
 
+        //All Student
         public async Task<IActionResult> ManageStudents(string? query , int page = 1)
         {
             if (query!=null)
@@ -58,6 +59,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             }
         }
 
+
+        //Delete Student
         [Authorize(Roles ="SuperAdmin")]
         public async Task<IActionResult> DeleteStudent(string id)
         {
@@ -65,6 +68,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(ManageStudents));
         }
 
+
+        //Update Student Get
         public async Task<IActionResult> UpdateStudent(string id)
         {
             var user = await _userService.UpdateUserById(id);
@@ -72,7 +77,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        [Authorize(Roles = "SuperAdmin")]
+        //Update Student Post
         [HttpPost]
         public async Task<IActionResult> UpdateStudent(string id, UpdateUserVM userVM)
         {
@@ -117,7 +122,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(ManageStudents));
         }
 
-        
+        //Upgrade Role - Admin
         public async Task<IActionResult> UpgradeRole(string id)
         {
             var user = await _userService.GetUserById(id);

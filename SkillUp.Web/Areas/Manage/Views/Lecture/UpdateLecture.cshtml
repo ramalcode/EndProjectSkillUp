@@ -4,23 +4,20 @@
 }
 
 @model UpdateLectureVM
-<!-- ============================ Dashboard: Dashboard Start ================================== -->
-				<!-- Row -->
 				<div class="row justify-content-between">
 					<div class="col-lg-12 col-md-12 col-sm-12 pb-4">
 						<div class="dashboard_wrap d-flex align-items-center justify-content-between">
 							<div class="arion">
 								<nav class="transparent">
 									<ol class="breadcrumb">
-										<li class="breadcrumb-item"><a href="#">Home</a></li>
-										<li class="breadcrumb-item active" aria-current="page">Add Course Videos</li>
+										<li class="breadcrumb-item"><a asp-controller="dashboard"  asp-action="index">Go To Dashboard</a></li>
+										<li class="breadcrumb-item active" aria-current="page">Update Lectur</li>
 									</ol>
 								</nav>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /Row -->
 
 				<div class="row">
 					<div class="col-xl-12 col-lg-12 col-md-12">
@@ -33,14 +30,12 @@
 										<div class="col-xl-3 col-lg-4 col-md-5 col-sm-12">
 											<div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 												<button class="nav-link" id="v-pills-media-tab" data-toggle="pill" data-target="#v-pills-media" type="button" role="tab" aria-controls="v-pills-media" aria-selected="false">Media</button>
-												<button class="nav-link" id="v-pills-finish-tab" data-toggle="pill" data-target="#v-pills-finish" type="button" role="tab" aria-controls="v-pills-finish" aria-selected="false">Finish</button>
 											</div>
 										</div>
 
 										<div class="col-xl-9 col-lg-8 col-md-7 col-sm-12">
 
 											<div class="tab-content" id="v-pills-tabContent">
-												<!-- media -->
 												<div class="tab-pane fade" id="v-pills-media" role="tabpanel" aria-labelledby="v-pills-media-tab">
 													<div class="form-group smalls">
 														<label asp-for="Name">Lecture Name*</label>
@@ -57,26 +52,11 @@
 									           <button class="btn btn-success" type="submit">Save Changes</button>
 
 
-													<div class="d-flex align-items-center justify-content-center">
-														<ul class="alios_slide_nav">
-															<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-left"></i></a></li>
-															<li><a href="#" class="btn btn_slide"><i class="fas fa-arrow-right"></i></a></li>
-														</ul>
-													</div>
+													
 
 												</div>
 
-												<!-- finish -->
-												<div class="tab-pane fade" id="v-pills-finish" role="tabpanel" aria-labelledby="v-pills-finish-tab">
-													<div class="succ_wrap">
-														<div class="succ_121"><i class="fas fa-thumbs-up"></i></div>
-														<div class="succ_122">
-															<h4>Course Successfully Added</h4>
-															<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-														</div>
-														<div class="succ_123"><a href="course-detail.html" class="btn theme-bg text-white">View Course</a></div>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -90,4 +70,3 @@
 		</div>
 	</div>
 </section>
-<!-- ============================ Dashboard: Dashboard End ================================== -->

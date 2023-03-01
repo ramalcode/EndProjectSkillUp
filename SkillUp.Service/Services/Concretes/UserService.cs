@@ -16,6 +16,23 @@ namespace SkillUp.Service.Services.Concretes
         }
 
 
+        //Get All User
+        public async Task<ICollection<AppUser>> GetAllUserAsync()
+        {
+            return await _context.AppUsers.Include(ac => ac.AppUserCourses).ThenInclude(c => c.Course).ThenInclude(i => i.Instructor)
+               .Include(ap => ap.AppUserProducts).ThenInclude(p => p.Product).ThenInclude(i=>i.Instructor).ToListAsync();
+        }
+
+
+        //Get User By Id
+        public async Task<AppUser> GetUserById(string id)
+        {
+            var user = await _context.AppUsers.FirstOrDefaultAsync(a => a.Id == id);
+            return user;
+        }
+
+
+        //Delete User
         public async Task DeleteUserAsync(string id)
         {
             var student = await _context.AppUsers.FindAsync(id);
@@ -23,18 +40,8 @@ namespace SkillUp.Service.Services.Concretes
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<AppUser>> GetAllUserAsync()
-        {
-            return await _context.AppUsers.Include(ac => ac.AppUserCourses).ThenInclude(c => c.Course).ThenInclude(i => i.Instructor)
-               .Include(ap => ap.AppUserProducts).ThenInclude(p => p.Product).ThenInclude(i=>i.Instructor).ToListAsync();
-        }
 
-        public async Task<AppUser> GetUserById(string id)
-        {
-            var user = await _context.AppUsers.FirstOrDefaultAsync(a => a.Id == id);
-            return user;
-        }
-
+        //Update User
         public async Task<bool> UpdateUserAsync(string id ,UpdateUserVM userVM)
         {
             var user = await _context.AppUsers.FirstOrDefaultAsync(u => u.Id == id);
@@ -47,6 +54,8 @@ namespace SkillUp.Service.Services.Concretes
             return true;
         }
 
+
+        //Update User By Id
         public async Task<UpdateUserVM> UpdateUserById(string id)
         {
             var user = await _context.AppUsers.FirstOrDefaultAsync(u=>u.Id == id);

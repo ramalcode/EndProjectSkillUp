@@ -298,7 +298,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("InstructorId");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Instructor", b =>
@@ -391,7 +391,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Instructors", (string)null);
+                    b.ToTable("Instructors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Product", b =>
@@ -439,7 +439,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("InstructorId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Category", b =>
@@ -467,7 +467,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Lecture", b =>
@@ -501,7 +501,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("ParagraphId");
 
-                    b.ToTable("Lectures", (string)null);
+                    b.ToTable("Lectures");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.Paragraph", b =>
@@ -524,7 +524,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("Paragraphs", (string)null);
+                    b.ToTable("Paragraphs");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.CourseExtraProperities.SubCategory", b =>
@@ -547,7 +547,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategories", (string)null);
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.InstructorExtraProperities.Profession", b =>
@@ -565,7 +565,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Professions", (string)null);
+                    b.ToTable("Professions");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.AppUserCourse", b =>
@@ -592,7 +592,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("AppUserCourses", (string)null);
+                    b.ToTable("AppUserCourses");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.AppUserInstructor", b =>
@@ -617,7 +617,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("InstructorId");
 
-                    b.ToTable("AppUserInstructors", (string)null);
+                    b.ToTable("AppUserInstructors");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.AppUserProduct", b =>
@@ -644,7 +644,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("AppUserProducts", (string)null);
+                    b.ToTable("AppUserProducts");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.CourseCategory", b =>
@@ -667,7 +667,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseCategories", (string)null);
+                    b.ToTable("CourseCategories");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.InstructorProfession", b =>
@@ -691,7 +691,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("ProfessionId");
 
-                    b.ToTable("InstructorProfessions", (string)null);
+                    b.ToTable("InstructorProfessions");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Relations.ManyToMany.ProductCategory", b =>
@@ -714,7 +714,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductCategories", (string)null);
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.CourseReview", b =>
@@ -749,7 +749,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("CourseId");
 
-                    b.ToTable("CourseReviews", (string)null);
+                    b.ToTable("CourseReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Reviews.ProductReview", b =>
@@ -784,7 +784,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductReviews", (string)null);
+                    b.ToTable("ProductReviews");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Settings.AboutUs", b =>
@@ -805,7 +805,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Abouts", (string)null);
+                    b.ToTable("Abouts");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Settings.ContactInfo", b =>
@@ -826,7 +826,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactInfos", (string)null);
+                    b.ToTable("ContactInfos");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Settings.ContactUs", b =>
@@ -868,7 +868,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactsUs", (string)null);
+                    b.ToTable("ContactsUs");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Settings.Faq", b =>
@@ -890,7 +890,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Faqs", (string)null);
+                    b.ToTable("Faqs");
                 });
 
             modelBuilder.Entity("SkillUp.Entity.Entities.Settings.Home", b =>
@@ -911,7 +911,7 @@ namespace SkillUp.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HomeInfos", (string)null);
+                    b.ToTable("HomeInfos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

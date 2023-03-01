@@ -3,23 +3,23 @@ using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using Stripe;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System;
 
 namespace SkillUp.Web.Controllers
 {
     public class InstructorController : Controller
     {
-        readonly AppDbContext appDbContext;
+        readonly AppDbContext _conttext;
 
-        public InstructorController(AppDbContext appDbContext)
+        public InstructorController(AppDbContext conttext)
         {
-            this.appDbContext = appDbContext;
+            _conttext = conttext;
         }
 
+        //All Instructor
         public async Task<IActionResult> FindInstructor( string? query, int page = 1)
         {
-                var instructors = await appDbContext.Instructors.Include(iu => iu.AppUserInstructors).ThenInclude(u => u.AppUser)
+                var instructors = await _conttext.Instructors.Include(iu => iu.AppUserInstructors).ThenInclude(u => u.AppUser)
                 .Include(ip => ip.InstructorProfessions).ThenInclude(p => p.Profession).ToListAsync();
             if (query != null)
             {
@@ -36,10 +36,10 @@ namespace SkillUp.Web.Controllers
             }
             else
             {
-                IEnumerable<Instructor> pagination = instructors.Skip((page - 1) * 2).Take(2);
+                IEnumerable<Instructor> pagination = instructors.Skip((page - 1) * 3).Take(3);
                 PaginationVM<Instructor> paginationVM = new PaginationVM<Instructor>
                 {
-                    MaxPageCount = (int)Math.Ceiling((decimal) instructors.Count / 2),
+                    MaxPageCount = (int)Math.Ceiling((decimal) instructors.Count / 3),
                     CurrentPage = page,
                     Items = pagination
                 };
@@ -48,9 +48,10 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //Instructor Detail
         public IActionResult InstructorDetail(string id)
         {
-            var instructor = appDbContext.Instructors.Include(ip=>ip.InstructorProfessions)
+            var instructor = _conttext.Instructors.Include(ip=>ip.InstructorProfessions)
                 .ThenInclude(p=>p.Profession).Include(ai=>ai.AppUserInstructors).ThenInclude(a=>a.AppUser)
                 .Include(c=>c.Courses).ThenInclude(p=>p.Paragraphs).ThenInclude(l=>l.Lectures).
                 Include(c=>c.Courses).ThenInclude(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).

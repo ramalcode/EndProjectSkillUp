@@ -2,15 +2,13 @@
     ViewData["Title"] = "Index";
 }
 @model ICollection<ContactUs>
-<!-- ============================ Dashboard: Dashboard Start ================================== -->
-<!-- Row -->
 <div class="row justify-content-between">
     <div class="col-lg-12 col-md-12 col-sm-12 pb-4">
         <div class="dashboard_wrap d-flex align-items-center justify-content-between">
             <div class="arion">
                 <nav class="transparent">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="dashboard" asp-action="index">Go To Dahboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">All Messages</li>
                     </ol>
                 </nav>
@@ -18,7 +16,6 @@
         </div>
     </div>
 </div>
-<!-- /Row -->
 
 <div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 mb-2">
@@ -42,7 +39,7 @@
                             <td><h6>@contact.Surname</h6></td>
                             <td><h6>@contact.Email</h6></td>
                             <td><h6>@contact.PhoneNumber</h6></td>
-                            <td><h6>@contact.Message</h6></td>
+                            <td>@contact.Message</td>
                             <td>
                                 <div class="dropdown show">
                                     <a class="btn btn-action" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,4 +72,3 @@
 </div>
 </div>
 </section>
-<!-- ============================ Dashboard: Dashboard End ================================== -->

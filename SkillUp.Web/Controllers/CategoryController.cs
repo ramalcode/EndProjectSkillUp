@@ -31,6 +31,8 @@ namespace SkillUp.Web.Controllers
             return View(categories);
         }
 
+
+        //Course With Category
         public async Task<IActionResult> CourseCategory(string query, int? id, int page = 1)
         {
            var courses = await _context.CourseCategories.Where(c=>c.CategoryId == id).Include(c=>c.Course).ThenInclude(ac=>ac.AppUserCourses).ThenInclude(a=>a.AppUser)

@@ -42,5 +42,7 @@ namespace SkillUp.Entity.Entities
 
 
 
+
+
     }
 }

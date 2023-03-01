@@ -14,6 +14,16 @@ namespace SkillUp.Service.Services.Concretes
             _unitOfWork = unitOfWork;
         }
 
+
+        //Get All Sub Category
+        public async Task<ICollection<SubCategory>> GetAllSubCategoryAsync()
+        {
+            var subcategories = await _unitOfWork.GetRepository<SubCategory>().GetAllAsync(null,s=>s.Category);
+            return subcategories;   
+        }
+
+
+        //Create Sub Category
         public async Task CreateSubCategoryAsync(CreateSubCategoryVM subCategoryVM)
         {
             SubCategory subCategory = new SubCategory
@@ -26,26 +36,10 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.SaveAsync();
         }
 
-        public Task DeleteSubCategoryAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ICollection<SubCategory>> GetAllSubCategoryAsync()
-        {
-            var subcategories = await _unitOfWork.GetRepository<SubCategory>().GetAllAsync(null,s=>s.Category);
-            return subcategories;   
-        }
+      
 
 
-        public Task<SubCategory> GetSubCategoryById(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<string> UpdateSubCategoryAsync(UpdateSubCategoryVM subCategoryVM)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

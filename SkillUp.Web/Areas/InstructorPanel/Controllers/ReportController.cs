@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Service.Services.Abstractions;
-using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
@@ -20,6 +19,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         }
 
 
+        //Instructor Course Revenue
         public async Task<IActionResult> MyCourseRevenue()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -28,6 +28,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         }
 
 
+        //Instructor Product Revenue
         public async Task<IActionResult> MyProductRevenue()
         {
             string id = _userManager.GetUserId(HttpContext.User);

@@ -31,6 +31,7 @@ namespace SkillUp.Web.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        //Home Page
         public async Task<IActionResult> Index()
         {
             IndexVM indexVM = new IndexVM
@@ -45,17 +46,21 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //About Page
         public IActionResult About()
         {
             return View();
         }
 
 
+        //Contact Page Get
         public IActionResult Contact()
         {
             return View();
         }
 
+
+        //Contact Page Post
         [HttpPost]
         public async Task<IActionResult> Contact(CreateContactVM contactVM)
         {
@@ -64,6 +69,7 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //Faqs PAge
         public async Task<IActionResult> FAQs()
         {
             var faqs = await _unitOfWork.GetRepository<Faq>().GetAllAsync();  

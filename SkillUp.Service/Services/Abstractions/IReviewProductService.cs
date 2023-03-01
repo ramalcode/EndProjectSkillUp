@@ -6,8 +6,9 @@ namespace SkillUp.Service.Services.Abstractions
 {
     public interface IReviewProductService
     {
-        Task CreateReviewAsync(CreateProductReviewVM reviewVM, string id);
         Task<ICollection<ProductReview>> GetAllReviewAsync();
+
+        Task CreateReviewAsync(CreateProductReviewVM reviewVM, string id);
 
 
     }

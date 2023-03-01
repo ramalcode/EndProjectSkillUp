@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
-using SkillUp.DAL.UnitOfWorks;
-using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
@@ -32,12 +29,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _context = context;
         }
 
+
+        //All Paragraphs
         public IActionResult Paragraphs(int id)
         {
             var paragraphs = _context.Courses.Include(p => p.Paragraphs).ThenInclude(l => l.Lectures).FirstOrDefault(x => x.Id == id);
             return View(paragraphs);
         }
 
+
+        //Update Paragraph Get
         public async Task<IActionResult> UpdateParagraph(int id)
         {
             var paragraph = await _paragraph.UpdateParagraphById(id);
@@ -45,6 +46,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Update Paragraph Post
         [HttpPost]
         public async Task<IActionResult> UpdateParagraph(int id, UpdateParagraphVM paragraphVM)
         {
@@ -52,18 +54,26 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction("ManageCourses", "Course");
         }
 
-        public async Task<IActionResult> Lectures(int id)
-        {
-            var lectures = await _context.Paragraphs.Include(l => l.Lectures).FirstOrDefaultAsync(x => x.Id == id);
-            return View(lectures);
-        }
 
+        //Delete Paragraph
         public async Task<IActionResult> DeleteParagraph(int id)
         {
             await _paragraph.DeleteParagraphAsync(id);
             return RedirectToAction("ManageCourses", "Course");
         }
 
+
+        //-----------------------Lecture----------------------------
+
+        //All Lecture
+        public async Task<IActionResult> Lectures(int id)
+        {
+            var lectures = await _context.Paragraphs.Include(l => l.Lectures).FirstOrDefaultAsync(x => x.Id == id);
+            return View(lectures);
+        }
+
+
+        //Delete Lecture
         public async Task<IActionResult> DeleteLecture(int id)
         {
             await _lectureService.DeleteLectureAsync(id);
@@ -71,12 +81,15 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Update Lecture Gey
         public async Task<IActionResult> UpdateLecture(int id)
         {
             var lecture = await _lectureService.UpdateLectureById(id);
             return View(lecture);
         }
 
+
+        //Update Lecture Post
         [HttpPost]
         public async Task<IActionResult> UpdateLecture(int id, UpdateLectureVM lectureVM)
         {

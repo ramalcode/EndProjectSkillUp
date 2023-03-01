@@ -29,6 +29,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _env = env;
         }
 
+
+        //All Product
         public async Task<IActionResult> ManageProducts(string? query, int page = 1)
         {
             if(query!=null)
@@ -56,14 +58,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(paginationVM);   
         }
 
-      
 
+        //Delete Product
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _productService.DeleteProductAsync(id);
             return RedirectToAction(nameof(ManageProducts));
         }
 
+
+        //Update Product Get
         public async Task<IActionResult> UpdateProduct(int id)
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
@@ -72,6 +76,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(product);
         }
 
+
+        //Update Product post
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, UpdateProductVM productVM)
         {

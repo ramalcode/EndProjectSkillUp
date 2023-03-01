@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
-using Stripe;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
@@ -27,6 +25,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //My Profile Get
         public async Task<IActionResult> Index()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -35,6 +34,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(user);
         }
 
+
+        //My Profile Post
         [HttpPost]
         public async Task<IActionResult> Index(UpdateUserVM userVM)
         {

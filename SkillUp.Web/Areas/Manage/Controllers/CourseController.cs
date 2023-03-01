@@ -30,6 +30,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _context = context;
         }
 
+
+        //All Courses
         public async Task<IActionResult> ManageCourses(string? query ,int page = 1)
         {
             if (query!=null)
@@ -60,12 +62,15 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Delete Course
         public async  Task<IActionResult> DeleteCourse(int id)
         {
             await _courseService.DeleteCourseAsync(id);
             return RedirectToAction(nameof(ManageCourses));
         }
 
+
+        //Update Course Get
         public async Task<IActionResult> UpdateCourse(int id)
         {
 
@@ -75,6 +80,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View(course);
         }
 
+
+        //Update Course Post
         [HttpPost]
         public async Task<IActionResult> UpdateCourse(int id,UpdateCourseVM courseVM )
         {

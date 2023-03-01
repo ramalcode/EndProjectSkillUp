@@ -1,5 +1,4 @@
-﻿using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
-using SkillUp.Entity.Entities.Settings;
+﻿using SkillUp.Entity.Entities.Settings;
 using SkillUp.Entity.ViewModels;
 
 namespace SkillUp.Service.Services.Abstractions
@@ -11,6 +10,7 @@ namespace SkillUp.Service.Services.Abstractions
         Task CreateContactAsync(CreateContactVM contactVM);
 
         Task DeleteMessageAsync(int id);
+
         Task<bool> ReadMessageAsync(int id);
 
 

@@ -21,9 +21,6 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         readonly UserManager<Instructor> _userManager;
         readonly IInstructorService _instructorService;
 
-
-
-
         public ProductController(ICategoryService categoryService, IProductService productService, AppDbContext context, IWebHostEnvironment env, UserManager<Instructor> userManager, IInstructorService instructorService)
         {
             _categoryService = categoryService;
@@ -34,6 +31,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _instructorService = instructorService;
         }
 
+
+        //My Products
         public async Task<IActionResult> MyProducts()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -41,6 +40,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(instructor);
         }
 
+
+        //Add New Product Get
         public async Task<IActionResult> AddNewProduct()
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
@@ -49,6 +50,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View();
         }
 
+
+        //Add New Product Post
         [HttpPost]
         public async Task<IActionResult> AddNewProduct(CreateProductVM productVM)
         {
@@ -73,12 +76,16 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 
         }
 
+
+        //Delete Product
         public async Task<IActionResult> DeleteProduct(int id)
         {
             await _productService.DeleteProductAsync(id);
             return RedirectToAction(nameof(MyProducts));
         }
 
+
+        //Update Product Get
         public async Task<IActionResult> UpdateProduct(int id)
         {
             ViewBag.Categories = new SelectList(await _categoryService.GetAllCategoryAsync(), nameof(Category.Id), nameof(Category.Name));
@@ -87,6 +94,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(product);
         }
 
+
+        //Update Product Post
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, UpdateProductVM productVM)
         {

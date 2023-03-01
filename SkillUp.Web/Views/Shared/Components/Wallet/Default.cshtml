@@ -8,7 +8,10 @@
                 <ul style="" class="nav-dropdown nav-submenu">
                     @if (Model.Instructor==null)
                     {
+
                         <li><a asp-action="Payment" asp-controller="Payment">Balance : $@(Model.AppUser.Wallet / 100)<i style="margin-left:8px" class="fas fa-wallet"> </i> </a></li>
+                        <li><a asp-action="index" asp-controller="library">Library<i style="margin-left:8px" class="fas fa-video"></i> </a></li>
+                        <li><a asp-action="product" asp-controller="library">My Books<i style="margin-left:8px" class="fas fa-book"></i> </a></li>
 
 
                     }

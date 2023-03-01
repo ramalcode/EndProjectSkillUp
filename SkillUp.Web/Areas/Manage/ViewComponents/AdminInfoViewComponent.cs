@@ -20,6 +20,7 @@ namespace SkillUp.Web.Areas.Manage.ViewComponents
             _contactService = contactService;
         }
 
+        //Admin Information ViewComponent
         public async Task<IViewComponentResult> InvokeAsync()
         {
             string id = _userManager.GetUserId(HttpContext.User);

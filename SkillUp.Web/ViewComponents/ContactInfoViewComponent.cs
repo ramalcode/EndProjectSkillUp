@@ -12,6 +12,8 @@ namespace SkillUp.Web.ViewComponents
             _context = context;
         }
 
+
+        //ContactUs Setting
         public async Task<IViewComponentResult> InvokeAsync()
         {
             return View(_context.ContactInfos.ToDictionary(s => s.Key, s => s.Value));

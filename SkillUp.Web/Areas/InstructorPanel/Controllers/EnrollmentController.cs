@@ -14,7 +14,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         readonly IEnrollService _enrollService;
         readonly ICourseService _courseService;
         readonly IProductService _productService;
-        readonly AppDbContext _context;  //
+        readonly AppDbContext _context;
 
 
         public EnrollmentController(IEnrollService enrollService, AppDbContext context, ICourseService courseService, IProductService productService)
@@ -25,6 +25,9 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _productService = productService;
         }
 
+
+
+        //Enroll Course Get
         public async Task<IActionResult> EnrollCourse()
         {
             ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
@@ -32,6 +35,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View();
         }
 
+
+        //Enroll Course Post
         [HttpPost]
         public async Task<IActionResult> EnrollCourse(EnrollStudentVM studentVM)
         {
@@ -58,6 +63,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return RedirectToAction(nameof(EnrollCourse));
         }
 
+
+        //Enroll Product Get
         public async Task<IActionResult> EnrollProduct()
         {
             ViewBag.AppUsers = new SelectList(_context.AppUsers, nameof(AppUser.Id), nameof(AppUser.Name));
@@ -65,6 +72,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View();
         }
 
+
+        //Enroll Product Post
         [HttpPost]
         public async Task<IActionResult> EnrollProduct(EnrollProductVM productVM)
         {

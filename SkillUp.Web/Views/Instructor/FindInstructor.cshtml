@@ -3,7 +3,6 @@
 }
 
 @model PaginationVM<Instructor>
-<!-- ============================ Page Title Start ================================== -->
 <section class="page-title">
     <div class="container">
         <div class="row">
@@ -13,7 +12,7 @@
                     <h1 class="breadcrumb-title">Our Instructors</h1>
                     <nav class="transparent">
                         <ol class="breadcrumb p-0 bg-white">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-action="index" asp-controller="home">Home</a></li>
                             <li class="breadcrumb-item active theme-cl" aria-current="page">Find Instructor</li>
                         </ol>
                     </nav>
@@ -23,10 +22,8 @@
         </div>
     </div>
 </section>
-<!-- ============================ Page Title End ================================== -->
 
 
-<!-- ============================ Instructor Start ================================== -->
 <section class="gray">
     <div class="container">
         <div class="row">

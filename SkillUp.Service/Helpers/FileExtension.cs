@@ -5,10 +5,15 @@ namespace SkillUp.Service.Helpers
 {
     public static class FileExtension
     {
+        //Check file Type
         public static bool CheckFileType(this IFormFile file, string type) => file.ContentType.Contains(type);
 
+
+        //Check File Size
         public static bool CheckFileSize(this IFormFile file, int kb) => kb * 1024 > file.Length;
 
+
+        //Change File Name
         static string ChangeFileName(string oldName)
         {
             string extension = oldName.Substring(oldName.LastIndexOf('.'));
@@ -24,6 +29,8 @@ namespace SkillUp.Service.Helpers
             return newName;
         }
 
+
+        //Save File
         public static string SaveFile(this IFormFile file, string path)
         {
             string fileName = ChangeFileName(file.FileName);
@@ -34,6 +41,8 @@ namespace SkillUp.Service.Helpers
             return fileName;
         }
 
+
+        //Delete File
         public static void DeleteFile(this string file, string root, string folder)
         {
             string path = Path.Combine(root, folder, file);
@@ -43,6 +52,8 @@ namespace SkillUp.Service.Helpers
             }
         }
 
+
+        //Check Validate Extension Method
         public static string CheckValidate(this IFormFile file, string type, int kb)
         {
             string result = "";
@@ -57,6 +68,8 @@ namespace SkillUp.Service.Helpers
             return result;
         }
 
+
+        //Video Duration
         public static TimeSpan VideoDuration(string filepath)
         {
             var probe = new FFProbe();
@@ -67,6 +80,7 @@ namespace SkillUp.Service.Helpers
         }
 
 
+        //Covert Video Duration
         public static string ConvertTime(this TimeSpan duration)
         {
             string convert = string.Format("{0:%h}hr {0:%m}min {0:%s}sec", duration);

@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.DAL.UnitOfWorks;
-using SkillUp.Entity.Entities.Settings;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -23,7 +21,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        //GetAll
+        //All Message
         public async Task<IActionResult> Index()
         {
             var contact = await _contactService.GetAllMessageAsync();
@@ -31,13 +29,15 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
-        //Delete
+        //Delete Message
         public async Task<IActionResult> DeleteMessage(int id)
         {
             await _contactService.DeleteMessageAsync(id);
             return RedirectToAction(nameof(Index)); 
         }
 
+
+        //Read Message
         public async Task<IActionResult> ReadMessage(int id)
         {
             await _contactService.ReadMessageAsync(id);

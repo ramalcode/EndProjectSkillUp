@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Z7+7LE4GZBAiDyt/+DFkaqm3TLgotO1UnADPgDn7Nk4=",
+  "Hash": "kNF2+T8hqy8OBMvFWte1l9XkKtI+WNfrZpe/a+xdzGE=",
   "Source": "SkillUp.Web",
   "BasePath": "_content/SkillUp.Web",
   "Mode": "Default",
@@ -9741,6 +9741,23 @@
       "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\38400ae6-9d2a-49d8-95cb-8faa9b9d0189phatehhimg.jpeg"
     },
     {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\5e2f8c10-57a2-4c37-9c72-422518b49736istockphoto-612262390-612x612.j.jpg",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/userimg/5e2f8c10-57a2-4c37-9c72-422518b49736istockphoto-612262390-612x612.j.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\5e2f8c10-57a2-4c37-9c72-422518b49736istockphoto-612262390-612x612.j.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\663496c8-4e8c-4d9e-86a9-0aa97fdaa1342.jfif",
       "SourceId": "SkillUp.Web",
       "SourceType": "Discovered",
@@ -9773,6 +9790,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\6d47b79d-d079-4e7b-a337-0246bba5d910fuadimg.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\73dcebdb-c862-43f9-b0bd-9286abb58dbeistockphoto-612262390-612x612.j.jpg",
+      "SourceId": "SkillUp.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\",
+      "BasePath": "_content/SkillUp.Web",
+      "RelativePath": "user/assets/userimg/73dcebdb-c862-43f9-b0bd-9286abb58dbeistockphoto-612262390-612x612.j.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\assets\\userimg\\73dcebdb-c862-43f9-b0bd-9286abb58dbeistockphoto-612262390-612x612.j.jpg"
     },
     {
       "Identity": "C:\\Users\\Ramal\\Desktop\\EndProjectSkillUp\\SkillUp.Web\\wwwroot\\user\\assets\\userimg\\8d237330-c7a6-4bb8-9b30-e6003e787662ehtiramimg.jpg",

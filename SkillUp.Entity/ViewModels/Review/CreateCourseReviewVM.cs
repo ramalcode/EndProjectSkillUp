@@ -10,7 +10,9 @@ namespace SkillUp.Entity.ViewModels
     public class CreateCourseReviewVM
     {
         public string ReviewContent { get; set; }
+
         public int CourseId { get; set; }
+
         public Course? Course { get; set; }
     }
 }

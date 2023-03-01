@@ -24,12 +24,15 @@ namespace SkillUp.Web.Controllers
             _userService = userService;
         }
 
+        //Stripe Paymet 
         public async Task<IActionResult> Payment()
         {
            
             return View();
         }
 
+
+        //Stripe Charge
         [HttpPost]
         public async Task<IActionResult> Charge(string stripeEmail, string stripeToken, double wallet)
         {
@@ -79,7 +82,7 @@ namespace SkillUp.Web.Controllers
         }
 
 
-        
+        //Buy Course
         public async Task<IActionResult> BuyCourse(int id)
         {
             var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
@@ -104,12 +107,14 @@ namespace SkillUp.Web.Controllers
 
                     await _appDbContext.AddAsync(userCourse);
                 }
+                else
+                {
+                    return RedirectToAction(nameof(Payment));
+                }
             }
             else
             {
-                    //var course = await _appDbContext.Courses.FirstOrDefaultAsync(c => c.Id == id);
-                    //string userid = _userManager.GetUserId(HttpContext.User);
-                    //AppUser user = await _userService.GetUserById(userid);
+                    
                 if (user.Wallet >= course.DiscountPrice * 100)
                 {
                     AppUserCourse userCourse = new AppUserCourse
@@ -126,13 +131,19 @@ namespace SkillUp.Web.Controllers
                     instructor.Wallet = instructor.Wallet + (course.DiscountPrice * 100) * 0.75;
 
                     await _appDbContext.AddAsync(userCourse);
-                }   
+                }
+                else
+                {
+                    return RedirectToAction(nameof(Payment));
+                }
             }
             await _appDbContext.SaveChangesAsync();
-            return RedirectToAction("Index" ,"Home");
+            return RedirectToAction("Index" ,"Library");
 
         }
 
+
+        //Buy Product
         public async Task<IActionResult> BuyProduct(int id)
         {
             var product = await _appDbContext.Products.FirstOrDefaultAsync(p => p.Id == id);
@@ -158,8 +169,9 @@ namespace SkillUp.Web.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Payment", "Payment");
+                    return RedirectToAction(nameof(Payment));
                 }
+                
             }
             else
             {
@@ -180,12 +192,12 @@ namespace SkillUp.Web.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Payment", "Payment");
+                    return RedirectToAction(nameof(Payment));
 
                 }
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Product", "Library");
 
         }
     }

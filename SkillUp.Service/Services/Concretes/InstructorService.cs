@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
@@ -47,26 +46,7 @@ namespace SkillUp.Service.Services.Concretes
         }
 
 
-
-        public async Task<bool> UpdateInstructorAsync(string id, UpdateInstructorVM updateInstructorVM)
-        {
-            var instructor = await _context.Instructors.FirstOrDefaultAsync(u => u.Id == id);
-            instructor.Name = updateInstructorVM.Name;
-            instructor.Surname = updateInstructorVM.Surname;
-            instructor.Email = updateInstructorVM.Email;
-            instructor.Description = updateInstructorVM.Description;    
-            instructor.TwitterUrl = updateInstructorVM.TwitterUrl;
-            instructor.FaceBookUrl = updateInstructorVM.FacebookUrl;
-            instructor.InstagramUrl = updateInstructorVM.InstagramUrl;
-            instructor.LinkedInUrl = updateInstructorVM.LinkedInUrl;
-
-            _context.Instructors.Update(instructor);
-             _context.SaveChanges();
-            return true;
-        }
-
-
-
+        //Update Instructor By Id
         public async Task<UpdateInstructorVM> UpdateInstructorById(string id)
         {
             var instructor = await _context.Instructors.FirstOrDefaultAsync(u => u.Id == id);
@@ -85,5 +65,25 @@ namespace SkillUp.Service.Services.Concretes
             };
             return userVm;
         }
+
+
+        //Update Instructor
+        public async Task<bool> UpdateInstructorAsync(string id, UpdateInstructorVM updateInstructorVM)
+        {
+            var instructor = await _context.Instructors.FirstOrDefaultAsync(u => u.Id == id);
+            instructor.Name = updateInstructorVM.Name;
+            instructor.Surname = updateInstructorVM.Surname;
+            instructor.Email = updateInstructorVM.Email;
+            instructor.Description = updateInstructorVM.Description;    
+            instructor.TwitterUrl = updateInstructorVM.TwitterUrl;
+            instructor.FaceBookUrl = updateInstructorVM.FacebookUrl;
+            instructor.InstagramUrl = updateInstructorVM.InstagramUrl;
+            instructor.LinkedInUrl = updateInstructorVM.LinkedInUrl;
+
+            _context.Instructors.Update(instructor);
+             _context.SaveChanges();
+            return true;
+        }
+
     }
 }

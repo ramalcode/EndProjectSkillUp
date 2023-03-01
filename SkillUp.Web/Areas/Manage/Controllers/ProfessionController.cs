@@ -20,12 +20,22 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _professionService = professionService;
         }
 
+        //All Profession
         public async Task<IActionResult> InstructorProfession()
         {
             var professions = await _professionService.GetAllProfessionAsync();
             return View(professions);
         }
 
+        
+        //Add Profesiion Get
+        public async Task<IActionResult> AddNewProfession()
+        {
+            return View();  
+        }
+
+        
+        //Add Profession Post
         public async Task<IActionResult> AddNewProfession(CreateProfessionVM professionVM)
         {
             if (!ModelState.IsValid) return View(professionVM);
@@ -34,18 +44,24 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(InstructorProfession));
         }
 
+
+        //Delete Profession
         public async Task<IActionResult> DeleteProfession(int id)
         {
             await _professionService.DeleteProfessionAsync(id);
             return RedirectToAction(nameof(InstructorProfession));
         }
 
+
+        //Updsate Profession Get
         public async Task<IActionResult> UpdateProfession(int id)
         {
             var profession = await _professionService.UpdateProfessionById(id);
             return View(profession);
         }
 
+
+        //Update Profession Post
         [HttpPost]
         public async Task<IActionResult> UpdateProfession(int id ,UpdateProfessionVM professionVM)
         {

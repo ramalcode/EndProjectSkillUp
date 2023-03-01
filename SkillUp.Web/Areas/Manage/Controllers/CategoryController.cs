@@ -1,13 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using SkillUp.DAL.UnitOfWorks;
-using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
-using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -26,7 +21,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _categoryService = categoryService;
         }
 
-        // SubCategory CRUD:
+        //Add New SubCategory Get:
 
         public async Task<IActionResult> AddNewSubCategory()
         {
@@ -34,6 +29,8 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
+
+        //Add New SubCategory Post
         [HttpPost]
         public async Task<IActionResult> AddNewSubCategory(CreateSubCategoryVM subCategoryVM)
         {
@@ -48,13 +45,26 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(AddNewSubCategory));
         }
 
-        //Category CRUD:
 
+        //-------------------------------------Category------------------------------------------
+
+
+        //All Category
+        public async Task<IActionResult> CourseCategory()
+        {
+            var categories = await _categoryService.GetAllCategoryAsync();
+            return View(categories);
+        }
+      
+
+        //Add New Category Get
         public IActionResult AddNewCategory()
         {
             return View();
         }
 
+
+        //Add New Category Post
         [HttpPost]
         public async Task<IActionResult> AddNewCategory(CreateCategoryVM categoryVM)
         {
@@ -64,18 +74,24 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(CourseCategory));
         }
 
+
+        //Delete Category
         public async Task<IActionResult> DeleteCategory(int id)
         {
             await _categoryService.DeleteCategoryAsync(id);
             return RedirectToAction(nameof(CourseCategory));
         }
 
+
+        //Update Category Get
         public async Task<IActionResult> UpdateCategory(int id)
         {
             var category = await _categoryService.UpdateCategoryById(id);
             return View(category);
         }
 
+
+        //Update Category Post
         [HttpPost]
         public async Task<IActionResult> UpdateCategory(int id , UpdateCategoryVM categoryVM)
         {
@@ -83,11 +99,6 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return RedirectToAction(nameof(CourseCategory));
         }
 
-        public async Task<IActionResult> CourseCategory()
-        {
-            var categories = await _categoryService.GetAllCategoryAsync();
-            return View(categories);
-        }
 
     }
 }

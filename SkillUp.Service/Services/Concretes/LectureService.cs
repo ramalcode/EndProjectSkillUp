@@ -19,6 +19,24 @@ namespace SkillUp.Service.Services.Concretes
             _env = env;
         }
 
+
+        //Get All Lecture
+        public async Task<ICollection<Lecture>> GetAllLectureAsync()
+        {
+            var lectures = await _unitOfWork.GetRepository<Lecture>().GetAllAsync(); 
+            return lectures;
+        }
+
+
+        //Get Lecture By Id
+        public async Task<Lecture> GetLectureById(int id)
+        {
+            var lecture =  await _unitOfWork.GetRepository<Lecture>().GetAsync(l => l.Id == id, l => l.Paragraph);
+            return lecture;
+        }
+
+
+        //Create Lecture
         public async Task CreateLectureAsync(CreateLectureVM lectureVM, int id)
         {
             Lecture lecture = new Lecture
@@ -34,24 +52,28 @@ namespace SkillUp.Service.Services.Concretes
         }
     
 
+        //Delete Lecture
         public async Task DeleteLectureAsync(int id)
         {
             await _unitOfWork.GetRepository<Lecture>().DeleteAsync(id);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<ICollection<Lecture>> GetAllLectureAsync()
+
+        //Update Lecture By Id
+        public async Task<UpdateLectureVM> UpdateLectureById(int id)
         {
-            var lectures = await _unitOfWork.GetRepository<Lecture>().GetAllAsync(); 
-            return lectures;
+            var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
+            UpdateLectureVM lectureVM = new UpdateLectureVM
+            {
+                Name = lecture.Name,
+                VideoUrl = lecture.VideoUrl
+            };
+            return lectureVM;
         }
 
-        public async Task<Lecture> GetLectureById(int id)
-        {
-            var lecture =  await _unitOfWork.GetRepository<Lecture>().GetAsync(l => l.Id == id, l => l.Paragraph);
-            return lecture;
-        }
 
+        //Update Lecture
         public async Task<bool> UpdateLectureAsync(int id ,UpdateLectureVM lectureVM)
         {
             var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
@@ -64,15 +86,5 @@ namespace SkillUp.Service.Services.Concretes
             return true;    
         }
 
-        public async Task<UpdateLectureVM> UpdateLectureById(int id)
-        {
-            var lecture = _unitOfWork.GetRepository<Lecture>().GetByIdAsync(id);
-            UpdateLectureVM lectureVM = new UpdateLectureVM
-            {
-                Name = lecture.Name,
-                VideoUrl = lecture.VideoUrl
-            };
-            return lectureVM;
-        }
     }
 }

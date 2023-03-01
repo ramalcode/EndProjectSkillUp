@@ -1,11 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.DAL.UnitOfWorks;
 using SkillUp.Entity.Entities;
-using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
@@ -17,7 +14,7 @@ namespace SkillUp.Service.Services.Concretes
     {
         readonly IUnitOfWork _unitOfWork;
         readonly IWebHostEnvironment _env;
-        readonly AppDbContext _context; //
+        readonly AppDbContext _context;
 
         public CourseService(IUnitOfWork unitOfWork, IWebHostEnvironment env, AppDbContext context)
         {
@@ -26,6 +23,28 @@ namespace SkillUp.Service.Services.Concretes
             _context = context;
             
         }
+
+        //Get All Course
+        public async Task<ICollection<Course>> GetAllCourseAsync()
+        {
+             var course = await _context.Courses.Include(i=>i.Instructor).Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
+                .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).Include(u=>u.AppUserCourses)
+                .ThenInclude(a=>a.AppUser).Include(r=>r.CourseReviews).ToListAsync();
+
+            return course;
+        }
+
+
+        //Get Course By Id
+        public async Task<Course> GetCourseById(int id)
+        {
+            
+            var course =  _unitOfWork.GetRepository<Course>().GetByIdAsync(id);
+            return course;
+        }
+
+
+        //Create Course
         public async Task CreateCourseAsync(CreateCourseVM courseVM, string id)
         {
             var categories = _context.Categories.Where(ctg => courseVM.CategoryIds.Contains(ctg.Id));
@@ -54,29 +73,42 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.SaveAsync();
         }
 
+
+        //Delete Course
         public async Task DeleteCourseAsync(int id)
         {
             await _unitOfWork.GetRepository<Course>().DeleteAsync(id);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<ICollection<Course>> GetAllCourseAsync()
-        {
-             var course = await _context.Courses.Include(i=>i.Instructor).Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
-                .Include(cc=>cc.CourseCategories).ThenInclude(ctg=>ctg.Category).Include(u=>u.AppUserCourses)
-                .ThenInclude(a=>a.AppUser).Include(r=>r.CourseReviews).ToListAsync();
-            //var course = await _unitOfWork.GetRepository<Course>().GetAllAsync(null, i=>i.Instructor, l=>l.Paragraphs, ctg=>ctg.CourseCategories);
 
-            return course;
+        //Update Course By Id
+        public async Task<UpdateCourseVM> UpdateCourseById(int id)
+        {
+            var course =_context.Courses.Include(cc=>cc.CourseCategories).FirstOrDefault(c=>c.Id==id);
+            UpdateCourseVM courseVM = new UpdateCourseVM
+            {
+                Name = course.Name,
+                Description = course.Description,
+                CourseOverview = course.CourseOverview,
+                Certification = course.Certification,
+                Requirement = course.Requirement,
+                CategoryIds = new List<int>(),
+                Price = course.Price,
+                DiscountPrice = course.DiscountPrice,
+                ImageUrl = course.ImageUrl,
+                PreviewUrl = course.PreviewUrl,
+            };
+            foreach (var category in course.CourseCategories)
+            {
+                courseVM.CategoryIds.Add(category.CategoryId);
+            }
+
+            return courseVM;
         }
 
-        public async Task<Course> GetCourseById(int id)
-        {
-            
-            var course =  _unitOfWork.GetRepository<Course>().GetByIdAsync(id);
-            return course;
-        }
 
+        //Update Course
         public async Task<bool> UpdateCourseAsync(int id, UpdateCourseVM courseVM)
         {
             var course = await _context.Courses.Include(cc => cc.CourseCategories).ThenInclude(c => c.Category).FirstOrDefaultAsync(x => x.Id == id);
@@ -111,28 +143,5 @@ namespace SkillUp.Service.Services.Concretes
             return true;
         }
 
-        public async Task<UpdateCourseVM> UpdateCourseById(int id)
-        {
-            var course =_context.Courses.Include(cc=>cc.CourseCategories).FirstOrDefault(c=>c.Id==id);
-            UpdateCourseVM courseVM = new UpdateCourseVM
-            {
-                Name = course.Name,
-                Description = course.Description,
-                CourseOverview = course.CourseOverview,
-                Certification = course.Certification,
-                Requirement = course.Requirement,
-                CategoryIds = new List<int>(),
-                Price = course.Price,
-                DiscountPrice = course.DiscountPrice,
-                ImageUrl = course.ImageUrl,
-                PreviewUrl = course.PreviewUrl,
-            };
-            foreach (var category in course.CourseCategories)
-            {
-                courseVM.CategoryIds.Add(category.CategoryId);
-            }
-
-            return courseVM;
-        }
     }
 }

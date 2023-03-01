@@ -4,11 +4,10 @@ using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
-using SkillUp.Service.Services.Concretes;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
-        [Area("InstructorPanel")]
+    [Area("InstructorPanel")]
     public class MyProfile : Controller
     {
         readonly UserManager<Instructor> _userManager;
@@ -22,6 +21,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _env = env;
         }
 
+
+        //My Profile
         public async Task<IActionResult> Index()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -30,6 +31,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(instructor);
         }
 
+
+        //Update Informations Post
         [HttpPost]
         public async Task<IActionResult> Index(UpdateInstructorVM instructorVM)
         {

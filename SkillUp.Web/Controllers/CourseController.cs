@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
-using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
 
@@ -24,6 +23,7 @@ namespace SkillUp.Web.Controllers
             _courseService = courseService;
         }
 
+        //Find Courses
         public async Task<IActionResult> FindCourses(string? query ,int page=1)
         {
             if (query!=null)
@@ -52,8 +52,7 @@ namespace SkillUp.Web.Controllers
             return View(paginationVM);
         }
 
-
-
+        //CourseDetail Page
         public async Task<IActionResult> CourseDetail(int id)
         {
             var coursedetail =  _appDbContext.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures)
@@ -65,6 +64,8 @@ namespace SkillUp.Web.Controllers
              return View(coursedetail);
         }
 
+
+        //submit Review Post
         [HttpPost]
         public async Task<IActionResult> SubmitReview(CreateCourseReviewVM review)
         {

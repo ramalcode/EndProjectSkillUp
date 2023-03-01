@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities;
-using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.Entities.Relations.InstructorExtraProperities;
 using SkillUp.Entity.Entities.Relations.ManyToMany;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
-using SkillUp.Service.Services.Abstractions;
-using SkillUp.Service.Services.Concretes;
-using Stripe;
 
 namespace SkillUp.Web.Controllers
 {
@@ -33,12 +28,15 @@ namespace SkillUp.Web.Controllers
             _context = context;
         }
 
+        //Instructor SignUp Get
         public IActionResult SignUp()
         {
             ViewBag.Professions = new SelectList(_context.Professions, nameof(Profession.Id), nameof(Profession.Name));
             return View();
         }
 
+
+        //Instructor SignUp Post
         [HttpPost]
         public async Task<IActionResult> SignUp(InstructorRegisterVM registerVM)
         {
@@ -105,16 +103,19 @@ namespace SkillUp.Web.Controllers
         }
 
 
+        //Instructor SignIn Get
         public IActionResult SignIn()
         {
             return View();
         }
 
+
+        //Instructor SignIn Post
         [HttpPost]
         public async Task<IActionResult> SignIn(LoginVM login, string? returnUrl)
         {
             if (!ModelState.IsValid) return View(login);
-            Instructor user = await _userManager.FindByNameAsync(login.UserName);
+            Instructor user = await _userManager.FindByNameAsync(login.UserNameOrEmail);
             if (user is null)
             {
                 ModelState.AddModelError("", "Login or Password is wrong");

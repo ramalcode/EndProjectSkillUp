@@ -1,6 +1,5 @@
 ﻿using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Entity.ViewModels;
 
 namespace SkillUp.Service.Services.Abstractions
 {

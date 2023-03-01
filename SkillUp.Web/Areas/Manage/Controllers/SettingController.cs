@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.DAL.Context;
 using SkillUp.Entity.Entities.Settings;
-using SkillUp.Service.Helpers;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
 {
@@ -18,12 +17,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             _context = context;
         }
 
+
+        //Website Settings Get
         public async Task<IActionResult> WebsiteSettings()
         {
             var infos = _context.HomeInfos.ToDictionary(h => h.Key, h => h.Value);
             return View(infos); 
         }
 
+
+        //Website Settings Post
         [HttpPost]
         public async Task<IActionResult> WebsiteSettings(Dictionary<string, string> homeInfos)
         {
@@ -45,12 +48,15 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Contact Settings Get
         public async Task<IActionResult> ContactSettings()
         {
             var contacts = _context.ContactInfos.ToDictionary(h => h.Key, h => h.Value);
             return View(contacts);
         }
 
+
+        //Contact settings Post
         [HttpPost]
         public async Task<IActionResult> ContactSettings(Dictionary<string, string> contactInfos)
         {
@@ -71,12 +77,16 @@ namespace SkillUp.Web.Areas.Manage.Controllers
             return View();
         }
 
+
+        //About settings Get
         public async Task<IActionResult> AboutSettings()
         {
             var aboutinfos = _context.Abouts.ToDictionary(a => a.Key, a => a.Value);
             return View(aboutinfos);    
         }
 
+
+        //About Settings Post
         [HttpPost]
         public async Task<IActionResult> AboutSettings(Dictionary<string, string> aboutInfos)
         {

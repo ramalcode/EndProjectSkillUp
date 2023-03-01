@@ -15,6 +15,7 @@ namespace SkillUp.Service.Services.Concretes
             _unitOfWork = unitOfWork;
         }
 
+
         //Get All Messages
         public async Task<ICollection<ContactUs>> GetAllMessageAsync()
         {

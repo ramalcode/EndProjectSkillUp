@@ -20,6 +20,23 @@ namespace SkillUp.Service.Services.Concretes
         }
 
 
+        //Get All Profession
+        public async Task<ICollection<Profession>> GetAllProfessionAsync()
+        {
+            var profession = _context.Professions.Include(i => i.InstructorProfessions).ToList();
+            return profession;
+        }
+
+
+        //Get Profession By Id
+        public async Task<Profession> GetProfessionById(int id)
+        {
+            var profession =  _unitOfWork.GetRepository<Profession>().GetByIdAsync(id);
+            return profession;
+        }
+
+
+        //Create Profession
         public async Task CreateProfessionAsync(CreateProfessionVM professionVM)
         {
             Profession profession = new Profession
@@ -31,33 +48,16 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.SaveAsync();
         }
 
+
+        //Delete Profession
         public async Task DeleteProfessionAsync(int id)
         {
             await _unitOfWork.GetRepository<Profession>().DeleteAsync(id);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<ICollection<Profession>> GetAllProfessionAsync()
-        {
-            var profession = _context.Professions.Include(i => i.InstructorProfessions).ToList();
-            return profession;
-        }
 
-        public async Task<Profession> GetProfessionById(int id)
-        {
-            var profession =  _unitOfWork.GetRepository<Profession>().GetByIdAsync(id);
-            return profession;
-        }
-
-        public async Task<bool> UpdateProfessionAsync(int id, UpdateProfessionVM updateProfessionVM)
-        {
-            var profession = _unitOfWork.GetRepository<Profession>().GetByIdAsync(id);
-            profession.Name = updateProfessionVM.Name;
-            await _unitOfWork.GetRepository<Profession>().UpdateAsync(profession);
-            await _unitOfWork.SaveAsync();
-            return true;
-        }
-
+        //Update Profession By Id
         public async Task<UpdateProfessionVM> UpdateProfessionById(int id)
         {
             var profession =  _unitOfWork.GetRepository<Profession>().GetByIdAsync(id);
@@ -67,5 +67,17 @@ namespace SkillUp.Service.Services.Concretes
             };
             return professionVM;
         }
+
+
+        //Update Profession
+        public async Task<bool> UpdateProfessionAsync(int id, UpdateProfessionVM updateProfessionVM)
+        {
+            var profession = _unitOfWork.GetRepository<Profession>().GetByIdAsync(id);
+            profession.Name = updateProfessionVM.Name;
+            await _unitOfWork.GetRepository<Profession>().UpdateAsync(profession);
+            await _unitOfWork.SaveAsync();
+            return true;
+        }
+
     }
 }

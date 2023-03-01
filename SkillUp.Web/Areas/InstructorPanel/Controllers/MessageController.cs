@@ -22,6 +22,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _reviewCourse = reviewCourse;
         }
 
+
+        //All Messages
         public async Task<IActionResult> Index()
         {
             string id = _userManager.GetUserId(HttpContext.User);
@@ -29,12 +31,16 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return View(instructor);
         }
 
+
+        //Delete Message
         public async Task<IActionResult> DeleteMessage(int id)
         {
             var review = _reviewCourse.DeleteReviewAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
+
+        //Read Message
         public async Task<IActionResult> ReadMessage(int id)
         {
             await _reviewCourse.ReadReviewAsync(id);

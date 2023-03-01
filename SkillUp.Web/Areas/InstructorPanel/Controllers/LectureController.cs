@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkillUp.DAL.Context;
-using SkillUp.Entity.Entities;
 using SkillUp.Entity.Entities.Relations.CourseExtraProperities;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
-using Stripe;
 
 namespace SkillUp.Web.Areas.InstructorPanel.Controllers
 {
@@ -29,11 +26,23 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _env = env;
         }
 
+
+        //All Paragraphs
+        public  IActionResult Paragraphs(int id)
+        {
+            var paragraphs =  _context.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures).FirstOrDefault(x=>x.Id == id);   
+            return View(paragraphs);    
+        }
+
+
+        //Add New Paragraph Get
         public async Task<IActionResult> AddNewCourseParagraph(int id)
         {
             return View();
         }
 
+
+        //Add New Paragraph Post
         [HttpPost]
         public async Task<IActionResult> AddNewCourseParagraph(int id, CreateParagraphVM paragraphVM)
         {
@@ -42,11 +51,51 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             return RedirectToAction(nameof(AddNewCourseParagraph));
         }
 
+
+        //Delete Paragraph
+        public async Task<IActionResult> DeleteParagraph(int id)
+        {
+           await _paragraph.DeleteParagraphAsync(id);
+            return RedirectToAction("MyCourses", "Course");
+        }
+
+
+        //Update Paragraph Get
+        public async Task<IActionResult> UpdateParagraph(int id)
+        {
+            var paragraph = await _paragraph.UpdateParagraphById(id); 
+            return View(paragraph);
+        }
+
+
+        //Update Paragraph Post
+        [HttpPost]
+        public async Task<IActionResult> UpdateParagraph(int id, UpdateParagraphVM paragraphVM)
+        {
+           await _paragraph.UpdateParagraphAsync(id, paragraphVM);
+            return RedirectToAction("MyCourses", "Course");
+        }
+
+
+        //-------------------------------------Lecture----------------------------------------//
+
+
+        //All Lectures
+        public async Task<IActionResult> Lectures(int id)
+        {
+            var lectures = await _context.Paragraphs.Include(l=>l.Lectures).FirstOrDefaultAsync(x=>x.Id == id);
+            return View(lectures);
+        }
+
+
+        //Add New Lecture Get
         public async Task<IActionResult> AddNewCourseLectures(int id)
         {
             return View();
         }
 
+
+        //Add New Lecture Post
         [HttpPost]
         public async Task<IActionResult> AddNewCourseLectures(int id, CreateLectureVM lectureVM)
         {
@@ -66,39 +115,7 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         }
 
 
-      
-        public  IActionResult Paragraphs(int id)
-        {
-            var paragraphs =  _context.Courses.Include(p=>p.Paragraphs).ThenInclude(l=>l.Lectures).FirstOrDefault(x=>x.Id == id);   
-            return View(paragraphs);    
-        }
-
-        public async Task<IActionResult> UpdateParagraph(int id)
-        {
-            var paragraph = await _paragraph.UpdateParagraphById(id); 
-            return View(paragraph);
-        }
-
-
-        [HttpPost]
-        public async Task<IActionResult> UpdateParagraph(int id, UpdateParagraphVM paragraphVM)
-        {
-           await _paragraph.UpdateParagraphAsync(id, paragraphVM);
-            return RedirectToAction("MyCourses", "Course");
-        }
-
-        public async Task<IActionResult> Lectures(int id)
-        {
-            var lectures = await _context.Paragraphs.Include(l=>l.Lectures).FirstOrDefaultAsync(x=>x.Id == id);
-            return View(lectures);
-        }
-
-        public async Task<IActionResult> DeleteParagraph(int id)
-        {
-           await _paragraph.DeleteParagraphAsync(id);
-            return RedirectToAction("MyCourses", "Course");
-        }
-
+        //Delete Lecture
         public async Task<IActionResult> DeleteLecture(int id)
         {
             await _lectureService.DeleteLectureAsync(id);
@@ -106,12 +123,15 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
         }
         
 
+        //Update Lecture Get
         public async Task<IActionResult> UpdateLecture(int id)
         {
             var lecture = await _lectureService.UpdateLectureById(id);
             return View(lecture);
         }
 
+
+        //Update Lecture Post
         [HttpPost]
         public async Task<IActionResult> UpdateLecture(int id, UpdateLectureVM lectureVM)
         {

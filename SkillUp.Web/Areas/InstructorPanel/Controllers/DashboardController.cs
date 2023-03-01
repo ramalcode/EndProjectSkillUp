@@ -25,6 +25,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.Controllers
             _userManager = userManager;
         }
 
+
+        //Dashboard
         public async Task<IActionResult> Index()
         {
             string id = _userManager.GetUserId(HttpContext.User);

@@ -2,11 +2,6 @@
 using SkillUp.Entity.Entities.Reviews;
 using SkillUp.Entity.ViewModels;
 using SkillUp.Service.Services.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SkillUp.Service.Services.Concretes
 {
@@ -19,6 +14,16 @@ namespace SkillUp.Service.Services.Concretes
             _unitOfWork = unitOfWork;
         }
 
+
+        //Get All Review
+        public async Task<ICollection<ProductReview>> GetAllReviewAsync()
+        {
+            var review = await _unitOfWork.GetRepository<ProductReview>().GetAllAsync();
+            return review;
+        }
+
+
+        //Create Review
         public async Task CreateReviewAsync(CreateProductReviewVM reviewVM, string id)
         {
             ProductReview productReview = new ProductReview
@@ -32,10 +37,5 @@ namespace SkillUp.Service.Services.Concretes
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<ICollection<ProductReview>> GetAllReviewAsync()
-        {
-            var review = await _unitOfWork.GetRepository<ProductReview>().GetAllAsync();
-            return review;
-        }
     }
 }

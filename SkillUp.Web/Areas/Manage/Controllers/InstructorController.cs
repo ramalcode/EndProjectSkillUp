@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using SkillUp.Entity.Entities;
 using SkillUp.Entity.ViewModels;
-using SkillUp.Service.Helpers;
 using SkillUp.Service.Services.Abstractions;
 
 namespace SkillUp.Web.Areas.Manage.Controllers
@@ -21,6 +20,7 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //All Instructors
         public async Task<IActionResult> ManageInstructor(string? query , int page = 1)
         {
             if (query!=null)
@@ -56,15 +56,12 @@ namespace SkillUp.Web.Areas.Manage.Controllers
         }
 
 
+        //Delete Instructor
         public async Task<IActionResult> DeleteInstructor(string id)
         {
             await _instructorService.DeleteInstructorAsync(id);
             return RedirectToAction(nameof(ManageInstructor));
         }
-
-
-        
-
 
       
     }

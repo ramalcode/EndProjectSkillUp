@@ -17,6 +17,8 @@ namespace SkillUp.Web.Areas.InstructorPanel.ViewComponents
             _context = context;
         }
 
+
+        //Instructor Info ViewComponent
         public async Task<IViewComponentResult> InvokeAsync()
         {
             string id = _userManager.GetUserId(HttpContext.User);
