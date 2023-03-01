@@ -13,7 +13,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb p-0 bg-white">
                             <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-                            <li class="breadcrumb-item active theme-cl" aria-current="page">Find Courses</li>
+                            <li class="breadcrumb-item active theme-cl" aria-current="page">Find Courses with Category</li>
                         </ol>
                     </nav>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
-                                    <a href="course-detail.html" class="crs_detail_link">
+                                    <a asp-action="coursedetail" asp-controller="course" asp-route-id="@coursecategory.Course.Id" class="crs_detail_link">
                                         <img src="~/user/assets/courseimg/@coursecategory.Course.ImageUrl" style="width:350px; height:208px" class="img-fluid rounded" alt="" />
                                     </a>
                                     @foreach (var user in coursecategory.Course.AppUserCourses)
@@ -83,7 +83,7 @@
                                             <div class="crs_price">
                                                 <h2>
                                                     <span class="theme-cl">
-                                                        @if (coursecategory.Course.DiscountPrice == 0)
+                                                        @if (coursecategory.Course.DiscountPrice == 0 && coursecategory.Course.Price > 0)
                                                         {
                                                             <span class="currency">$@coursecategory.Course.Price</span>
                                                         }
@@ -125,7 +125,7 @@
                                     <div class="crs_flex">
                                         <div class="crs_fl_first">
                                             <div class="crs_tutor">
-                                                <span class=" crs_auth small"> By: @(coursecategory.Course.Instructor.Name + " " + coursecategory.Course.Instructor.Surname)</span>
+                                                <span class=" crs_auth small"> By: <a asp-controller="instructor" asp-action="instructorDetail" asp-route-id="@coursecategory.Course.Instructor.Id">@(coursecategory.Course.Instructor.Name + " " + coursecategory.Course.Instructor.Surname)</a></span>
                                             </div>
                                         </div>
                                         <div class="crs_fl_last">

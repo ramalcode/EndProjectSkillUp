@@ -28,7 +28,7 @@
                         <div class="lios_item">
                             <div class="crs_grid shadow_none brd">
                                 <div class="crs_grid_thumb">
-                                    <a asp-controller="course" asp-action="coursedetail" class="crs_detail_link">
+                                    <a asp-action="coursedetail" asp-controller="course" asp-route-id="@item.Id" class="crs_detail_link">
                                         <img style="width:350px; height:208px" src="~/user/assets/courseimg/@item.ImageUrl"  alt="" />
                                     </a>
                                     <div class="crs_video_ico">
@@ -182,7 +182,7 @@
                                     <div class="instructor_tag dark"><span>
                                             @foreach (var profession in instructor.InstructorProfessions.Where(p => p.InstructorId == instructor.Id))
                                             {
-                                                <span>@profession.Profession.Name</span>
+                                                <span  style="padding:5px">@profession.Profession.Name</span>
                                             }
                                     </span></div>
                                     <div class="instructor_title"><h4><a asp-controller="instructor" asp-action="instructorDetail" asp-route-id= "@instructor.Id">@(instructor.Name + " " + instructor.Surname)</a></h4></div>
@@ -216,7 +216,7 @@
                 <div  class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
                     <div class="prd_grid_box">
                         <div class="prd_grid_thumb">
-                            <a asp-controller="Product" asp-action="ProductDetail" asp-route-id="@product.Id"><img src="~/user/assets/productimg/@product.ImageUrl" class="img-fluid" style="width:100%; height:300px !important;" alt=""></a>
+                            <a asp-controller="Shop" asp-action="ProductDetail" asp-route-id="@product.Id"><img src="~/user/assets/productimg/@product.ImageUrl" class="img-fluid" style="width:100%; height:300px !important;" alt=""></a>
                         </div>
                         <div class="prd_grid_caption">
                             <div class="prd_center_capt">
